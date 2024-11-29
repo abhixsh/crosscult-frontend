@@ -246,7 +246,7 @@ function Header() {
           <a href="#" className="hover:text-gray-400">About Us</a>
           <a href="#" className="hover:text-gray-400">Login Or Signup</a> */}
 
-          <Link to ="/aiservice" className="hover:text-gray-400">AI Services</Link>
+          <Link to ="/aiservice" className="hover:text-gray-400">Translator</Link>
           <Link to = "./Pages/" className='hover:text-gray-400'>Cultural Events</Link>
           <Link to = './Pages' className='hover:text-gray-400'>Cultural Details</Link>
           <Link to ='./Pages' className='hover:text-gray-400'>About Us</Link>
