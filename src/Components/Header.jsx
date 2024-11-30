@@ -250,7 +250,7 @@ function Header() {
           <Link to = "./Pages/" className='hover:text-gray-400'>Cultural Events</Link>
           <Link to = './Pages' className='hover:text-gray-400'>Cultural Details</Link>
           <Link to ='./Pages' className='hover:text-gray-400'>About Us</Link>
-          <Link to ='./Pages' className='hover:text-gray-400'>Login or SignUp</Link>
+          <Link to ='/login' className='hover:text-gray-400'>Login or SignUp</Link>
         </div>
 
         <button className="block md:hidden" onClick={toggleMenu}>
