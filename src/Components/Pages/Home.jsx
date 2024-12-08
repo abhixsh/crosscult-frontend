@@ -1,36 +1,70 @@
-import img1 from '../../assets/Home_page/backdrop.png'
-import img_home1 from '../../assets/Home_page/img1_home.png'
+import img1 from '../../assets/Home_page/backdrop.png';
+import img_home1 from '../../assets/Home_page/img1_home.png';
 
 function Home() {
   return (
-    <div>
-      <div className='mx-4 md:mx-16'>
-        <div className='relative'>
-          <img src={img1} className='mt-12 md:mt-12 rounded-2xl relative' style={{ right: '10px', bottom: '10px' }} />
-          <div className='absolute top-20 left-4 bg-black bg-opacity-75 text-white p-4 rounded-lg'>
-            <p className="font-bold text-4xl">Traditional Concepts</p>
-            <p className='mt-2 font-semibold text-3xl text-orange-600'>Beyond Limits</p>
-            <p className='text-lg mt-3'>Celebrate diversity, learn traditions, and connect with global <br />heritage through stories, art, and more.</p>
-          </div>
-        </div>
-        <br /><br /><br />
-        <p className='font-bold text-3xl text-center'>The Power of Cultural Exchange     </p><br />
-        <p className='mr-4 w-200 h-48 bg-gray-300 rounded-md text-center'>
-          Culture encompasses the beliefs, values, norms, customs, arts, and practices that define a group or society. It shapes how people view the world, interact with each other, and express themselves, giving each community a distinct identity. Culture includes language, religion, cuisine, social habits, music, and arts, which are passed down through generations, fostering a sense of belonging and continuity.
-          <br /><br />
-          In addition to visible aspects like festivals, clothing, and food, culture also includes more subtle elements, such as attitudes toward authority, gender roles, family structures, and time. It acts as a guiding framework for people, influencing their behaviors, traditions, and ways of communicating. Culture evolves over time, influenced by historical events, geographic surroundings, and interactions with other societies, but its core purpose remains to provide unity and a sense of collective identity.
-        </p><br /><br /> <br />
-        <div className="grid grid-cols-2 gap-2">
-          <img src={img_home1}></img>
-          <div>
-            <p className='font-bold text-3xl text-orange-400'>Traditional Concepts</p>
-          </div>
-        </div>
+    <div className="w-[1440px] h-[2098px] relative bg-white">
+      
+      {/* Backdrop Image */}
+      <img className="w-[1399px] h-[527px] left-[20px] top-[136px] absolute rounded-[20px]" src="https://via.placeholder.com/1399x527" alt="Backdrop" />
 
-
+      {/* Header Text */}
+      <div className="left-[73px] top-[281px] absolute text-center text-white text-5xl font-bold font-['Inter'] leading-[72px]">
+        Traditional Concepts
       </div>
+      <div className="left-[73px] top-[342px] absolute text-center text-[#ff6a00] text-4xl font-bold font-['Inter'] leading-[54px]">
+        Beyond Limits
+      </div>
+      <div className="w-[456px] h-[89px] left-[73px] top-[400px] absolute text-white text-lg font-normal font-['Inter'] leading-[27px]">
+        Release of Letraset sheets containing Lorem Ipsum passages, and more recently
+      </div>
+
+      {/* Description Section */}
+      <div className="w-[187px] h-5 left-[626px] top-[732px] absolute text-center text-black/80 text-xl font-bold font-['Inter'] leading-[30px]">
+        Description
+      </div>
+      <div className="w-[1324px] h-52 left-[58px] top-[815px] absolute text-center text-black text-lg font-normal font-['Inter'] leading-[27px]">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including.
+      </div>
+
+      {/* Main Image */}
+      <div className="w-[318px] h-5 left-[780px] top-[1039px] absolute text-center">
+        <span className="text-black/80 text-xl font-bold font-['Inter'] leading-[30px]">Traditional</span>
+        <span className="text-black/30 text-xl font-bold font-['Inter'] leading-[30px]">Concepts</span>
+      </div>
+
+      {/* Image 1 */}
+      <img className="w-[362px] h-[524px] left-[175px] top-[1049px] absolute rounded-3xl" src="https://via.placeholder.com/362x524" alt="Home Image 1" />
+
+      {/* Decorative Backgrounds */}
+      <div className="w-[1385px] h-[196px] left-[27px] top-[778px] absolute bg-[#d9d9d9]/30 rounded-[22px]" />
+
+      {/* Small Decorative Circles */}
+      <div className="w-[123px] h-[123px] left-[712px] top-[1117px] absolute bg-[#d9d9d9]/50 rounded-2xl" />
+      <div className="w-[123px] h-[123px] left-[1041px] top-[1117px] absolute bg-[#d9d9d9]/50 rounded-2xl" />
+      <div className="w-[123px] h-[123px] left-[712px] top-[1385px] absolute bg-[#d9d9d9]/50 rounded-2xl" />
+      <div className="w-[123px] h-[123px] left-[1041px] top-[1385px] absolute bg-[#d9d9d9]/50 rounded-2xl" />
+
+      {/* Icons */}
+      <img className="w-[91px] h-[91px] left-[728px] top-[1133px] absolute" src="https://via.placeholder.com/91x91" alt="Image 1" />
+      <img className="w-[91px] h-[91px] left-[1057px] top-[1133px] absolute" src="https://via.placeholder.com/91x91" alt="Image 2" />
+      <img className="w-[88px] h-[88px] left-[730px] top-[1403px] absolute" src="https://via.placeholder.com/88x88" alt="Image 3" />
+      <img className="w-[85px] h-[85px] left-[1060px] top-[1404px] absolute" src="https://via.placeholder.com/85x85" alt="Image 4" />
+
+      {/* Text for Icons */}
+      <div className="left-[737px] top-[1260px] absolute text-center text-black text-lg font-medium font-['Inter'] leading-[27px]">Tradition</div>
+      <div className="left-[1059px] top-[1260px] absolute text-center text-black text-lg font-medium font-['Inter'] leading-[27px]">Tradition</div>
+      <div className="left-[1059px] top-[1530px] absolute text-center text-black text-lg font-medium font-['Inter'] leading-[27px]">Tradition</div>
+      <div className="left-[737px] top-[1530px] absolute text-center text-black text-lg font-medium font-['Inter'] leading-[27px]">Tradition</div>
+
+      {/* Subtext under Icons */}
+      <div className="left-[679px] top-[1282px] absolute text-center text-black/50 text-sm font-normal font-['Inter'] leading-[21px]">It is a long established fact that</div>
+      <div className="left-[1001px] top-[1282px] absolute text-center text-black/50 text-sm font-normal font-['Inter'] leading-[21px]">It is a long established fact that</div>
+      <div className="left-[1001px] top-[1552px] absolute text-center text-black/50 text-sm font-normal font-['Inter'] leading-[21px]">It is a long established fact that</div>
+      <div className="left-[679px] top-[1552px] absolute text-center text-black/50 text-sm font-normal font-['Inter'] leading-[21px]">It is a long established fact that</div>
+
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
