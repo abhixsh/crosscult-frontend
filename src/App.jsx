@@ -6,6 +6,7 @@ import Header from './Components/Header'
 import MainTranslator from './Components/Pages/Translator/MainTranslator';
 import Login from './Components/Pages/Login & SignUp/Login'
 import SignUp from './Components/Pages/Login & SignUp/Signup'
+import Footer from './Components/Footer';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       <Route path = '/login' element = {<Login/>}/>
       <Route path = '/signup' element = {<SignUp/>}/>
     </Routes>
+    <Footer/>
     </>
   );
 }

@@ -1,5 +1,9 @@
 import img1 from '../../assets/Home_page/backdrop.png'
 import img_home1 from '../../assets/Home_page/img1_home.png'
+import con1 from '../../assets/Home_page/1.png'
+import con2 from '../../assets/Home_page/2.png'
+import con3 from '../../assets/Home_page/3.png'
+import con4 from '../../assets/Home_page/4.png'
 
 function Home() {
   return (
@@ -20,10 +24,16 @@ function Home() {
      <br/><br/>
 In addition to visible aspects like festivals, clothing, and food, culture also includes more subtle elements, such as attitudes toward authority, gender roles, family structures, and time. It acts as a guiding framework for people, influencing their behaviors, traditions, and ways of communicating. Culture evolves over time, influenced by historical events, geographic surroundings, and interactions with other societies, but its core purpose remains to provide unity and a sense of collective identity.
 </p><br/><br/> <br/>
-     <div className="grid grid-cols-2 gap-2">
+     <div className="grid grid-cols-2 gap-0 ml-20">
      <img src={img_home1}></img>
      <div> 
-      <p className='font-bold text-3xl text-orange-400'>Traditional Concepts</p>
+      <p className='font-bold text-3xl'>Traditional Concepts</p>
+      <div className='grid grid-cols-2 gap-4 mt-16'>
+        <div className='bg-gray-200 rounded-md h-20 w-20'><img src={con1}/>Festivals</div>
+        <div className='bg-gray-200 rounded-md h-20 w-20'><img src={con2}/>Mussic</div>
+        <div className='bg-gray-200 rounded-md h-20 w-20 mt-20'><img src={con3}/>Cuisine</div>
+        <div className='bg-gray-200 rounded-md h-20 w-20 mt-20'><img src={con4}/>Clothing</div>
+      </div>
     </div>
 </div>
 
