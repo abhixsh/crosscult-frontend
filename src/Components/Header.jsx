@@ -236,7 +236,7 @@ function Header() {
     <nav className="h-16">
       <div className="container mx-auto flex items-center justify-between h-full">
         <Link to ='/' className="flex items-center">
-          <img src="/src/assets/logo 1.png" alt="Cross Cult Logo" className="h-20 ml-10 mt-6" />
+          <img src="/src/assets/whiteLogo.png" alt="Cross Cult Logo" className="h-20 ml-10 mt-6" />
         </Link>
 
         <div className="hidden md:flex space-x-14 mr-24 font-semibold text-lg">

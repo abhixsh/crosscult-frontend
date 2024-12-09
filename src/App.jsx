@@ -26,6 +26,7 @@ function App() {
       <Route path = '/admin' element = {<Dashboard/>}/>
       <Route path = '/admin' element = {<Sidebar/>}/>
     </Routes>
+    <Footer/>
     </>
   );
 }
