@@ -1,68 +1,166 @@
-# CrossCult: Cultural Exchange Platform Integrating AI
+# CrossCult - A Cultural Exploration Web Application
 
+CrossCult is a web application designed to explore and showcase cultural details, traditions, foods, and interactive storytelling experiences from various countries. Built with Vite, React, and Tailwind CSS, this project offers a dynamic and engaging platform to learn about world cultures and connect through shared stories.
+
+## Table of Contents
+
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Scripts](#scripts)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Project Overview
 
-### Introduction
-The CrossCult platform is a web-based application designed to encourage cross-cultural communication and collaboration among people from different cultures. As the world becomes more interconnected, individuals and communities increasingly interact across geographical boundaries. However, language barriers and cultural differences often limit meaningful engagement. CrossCult aims to bridge this gap by providing a platform that allows users to connect, share, and learn about diverse cultures in a more interactive and inclusive way.
+The CrossCult web application aims to provide a platform for users to:
 
-The platform focuses on promoting understanding, tolerance, and appreciation for various cultures, including their traditions, languages, histories, and social practices. Through interactive features like storytelling, cultural discussions, language translation, and virtual events, CrossCult serves as a digital space to bring people together and celebrate cultural diversity.
+- Discover cultural details of various countries.
+- Engage with interactive storytelling.
+- Participate in language translation.
+- Explore events and traditions.
 
-### Features
-- **Cultural Details:** Explore detailed information about food, history, and traditions from various cultures.
-- **Interactive Storytelling:** Share and read cultural anecdotes and personal experiences.
-- **Language Translation:** Break down language barriers with real-time translation powered by AI.
-- **Cultural Events:** Discover cultural events happening around the world.
-- **User & Admin Panels:** Separate interfaces for users and administrators to manage content and interactions.
-- **Multilingual Support:** Language translation for accessibility to global audiences.
+The goal is to foster cultural understanding and connectivity through a user-friendly and visually appealing interface.
 
-### Live Demo
-Experience CrossCult live!
+## Features
 
-👉 [Live Demo Link](#)
+- **Home Page**: Welcoming interface with quick access to different sections.
+- **Country Details**: Displays cultural details such as history, traditions, and foods of each country.
+- **Interactive Storytelling**: Users can explore stories specific to each culture.
+- **Language Translation**: Supports multilingual translation for easy accessibility.
+- **User and Admin Panels**: Secure user login, with separate admin and user controls.
 
-### Technology Stack
-- **Frontend:** ReactJS & TailwindCSS
-- **Backend:** Node.js & Express.js (for future expansion)
-- **Routing:** React Router for navigation
-- **AI Integration:** OpenAI for language translation and personalized content generation
-- **Hosting:** Vercel or Netlify (for frontend hosting)
-- **Deployment:** Vite for bundling and development server
-- **CI/CD:** GitHub Actions for continuous integration
-- **Containerization:** Docker for scalable and deployable containers
-- **Cloud:** Azure for cloud services, Kubernetes for scaling, and Azure Container Registry (ACR)
+## Tech Stack
 
-### Backend Repositories
-The backend services of CrossCult are maintained in separate repositories. You can access the relevant repositories here:
-- **[crosscult-auth-service](https://github.com/abhixsh/crosscult-auth-service):** Authentication service for managing user login and sessions.
-- **[crosscult-storytelling-service](https://github.com/abhixsh/crosscult-storytelling-service):** Service handling the creation, sharing, and management of cultural stories.
-- **[crosscult-country-service](https://github.com/abhixsh/crosscult-country-service):** Service for managing cultural details like food, history, and traditions of various countries.
-- **[crosscult-argocd-management](https://github.com/abhixsh/crosscult-argocd-management):** Repository for managing continuous delivery and deployment using ArgoCD.
+- **Frontend Framework**: React
+- **Development Tool**: Vite
+- **Styling**: Tailwind CSS
+- **Routing**: React Router
 
-<!-- ### Screenshots
-Here are some screenshots of CrossCult in action: -->
+## Project Structure
 
+Here's an overview of the project directory structure:
 
-### Running Locally
-To run CrossCult locally, follow these steps:
+```
+CrossCult-Frontend/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── Home.jsx
+│   │   ├── CulturalDetails.jsx
+│   │   ├── AdminPanel.jsx
+│   │   ├── UserDetailsPanel.jsx
+│   │   ├── InteractiveStorytelling.jsx
+│   │   └── ...
+│   ├── pages/
+│   │   ├── HomePage.jsx
+│   │   ├── CountryPage.jsx
+│   │   └── ...
+│   ├── App.jsx
+│   ├── main.jsx
+│   ├── index.css
+│   └── tailwind.config.js
+└── projectsetup.sh
+```
 
-1. **Clone the repository:**
+## Getting Started
+
+### Prerequisites
+
+Ensure you have the following installed on your machine:
+
+- Node.js (v14 or later)
+- npm or yarn
+- Git Bash (if using Windows)
+
+### Setup Instructions
+
+1. **Clone the Repository**
+
     ```bash
-    git clone https://github.com/yourusername/CrossCult-Frontend.git
-    cd CrossCult-Frontend
+    git clone https://github.com/your-username/crosscult-frontend.git
+    cd crosscult-frontend
     ```
-2. **Install dependencies:**
-    Make sure you have Node.js installed. Then install the required dependencies:
+
+2. **Run the Setup Script**
+
+    Use the provided `projectsetup.sh` script to initialize the project structure and install dependencies.
+
     ```bash
-    npm install
+    bash projectsetup.sh
     ```
-3. **Start the development server:**
-    Once dependencies are installed, run the development server:
+
+3. **Manual Setup (if script fails)**
+
+    - Initialize the project using Vite and React template:
+
+        ```bash
+        npx create-vite my-app --template react
+        cd my-app
+        ```
+
+    - Install Tailwind CSS:
+
+        ```bash
+        npm install -D tailwindcss postcss autoprefixer
+        npx tailwindcss init -p
+        ```
+
+4. **Start the Development Server**
+
     ```bash
     npm run dev
     ```
-4. **Access the application:**
-    Open your browser and navigate to:
-    ```arduino
-    http://localhost:3000
+
+## Scripts
+
+### Development
+
+```bash
+npm run dev
+```
+
+Starts the development server on [http://localhost:3000](http://localhost:3000).
+
+### Build
+
+```bash
+npm run build
+```
+
+Builds the app for production to the `dist` folder.
+
+### Lint
+
+```bash
+npm run lint
+```
+
+Runs linting for the project to ensure code quality.
+
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix:
+
+    ```bash
+    git checkout -b feature-name
     ```
+
+3. Commit your changes and push to your branch:
+
+    ```bash
+    git commit -m "Add new feature"
+    git push origin feature-name
+    ```
+
+4. Submit a pull request.
+
+## License
+
+This project is licensed under the MIT License.
