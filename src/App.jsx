@@ -5,6 +5,7 @@ import Header from './Components/Header';
 import Country from './Components/Pages/country/country';
 import Dashboard from './Components/Pages/admin/Dashboard';
 import Sidebar from './Components/Pages/admin/Sidebar';
+import Footer from './Components/footer';
 // import AIService from './Components/Pages/AIService';
 // import MainTranslator from './Components/Pages/Translator/MainTranslator';
 // import Login from './Components/Pages/Login & SignUp/Login'
@@ -25,8 +26,9 @@ function App() {
       <Route path = '/country' element = {<Country/>}/>
       <Route path = '/admin' element = {<Dashboard/>}/>
       <Route path = '/admin' element = {<Sidebar/>}/>
+      <Route path = '/admin' element = {<Footer/>}/>
     </Routes>
-    {/* <Footer/> */}
+    <Footer/>
     </>
   );
 }
