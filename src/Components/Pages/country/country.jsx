@@ -1,10 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function Home() {
+    const [countries, setCountries] = useState([]); // Ensure countries is an array
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filteredCountries, setFilteredCountries] = useState([]); // Ensure filteredCountries is an array
+
+    // Fetch country data from the backend
+    useEffect(() => {
+        const fetchCountries = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/api/countries'); // Adjust URL if needed
+                if (Array.isArray(response.data)) {
+                    setCountries(response.data);
+                    setFilteredCountries(response.data);
+                } else {
+                    console.error('Response data is not an array:', response.data);
+                }
+            } catch (error) {
+                console.error('Error fetching countries:', error.message);
+            }
+        };
+
+        fetchCountries();
+    }, []);
+
+    // Handle search functionality
+    useEffect(() => {
+        const results = countries.filter(country =>
+            country.country_name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredCountries(results);
+    }, [searchTerm, countries]);
+
     return (
         <div className="w-full h-auto bg-white">
             {/* Add padding for the header */}
-            <div className="pt-20"> {/* Adjust padding as needed */}
+            <div className="pt-20">
                 {/* Main Image Container */}
                 <div className="relative w-full">
                     <img
@@ -19,6 +51,8 @@ function Home() {
                                 type="text"
                                 placeholder="Search country..."
                                 className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
                             />
                         </div>
                     </div>
@@ -29,26 +63,20 @@ function Home() {
             <div className="container mx-auto px-4 py-12">
                 <h2 className="text-2xl font-semibold text-center mb-8">Countries</h2>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {[
-                        { name: "Sri Lanka", img: "https://via.placeholder.com/218x218" },
-                        { name: "Japan", img: "https://via.placeholder.com/218x218" },
-                        { name: "Italy", img: "https://via.placeholder.com/218x218" },
-                        { name: "China", img: "https://via.placeholder.com/218x218" },
-                        { name: "India", img: "https://via.placeholder.com/218x218" },
-                        { name: "South Africa", img: "https://via.placeholder.com/218x218" },
-                        { name: "United Kingdom", img: "https://via.placeholder.com/218x218" },
-                        { name: "South Korea", img: "https://via.placeholder.com/218x218" },
-                        { name: "Saudi Arabia", img: "https://via.placeholder.com/218x218" },
-                    ].map((country, index) => (
-                        <div key={index} className="text-center">
-                            <img
-                                className="w-32 h-32 mx-auto rounded-full border border-gray-300 object-cover"
-                                src={country.img}
-                                alt={country.name}
-                            />
-                            <p className="mt-4 text-lg font-medium">{country.name}</p>
-                        </div>
-                    ))}
+                    {filteredCountries.length > 0 ? (
+                        filteredCountries.map((country) => (
+                            <div key={country._id} className="text-center">
+                                <img
+                                    className="w-32 h-32 mx-auto rounded-full border border-gray-300 object-cover"
+                                    src={country.flag_img || 'https://via.placeholder.com/128'}
+                                    alt={country.country_name}
+                                />
+                                <p className="mt-4 text-lg font-medium">{country.country_name}</p>
+                            </div>
+                        ))
+                    ) : (
+                        <p className="text-center col-span-4 text-gray-500">No countries found</p>
+                    )}
                 </div>
             </div>
         </div>
