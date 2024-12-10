@@ -1,46 +1,99 @@
-import img1 from '../../assets/Home_page/backdrop.png'
-import img_home1 from '../../assets/Home_page/img1_home.png'
-import con1 from '../../assets/Home_page/1.png'
-import con2 from '../../assets/Home_page/2.png'
-import con3 from '../../assets/Home_page/3.png'
-import con4 from '../../assets/Home_page/4.png'
+import React from 'react';
 
 function Home() {
   return (
-    <div>
-      <div className='mx-4 md:mx-16'>
-        <div className='relative'>
-      <img src={img1} className='mt-12 md:mt-12 rounded-2xl relative' style={{ right: '10px', bottom: '10px' }} />
-      <div className='absolute top-20 left-4 bg-black bg-opacity-75 text-white p-4 rounded-lg'>
-        <p className = "font-bold text-4xl">Traditional Concepts</p>
-        <p className='mt-2 font-semibold text-3xl text-orange-600'>Beyond Limits</p>
-        <p className='text-lg mt-3'>Celebrate diversity, learn traditions, and connect with global <br/>heritage through stories, art, and more.</p>
+    <div className="relative w-full bg-white overflow-x-hidden pt-15 pb-20">
+
+      {/* Main Content with Top Margin */}
+      <div className="relative w-full max-w-full mt-16">
+        <div className="relative w-full max-w-[90%] mx-auto rounded-[20px] overflow-hidden">
+          {/* Backdrop Image */}
+          <img
+            className="w-full h-auto object-cover"
+            src="public/img/landingImg.png"
+            alt="Backdrop"
+          />
+
+          {/* Text Content */}
+          <div className="absolute inset-0 flex flex-col items-start justify-center pl-4 sm:pl-10">
+            <h1 className="text-white text-2xl md:text-4xl lg:text-5xl font-bold font-['Inter'] leading-tight">
+              Traditional Concepts
+            </h1>
+            <h2 className="text-[#ff6a00] text-xl md:text-3xl lg:text-4xl font-bold font-['Inter'] mt-2">
+              Beyond Limits
+            </h2>
+            <p className="text-white text-sm md:text-base lg:text-lg font-normal font-['Inter'] mt-4 max-w-[80%] md:max-w-[60%] text-left">
+              Release of Letraset sheets containing Lorem Ipsum passages
+            </p>
+          </div>
+        </div>
       </div>
+
+      {/* Description Section */}
+      <div className="w-full px-4 sm:px-10 mt-8">
+        <div className="w-full text-center mb-4">
+          <h3 className="text-black/80 text-xl md:text-2xl font-bold font-['Inter']">
+            Description
+          </h3>
+        </div>
+        <div className="max-w-4xl mx-auto text-center text-black text-base md:text-lg font-normal font-['Inter'] leading-relaxed px-4">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+        </div>
       </div>
-      <br/><br/><br/>
-     <p className='font-bold text-3xl text-center'>The Power of Cultural Exchange     </p><br/>
-     <p className='mr-4 w-200 h-48 bg-gray-300 rounded-md text-center'>
-     Culture encompasses the beliefs, values, norms, customs, arts, and practices that define a group or society. It shapes how people view the world, interact with each other, and express themselves, giving each community a distinct identity. Culture includes language, religion, cuisine, social habits, music, and arts, which are passed down through generations, fostering a sense of belonging and continuity.
-     <br/><br/>
-In addition to visible aspects like festivals, clothing, and food, culture also includes more subtle elements, such as attitudes toward authority, gender roles, family structures, and time. It acts as a guiding framework for people, influencing their behaviors, traditions, and ways of communicating. Culture evolves over time, influenced by historical events, geographic surroundings, and interactions with other societies, but its core purpose remains to provide unity and a sense of collective identity.
-</p><br/><br/> <br/>
-     <div className="grid grid-cols-2 gap-0 ml-20">
-     <img src={img_home1}></img>
-     <div> 
-      <p className='font-bold text-3xl'>Traditional Concepts</p>
-      <div className='grid grid-cols-2 gap-4 mt-16'>
-        <div className='bg-gray-200 rounded-md h-20 w-20'><img src={con1}/>Festivals</div>
-        <div className='bg-gray-200 rounded-md h-20 w-20'><img src={con2}/>Mussic</div>
-        <div className='bg-gray-200 rounded-md h-20 w-20 mt-20'><img src={con3}/>Cuisine</div>
-        <div className='bg-gray-200 rounded-md h-20 w-20 mt-20'><img src={con4}/>Clothing</div>
+
+      {/* Main Content Section */}
+      <div className="relative w-full px-4 sm:px-10 mt-8">
+        {/* Traditional Concepts Title */}
+        <div className="text-center mb-6">
+          <span className="text-black/80 text-xl md:text-2xl font-bold font-['Inter']">Traditional</span>
+          <span className="text-black/30 text-xl md:text-2xl font-bold font-['Inter'] ml-2">Concepts</span>
+        </div>
+
+        {/* Main Layout Container */}
+        <div className="relative w-full max-w-[1324px] mx-auto flex flex-col md:flex-row items-center gap-6">
+          {/* Main Image - Reduced Height */}
+          <div className="w-full md:w-[40%] flex justify-center">
+            <img
+              className="w-full max-w-[362px] h-auto aspect-[362/524] object-cover rounded-3xl"
+              src="public/img/girl.png"
+              alt="Home Image 1"
+            />
+          </div>
+
+          {/* Icons Grid */}
+          <div className="w-full md:w-[60%] grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 justify-center items-center">
+            {[
+              { icon: "public/img/001.png", text: "Tradition", subtext: "It is a long established fact that" },
+              { icon: "public/img/002.png", text: "Tradition", subtext: "It is a long established fact that" },
+              { icon: "public/img/003.png", text: "Tradition", subtext: "It is a long established fact that" },
+              { icon: "public/img/004.png", text: "Tradition", subtext: "It is a long established fact that" }
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center justify-center text-center space-y-2"
+              >
+                <div className="w-[125px] h-[125px] bg-[#d9d9d9] rounded-lg flex items-center justify-center">
+                  <img
+                    className="w-2/3 h-2/3 object-contain"
+                    src={item.icon}
+                    alt={`Icon ${index + 1}`}
+                  />
+                </div>
+                <div className="text-black text-sm font-medium font-['Inter']">
+                  {item.text}
+                </div>
+                <div className="text-black/50 text-xs font-['Inter'] px-2">
+                  {item.subtext}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
-</div>
 
 
-     </div>   
-    </div>
-  )
+    </div >
+  );
 }
 
-export default Home
+export default Home;
