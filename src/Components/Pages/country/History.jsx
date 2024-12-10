@@ -52,7 +52,7 @@ const Home = () => {
                 </div>
 
                 {/* Image */}
-                <div className="w-full md:w-1/2 lg:w-1/3 flex justify-center">
+                <div className="w-full max-w-[289px] max-h-[400px] flex justify-center">
                     <img
                         className="w-full max-w-lg rounded-3xl shadow-2xl object-cover aspect-[3/5] 
                                    transition-transform duration-300 hover:scale-105"
