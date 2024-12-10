@@ -23,7 +23,7 @@ const Header = () => {
 
         {/* Mobile Menu Toggle */}
         <div className="md:hidden">
-          <button 
+          <button
             onClick={toggleMenu}
             className="text-black focus:outline-none"
           >
@@ -37,7 +37,7 @@ const Header = () => {
           md:static md:flex md:flex-row md:bg-transparent md:z-auto
           ${isMenuOpen ? 'block' : 'hidden'}
         `}>
-          <button 
+          <button
             onClick={toggleMenu}
             className="absolute top-4 right-4 md:hidden"
           >

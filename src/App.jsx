@@ -5,6 +5,11 @@ import Header from './Components/Header';
 import Country from './Components/Pages/country/country';
 import Dashboard from './Components/Pages/admin/Dashboard';
 import Sidebar from './Components/Pages/admin/Sidebar';
+import Footer from './Components/footer';
+import CountryAbout from './Components/Pages/country/countryAbout';
+import History from './Components/Pages/country/History';
+import Food from './Components/Pages/country/Food';
+import Traditions from './Components/Pages/country/Traditions';
 // import AIService from './Components/Pages/AIService';
 // import MainTranslator from './Components/Pages/Translator/MainTranslator';
 // import Login from './Components/Pages/Login & SignUp/Login'
@@ -25,8 +30,13 @@ function App() {
       <Route path = '/country' element = {<Country/>}/>
       <Route path = '/admin' element = {<Dashboard/>}/>
       <Route path = '/admin' element = {<Sidebar/>}/>
+      <Route path = '/admin' element = {<Footer/>}/>
+      <Route path = '/countryabout' element = {<CountryAbout/>}/>
+      <Route path = '/history' element = {<History/>}/>
+      <Route path = '/food' element = {<Food/>}/>
+      <Route path = '/traditions' element = {<Traditions/>}/>
     </Routes>
-    {/* <Footer/> */}
+    <Footer/>
     </>
   );
 }
