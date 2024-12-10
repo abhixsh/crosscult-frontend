@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
@@ -50,7 +50,7 @@ const Header = () => {
               className="text-black/80 text-base font-medium hover:text-black transition"
               onClick={toggleMenu}
             >
-              AI Services
+              Translator
             </Link>
             <Link
               to="/cultural-events"
