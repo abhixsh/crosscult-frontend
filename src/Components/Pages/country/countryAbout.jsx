@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom'; // Import Link
 import axios from 'axios';
 
 const CountryAbout = () => {
@@ -70,12 +70,12 @@ const CountryAbout = () => {
                             <p className="text-gray-600 mb-4">
                                 Dive into the fascinating historical journey of {countryData.country_name}.
                             </p>
-                            <a 
-                                href="#" 
+                            <Link
+                                to={`/country/${id}/history`}
                                 className="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                             >
                                 Learn More
-                            </a>
+                            </Link>
                         </div>
                     </div>
 
@@ -93,12 +93,12 @@ const CountryAbout = () => {
                             <p className="text-gray-600 mb-4">
                                 Explore the intricate cultural traditions of {countryData.country_name}.
                             </p>
-                            <a 
-                                href="#" 
+                            <Link
+                                to={`/country/${id}/traditions`}
                                 className="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                             >
                                 Learn More
-                            </a>
+                            </Link>
                         </div>
                     </div>
 
@@ -116,12 +116,12 @@ const CountryAbout = () => {
                             <p className="text-gray-600 mb-4">
                                 Discover the culinary delights of {countryData.country_name}.
                             </p>
-                            <a 
-                                href="#" 
+                            <Link
+                                to={`/country/${id}/food`}
                                 className="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                             >
                                 Learn More
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
