@@ -49,8 +49,8 @@ const Home = () => {
                             <p className="text-gray-600 mb-4">
                                 Dive into the fascinating historical journey of Sri Lanka, spanning ancient kingdoms, colonial periods, and modern independence.
                             </p>
-                            <a 
-                                href="#" 
+                            <a
+                                href="#"
                                 className="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                             >
                                 Learn More
@@ -72,8 +72,8 @@ const Home = () => {
                             <p className="text-gray-600 mb-4">
                                 Explore the intricate cultural tapestry of Sri Lanka, featuring vibrant festivals, traditional arts, and time-honored customs.
                             </p>
-                            <a 
-                                href="#" 
+                            <a
+                                href="#"
                                 className="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                             >
                                 Learn More
@@ -95,8 +95,8 @@ const Home = () => {
                             <p className="text-gray-600 mb-4">
                                 Discover the mouth-watering world of Sri Lankan cuisine, a delightful blend of spices, tropical ingredients, and unique culinary techniques.
                             </p>
-                            <a 
-                                href="#" 
+                            <a
+                                href="#"
                                 className="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                             >
                                 Learn More
