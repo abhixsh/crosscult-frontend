@@ -45,7 +45,7 @@ function Home() {
             <div className="relative w-full h-64 md:h-80 lg:h-96">
                 <img
                     className="absolute inset-0 w-full h-full object-cover"
-                    src="https://via.placeholder.com/1920x600"
+                    src="public/img/cover.png"
                     alt="Main Banner"
                 />
                 {/* Overlay for search */}
