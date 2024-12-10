@@ -1,117 +1,82 @@
-import React from 'react';
-import {
-    FaFacebook,
-    FaTwitter,
-    FaInstagram,
-    FaLinkedin,
-    FaYoutube
-} from 'react-icons/fa';
+import { FaFacebookF, FaInstagram, FaTwitter, FaPinterest, FaYoutube } from "react-icons/fa";
 
-const Header = () => {
-    const mainMenuItems = [
-        "Home", "News", "Sport", "Business", "Innovation",
-        "Culture", "Arts", "Travel", "Earth", "Video", "Live",
-        "Audio", "Weather"
-    ];
-
-    const mobileFooterLinks = [
-        "Terms of Use",
-        "About the crosscult",
-        "Privacy Policy",
-        "Cookies"
-    ];
-
-    const fullFooterLinks = [
-        "Terms of Use", "About the crosscult", "Privacy Policy",
-        "Cookies", "Accessibility Help", "Contact the crosscult",
-        "Advertise with us", "Do not Share or sell my info", "Contact US"
-    ];
-
-    const socialIcons = [
-        { Icon: FaFacebook, name: "Facebook" },
-        { Icon: FaTwitter, name: "Twitter" },
-        { Icon: FaInstagram, name: "Instagram" },
-        { Icon: FaLinkedin, name: "LinkedIn" },
-        { Icon: FaYoutube, name: "YouTube" }
-    ];
-
+const Footer = () => {
     return (
-        <header className="bg-[#343434] w-full">
-            <div className="container mx-auto px-4 relative">
-                {/* Logo */}
-                <div className="flex justify-between items-center py-4">
-                    <img
-                        className="w-[123px] h-[58px] object-contain"
-                        src="public/img/whiteLogo.png"
-                        alt="Logo"
-                    />
+        <footer className="bg-black text-white py-8 mt-10">
+            <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* Column 1 */}
+                <div>
+                    <h2 className="text-xl font-bold mb-4">CrossCult</h2>
+                    <ul className="space-y-2">
+                        <li><a href="#" className="hover:underline">Translator</a></li>
+                        <li><a href="#" className="hover:underline">Events</a></li>
+                        <li><a href="#" className="hover:underline">Details</a></li>
+                        <li><a href="#" className="hover:underline">About Us</a></li>
+                    </ul>
                 </div>
 
-                {/* Desktop Navigation */}
-                <nav className="hidden md:flex md:gap-6 lg:gap-9 overflow-x-auto pb-4">
-                    {mainMenuItems.map((menu, index) => (
-                        <div
-                            key={index}
-                            className="text-white text-sm font-semibold font-['Inter'] 
-              hover:text-gray-300 cursor-pointer whitespace-nowrap"
-                        >
-                            {menu}
-                        </div>
-                    ))}
-                </nav>
-
-                {/* Social Media Section */}
-                <div className="flex flex-col md:flex-row items-start md:items-center gap-4 py-4">
-                    <div className="text-white text-sm font-semibold font-['Inter']">
-                        Follow CrossCult On:
-                    </div>
-                    <div className="flex gap-4">
-                        {socialIcons.map(({ Icon, name }, index) => (
-                            <a
-                                key={index}
-                                href="#"
-                                aria-label={`Follow us on ${name}`}
-                                className="text-white hover:opacity-80 transition-opacity"
-                            >
-                                <Icon className="w-6 h-6" />
-                            </a>
-                        ))}
-                    </div>
+                {/* Column 2 */}
+                <div>
+                    <ul className="space-y-2">
+                        <li><a href="#" className="hover:underline">Consumer Care</a></li>
+                        <li><a href="#" className="hover:underline">Alumni</a></li>
+                        <li><a href="#" className="hover:underline">CrossCult Canada</a></li>
+                        <li><a href="#" className="hover:underline">CrossCult Mexico</a></li>
+                    </ul>
                 </div>
 
-                {/* Footer Links - Mobile Specific */}
-                <div className="
-          md:hidden flex gap-4 overflow-x-auto pb-4
-        ">
-                    {mobileFooterLinks.map((item, index) => (
-                        <div
-                            key={index}
-                            className="text-white text-sm font-light font-['Inter'] 
-              whitespace-nowrap hover:underline cursor-pointer"
-                        >
-                            {item}
+                {/* Column 3 */}
+                <div>
+                    <h3 className="text-lg font-semibold mb-4">Get the freshest CrossCult news</h3>
+                    <form className="flex flex-col space-y-4">
+                        <input
+                            type="email"
+                            placeholder="Your email here"
+                            className="px-4 py-2 rounded-md text-gray-900"
+                        />
+                        <div className="flex items-start space-x-2">
+                            <input
+                                type="checkbox"
+                                id="agree"
+                                className="mt-1"
+                            />
+                            <label htmlFor="agree" className="text-sm">
+                                By checking the box, you agree that you are at least 16 years of age.
+                            </label>
                         </div>
-                    ))}
-                </div>
-
-                {/* Footer Links - Desktop Specific */}
-                <div className="
-          hidden md:flex md:flex-wrap md:justify-center 
-          gap-4 lg:gap-[35px] pb-4
-        ">
-                    {fullFooterLinks.map((item, index) => (
-                        <div
-                            key={index}
-                            className="text-white text-sm font-light font-['Inter'] 
-              whitespace-nowrap hover:underline cursor-pointer"
+                        <button
+                            type="submit"
+                            className="bg-white text-green-900 font-bold px-6 py-2 rounded-md hover:bg-gray-100"
                         >
-                            {item}
-                        </div>
-                    ))}
+                            Subscribe
+                        </button>
+                    </form>
                 </div>
             </div>
-        </header>
+
+            <hr className="border-gray-700 my-6" />
+
+            {/* Social Media Links */}
+            <div className="container mx-auto px-4 flex flex-wrap justify-between items-center space-y-4 md:space-y-0">
+                <div className="flex flex-wrap justify-center md:justify-start space-x-4">
+                    <a href="#" className="text-white hover:text-gray-400 text-xl"><FaFacebookF /></a>
+                    <a href="#" className="text-white hover:text-gray-400 text-xl"><FaInstagram /></a>
+                    <a href="#" className="text-white hover:text-gray-400 text-xl"><FaTwitter /></a>
+                    <a href="#" className="text-white hover:text-gray-400 text-xl"><FaPinterest /></a>
+                    <a href="#" className="text-white hover:text-gray-400 text-xl"><FaYoutube /></a>
+                </div>
+                <div className="text-sm text-gray-400 text-center md:text-left">
+                    <a href="#" className="hover:underline">Website Terms</a> |
+                    <a href="#" className="hover:underline"> Privacy Policy</a> |
+                    <a href="#" className="hover:underline"> Accessibility Statement</a> |
+                    <a href="#" className="hover:underline"> CA Transparency</a>
+                </div>
+                <p className="text-sm text-gray-400 text-center md:text-left">
+                    ©2024 CrossCult. All Rights Reserved.
+                </p>
+            </div>
+        </footer>
     );
 };
 
-export default Header;
+export default Footer;
