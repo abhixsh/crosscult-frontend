@@ -1,6 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const Home = () => {
+    const { id } = useParams(); // Get the country ID from the URL
+    const [historyData, setHistoryData] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchHistory = async () => {
+            try {
+                setIsLoading(true);
+                const response = await axios.get(`http://localhost:3000/api/country/${id}`);
+                setHistoryData(response.data);
+            } catch (err) {
+                console.error('Error fetching history:', err.message);
+                setError('Failed to load history data. Please try again later.');
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchHistory();
+    }, [id]);
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div className="text-red-500">{error}</div>;
+    }
+
+    if (!historyData) {
+        return <div>No data available.</div>;
+    }
+
     return (
         <div className="container mx-auto px-6 md:px-12 lg:px-16 py-8">
             <div className="flex flex-col-reverse md:flex-row items-center justify-between 
@@ -8,15 +44,10 @@ const Home = () => {
                 {/* Text Content */}
                 <div className="w-full md:w-1/2 lg:w-2/3 space-y-10">
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 text-center md:text-left">
-                        History
+                        History of {historyData.country_name}
                     </h1>
                     <p className="text-lg md:text-xl lg:text-2xl text-gray-700 text-justify leading-relaxed">
-                        It is a long established fact that a reader will be distracted by the readable content of a page when
-                        looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution
-                        of letters, as opposed to using 'Content here, content here', making it look like readable English.
-                        Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,
-                        and a search for 'lorem ipsum' will uncover many websites still in their infancy. Various versions
-                        have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                        {historyData.history_desc}
                     </p>
                 </div>
 
@@ -25,8 +56,8 @@ const Home = () => {
                     <img
                         className="w-full max-w-lg rounded-3xl shadow-2xl object-cover aspect-[3/5] 
                                    transition-transform duration-300 hover:scale-105"
-                        src="https://via.placeholder.com/489x807"
-                        alt="Placeholder"
+                        src={historyData.history_main_img || 'https://via.placeholder.com/489x807'}
+                        alt={`${historyData.country_name} history`}
                     />
                 </div>
             </div>

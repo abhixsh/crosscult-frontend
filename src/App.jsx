@@ -31,7 +31,7 @@ function App() {
       <Route path = '/admin' element = {<Sidebar/>}/>
       <Route path = '/admin' element = {<Footer/>}/>
       <Route path = '/country/:id' element = {<CountryAbout/>}/>
-      <Route path = '/history' element = {<History/>}/>
+      <Route path = '/country/:id/history' element = {<History/>}/>
       <Route path = '/food' element = {<Food/>}/>
       <Route path = '/traditions' element = {<Traditions/>}/>
     </Routes>
