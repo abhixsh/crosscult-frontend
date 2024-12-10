@@ -13,6 +13,8 @@ import Traditions from './Components/Pages/country/Traditions';
 import MainTranslator from './Components/Pages/Translator/MainTranslator';
 import Login from './Components/Pages/Login & SignUp/Login'
 import SignUp from './Components/Pages/Login & SignUp/Signup'
+import InputLanguage from './Components/Pages/Translator/InputLanguage';
+import FileUpload from './Components/Pages/Translator/FileUpload';
 
 
 function App() {
@@ -23,10 +25,12 @@ function App() {
     <Header/>
     <Routes>
       <Route path = '/' element = {<Home/>}/>
-      <Route path = '/aiservice' element = {<MainTranslator/>}/> 
+      <Route path = '/MainTranslator' element = {<MainTranslator/>}/> 
       <Route path = '/login' element = {<Login/>}/>
       <Route path = '/signup' element = {<SignUp/>}/>
       <Route path = '/country' element = {<Country/>}/>
+      <Route path = '/InputLanguage' element = {<InputLanguage/>}/>
+      <Route path = '/FileUpload' element = {<FileUpload/>}/>
       <Route path = '/admin' element = {<Dashboard/>}/>
       <Route path = '/admin' element = {<Sidebar/>}/>
       <Route path = '/admin' element = {<Footer/>}/>
