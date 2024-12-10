@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 function Home() {
@@ -80,23 +81,24 @@ function Home() {
                     </div>
                 ) : filteredCountries.length > 0 ? (
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
-                        {filteredCountries.map((country) => (
-                            <div 
-                            key={country._id} 
-                            className="text-center overflow-hidden 
-                                transform transition duration-300 hover:scale-105 hover: flex flex-col items-center justify-center"
-                        >
-                            <img
-                                className="w-40 h-40 object-cover rounded-full"  // Make the image circular and adjust size
-                                src={country.flag_img || 'https://via.placeholder.com/300'}
-                                alt={country.country_name}
-                            />
-                            <div className="p-4 mt-4">  {/* Add margin-top to separate the name */}
-                                <p className="text-lg font-semibold text-gray-800">
-                                    {country.country_name}
-                                </p>
-                            </div>
-                        </div>
+{filteredCountries.map((country) => (
+    <div
+        key={country._id}
+        className="text-center overflow-hidden transform transition duration-300 hover:scale-105 flex flex-col items-center justify-center"
+    >
+        <Link to={`/country/${country._id}`} className="block">
+            <img
+                className="w-40 h-40 object-cover rounded-full"
+                src={country.flag_img || 'https://via.placeholder.com/300'}
+                alt={country.country_name}
+            />
+            <div className="p-4 mt-4">
+                <p className="text-lg font-semibold text-gray-800">
+                    {country.country_name}
+                </p>
+            </div>
+        </Link>
+    </div>
                         ))}
                     </div>
                 ) : (

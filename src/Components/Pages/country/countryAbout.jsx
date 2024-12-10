@@ -2,146 +2,107 @@ import React from 'react';
 
 const Home = () => {
     return (
-        <div className="w-[1440px] h-[2090px] relative bg-white">
-            <img
-                className="w-[489px] h-[807px] left-[857px] top-[269px] absolute rounded-[26px]"
-                src="https://via.placeholder.com/489x807"
-                alt="Placeholder"
-            />
-            <div className="w-[401px] left-[-29px] top-[257px] absolute text-center text-black text-5xl font-extrabold font-['Inter'] leading-[72px]">
-                Sri Lanka
-            </div>
-            <div className="w-[659px] h-[463px] left-[72px] top-[391px] absolute text-justify text-black text-xl font-normal font-['Inter'] leading-[30px]">
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-            </div>
-            <div className="w-[659px] h-[463px] left-[72px] top-[697px] absolute text-justify text-black text-xl font-normal font-['Inter'] leading-[30px]">
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-            </div>
-            <div className="w-[1524px] h-[424px] left-[-42px] top-[1229px] absolute bg-[#d9d9d9]/30" />
+        <div className="container mx-auto px-6 md:px-12 lg:px-16 py-8">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+                {/* Title and Description Section */}
+                <div className="space-y-6 px-4">
+                    <h1 className="text-4xl md:text-5xl font-bold text-gray-800">
+                        Sri Lanka
+                    </h1>
+                    <div className="space-y-4">
+                        <p className="text-lg text-gray-600 leading-relaxed">
+                            Sri Lanka is a mesmerizing island nation located in the Indian Ocean, known for its rich cultural heritage, stunning landscapes, and warm hospitality. From ancient ruins to pristine beaches, from vibrant traditions to incredible biodiversity, Sri Lanka offers a unique and unforgettable experience for travelers and culture enthusiasts.
+                        </p>
+                        <p className="text-lg text-gray-600 leading-relaxed">
+                            This island paradise blends centuries of history with modern dynamism, creating a destination that captivates visitors with its natural beauty, diverse cultures, and incredible stories waiting to be discovered.
+                        </p>
+                    </div>
+                </div>
 
-            {/* Updated Card 1: History */}
-            <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 absolute left-[93px] top-[1261px]">
-                <a href="#">
+                {/* Hero Image */}
+                <div className="flex justify-center px-4">
                     <img
-                        className="rounded-t-lg"
-                        src="https://via.placeholder.com/359x359"
-                        alt="Placeholder"
+                        className="rounded-xl shadow-lg max-w-full h-auto object-cover"
+                        src="/api/placeholder/489/807"
+                        alt="Sri Lanka Landscape"
                     />
-                </a>
-                <div className="p-5">
-                    <a href="#">
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            History
-                        </h5>
-                    </a>
-                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        Learn about the rich history of Sri Lanka, from ancient times to its modern-day cultural evolution.
-                    </p>
-                    <a
-                        href="#"
-                        className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    >
-                        Read more
-                        <svg
-                            className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 14 10"
-                        >
-                            <path
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M1 5h12m0 0L9 1m4 4L9 9"
-                            />
-                        </svg>
-                    </a>
                 </div>
             </div>
 
-            {/* Updated Card 2: Traditions */}
-            <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 absolute left-[540px] top-[1261px]">
-                <a href="#">
-                    <img
-                        className="rounded-t-lg"
-                        src="https://via.placeholder.com/359x359"
-                        alt="Placeholder"
-                    />
-                </a>
-                <div className="p-5">
-                    <a href="#">
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            Traditions
-                        </h5>
-                    </a>
-                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        Explore the deep-rooted traditions and customs that make Sri Lanka unique and vibrant.
-                    </p>
-                    <a
-                        href="#"
-                        className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    >
-                        Read more
-                        <svg
-                            className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 14 10"
-                        >
-                            <path
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M1 5h12m0 0L9 1m4 4L9 9"
-                            />
-                        </svg>
-                    </a>
-                </div>
-            </div>
+            {/* Information Cards Section */}
+            <div className="mt-16 px-4">
+                <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+                    Explore Sri Lanka
+                </h2>
+                <div className="grid md:grid-cols-3 gap-8">
+                    {/* History Card */}
+                    <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
+                        <img
+                            className="w-full h-64 object-cover"
+                            src="/api/placeholder/359/359"
+                            alt="Sri Lankan History"
+                        />
+                        <div className="p-6">
+                            <h3 className="text-2xl font-bold mb-3 text-gray-800">
+                                History
+                            </h3>
+                            <p className="text-gray-600 mb-4">
+                                Dive into the fascinating historical journey of Sri Lanka, spanning ancient kingdoms, colonial periods, and modern independence.
+                            </p>
+                            <a 
+                                href="#" 
+                                className="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+                            >
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
 
-            {/* Updated Card 3: Food */}
-            <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 absolute left-[987px] top-[1261px]">
-                <a href="#">
-                    <img
-                        className="rounded-t-lg"
-                        src="https://via.placeholder.com/359x359"
-                        alt="Placeholder"
-                    />
-                </a>
-                <div className="p-5">
-                    <a href="#">
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            Food
-                        </h5>
-                    </a>
-                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        Discover the flavorful and diverse cuisine of Sri Lanka, full of spices and unique dishes.
-                    </p>
-                    <a
-                        href="#"
-                        className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    >
-                        Read more
-                        <svg
-                            className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 14 10"
-                        >
-                            <path
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M1 5h12m0 0L9 1m4 4L9 9"
-                            />
-                        </svg>
-                    </a>
+                    {/* Traditions Card */}
+                    <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
+                        <img
+                            className="w-full h-64 object-cover"
+                            src="/api/placeholder/359/359"
+                            alt="Sri Lankan Traditions"
+                        />
+                        <div className="p-6">
+                            <h3 className="text-2xl font-bold mb-3 text-gray-800">
+                                Traditions
+                            </h3>
+                            <p className="text-gray-600 mb-4">
+                                Explore the intricate cultural tapestry of Sri Lanka, featuring vibrant festivals, traditional arts, and time-honored customs.
+                            </p>
+                            <a 
+                                href="#" 
+                                className="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+                            >
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* Food Card */}
+                    <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
+                        <img
+                            className="w-full h-64 object-cover"
+                            src="/api/placeholder/359/359"
+                            alt="Sri Lankan Cuisine"
+                        />
+                        <div className="p-6">
+                            <h3 className="text-2xl font-bold mb-3 text-gray-800">
+                                Cuisine
+                            </h3>
+                            <p className="text-gray-600 mb-4">
+                                Discover the mouth-watering world of Sri Lankan cuisine, a delightful blend of spices, tropical ingredients, and unique culinary techniques.
+                            </p>
+                            <a 
+                                href="#" 
+                                className="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+                            >
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
