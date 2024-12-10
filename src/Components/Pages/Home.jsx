@@ -1,11 +1,9 @@
-import React from 'react';
-
 function Home() {
   return (
     <div className="relative w-full bg-white overflow-x-hidden pt-15 pb-20">
 
       {/* Main Content with Top Margin */}
-      <div className="relative w-full max-w-full mt-16">
+      <div className="relative w-full max-w-full mt-2">
         <div className="relative w-full max-w-[90%] mx-auto rounded-[20px] overflow-hidden">
           {/* Backdrop Image */}
           <img
@@ -37,12 +35,12 @@ function Home() {
           </h3>
         </div>
         <div className="max-w-4xl mx-auto text-center text-black text-base md:text-lg font-normal font-['Inter'] leading-relaxed px-4">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+        Culture encompasses the beliefs, values, norms, customs, arts, and practices that define a group or society. It shapes how people view the world, interact with each other, and express themselves, giving each community a distinct identity. Culture includes language, religion, cuisine, social habits, music, and arts, which are passed down through generations, fostering a sense of belonging and continuity.
         </div>
       </div>
 
       {/* Main Content Section */}
-      <div className="relative w-full px-4 sm:px-10 mt-8">
+      <div className="relative w-full px-4 sm:px-10 mt-16">
         {/* Traditional Concepts Title */}
         <div className="text-center mb-6">
           <span className="text-black/80 text-xl md:text-2xl font-bold font-['Inter']">Traditional</span>
@@ -63,10 +61,10 @@ function Home() {
           {/* Icons Grid */}
           <div className="w-full md:w-[60%] grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 justify-center items-center">
             {[
-              { icon: "public/img/001.png", text: "Tradition", subtext: "It is a long established fact that" },
-              { icon: "public/img/002.png", text: "Tradition", subtext: "It is a long established fact that" },
-              { icon: "public/img/003.png", text: "Tradition", subtext: "It is a long established fact that" },
-              { icon: "public/img/004.png", text: "Tradition", subtext: "It is a long established fact that" }
+              { icon: "public/img/001.png", text: "Festivals", subtext: "Experience the vibrant celebrations and cultural traditions." },
+              { icon: "public/img/002.png", text: "Mussic", subtext: "Dive into the rhythms and melodies of diverse cultures." },
+              { icon: "public/img/003.png", text: "Cuisine", subtext: "Savor the unique flavors and dishes from around the world." },
+              { icon: "public/img/004.png", text: "Clothing", subtext: "Discover traditional attire and modern fashion trends." }
             ].map((item, index) => (
               <div
                 key={index}
