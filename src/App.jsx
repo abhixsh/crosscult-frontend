@@ -10,10 +10,9 @@ import CountryAbout from './Components/Pages/country/countryAbout';
 import History from './Components/Pages/country/History';
 import Food from './Components/Pages/country/Food';
 import Traditions from './Components/Pages/country/Traditions';
-// import AIService from './Components/Pages/AIService';
-// import MainTranslator from './Components/Pages/Translator/MainTranslator';
-// import Login from './Components/Pages/Login & SignUp/Login'
-// import SignUp from './Components/Pages/Login & SignUp/Signup'
+import MainTranslator from './Components/Pages/Translator/MainTranslator';
+import Login from './Components/Pages/Login & SignUp/Login'
+import SignUp from './Components/Pages/Login & SignUp/Signup'
 
 
 function App() {
@@ -24,9 +23,9 @@ function App() {
     <Header/>
     <Routes>
       <Route path = '/' element = {<Home/>}/>
-      {/* <Route path = '/aiservice' element = {<MainTranslator/>}/> */}
-      {/* <Route path = '/login' element = {<Login/>}/>
-      <Route path = '/signup' element = {<SignUp/>}/> */}
+      <Route path = '/aiservice' element = {<MainTranslator/>}/> 
+      <Route path = '/login' element = {<Login/>}/>
+      <Route path = '/signup' element = {<SignUp/>}/>
       <Route path = '/country' element = {<Country/>}/>
       <Route path = '/admin' element = {<Dashboard/>}/>
       <Route path = '/admin' element = {<Sidebar/>}/>
