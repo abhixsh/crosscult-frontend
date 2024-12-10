@@ -46,7 +46,7 @@ const Header = () => {
 
           <div className="flex flex-col md:flex-row md:space-x-6 space-y-4 md:space-y-0 items-center">
             <Link
-              to="/ai-services"
+              to="/aiservice"
               className="text-black/80 text-base font-medium hover:text-black transition"
               onClick={toggleMenu}
             >
