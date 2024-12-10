@@ -82,21 +82,21 @@ function Home() {
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
                         {filteredCountries.map((country) => (
                             <div 
-                                key={country._id} 
-                                className="text-center bg-white rounded-lg shadow-md overflow-hidden 
-                                    transform transition duration-300 hover:scale-105 hover:shadow-xl"
-                            >
-                                <img
-                                    className="w-full h-40 object-cover"
-                                    src={country.flag_img || 'https://via.placeholder.com/300'}
-                                    alt={country.country_name}
-                                />
-                                <div className="p-4">
-                                    <p className="text-lg font-semibold text-gray-800">
-                                        {country.country_name}
-                                    </p>
-                                </div>
+                            key={country._id} 
+                            className="text-center overflow-hidden 
+                                transform transition duration-300 hover:scale-105 hover: flex flex-col items-center justify-center"
+                        >
+                            <img
+                                className="w-40 h-40 object-cover rounded-full"  // Make the image circular and adjust size
+                                src={country.flag_img || 'https://via.placeholder.com/300'}
+                                alt={country.country_name}
+                            />
+                            <div className="p-4 mt-4">  {/* Add margin-top to separate the name */}
+                                <p className="text-lg font-semibold text-gray-800">
+                                    {country.country_name}
+                                </p>
                             </div>
+                        </div>
                         ))}
                     </div>
                 ) : (
