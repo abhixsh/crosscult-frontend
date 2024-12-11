@@ -31,7 +31,7 @@ function App() {
       <Route path = '/country/:id/history' element = {<History/>}/>
       <Route path = '/country/:id/food' element = {<Food/>}/>
       <Route path = '/country/:id/traditions' element = {<Traditions/>}/>
-      <Route path = '/countryadmin' element = {<CountryAdmin/>}/>
+      <Route path = '/admin/countryadmin' element = {<CountryAdmin/>}/>
     </Routes>
     <Footer/>
     </>

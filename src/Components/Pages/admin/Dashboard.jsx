@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React from 'react';
 import {
     Users,
@@ -141,19 +142,9 @@ const AdminDashboard = () => {
             {/* Header */}
             <header className="flex flex-col sm:flex-row justify-between items-center mb-6 bg-white shadow-md p-4 rounded-lg">
                 <div className="flex items-center mb-4 sm:mb-0">
-                    <img
-                        src="https://via.placeholder.com/80"
-                        alt="Website Logo"
-                        className="w-10 h-10 sm:w-12 sm:h-12 mr-4 rounded-full"
-                    />
-                    <h1 className="text-xl sm:text-2xl font-bold text-[#FF6A00]">County Connect Admin</h1>
+                    <h1 className="text-xl sm:text-2xl font-bold text-[#0f0f0f]">CrossCult Admin Dashboard</h1>
                 </div>
                 <div className="flex items-center space-x-4">
-                    <img
-                        src="https://via.placeholder.com/40"
-                        alt="Admin Profile"
-                        className="w-8 h-8 sm:w-10 sm:h-10 rounded-full"
-                    />
                     <div className="text-center sm:text-left">
                         <p className="font-semibold text-sm sm:text-base">John Doe</p>
                         <p className="text-xs sm:text-sm text-gray-500">Super Admin</p>
@@ -191,18 +182,26 @@ const AdminDashboard = () => {
                 <Card className="sm:col-span-2 lg:col-span-1">
                     <h2 className="text-base sm:text-lg font-semibold mb-4">Quick Navigation</h2>
                     <div className="grid grid-cols-2 gap-2 sm:gap-4">
-                        <Button variant="outline" className="text-xs sm:text-sm">
-                            <MapPin className="mr-1 sm:mr-2 w-4 h-4" /> Counties
-                        </Button>
-                        <Button variant="outline" className="text-xs sm:text-sm">
-                            <CalendarDays className="mr-1 sm:mr-2 w-4 h-4" /> Events
-                        </Button>
-                        <Button variant="outline" className="text-xs sm:text-sm">
-                            <BookOpen className="mr-1 sm:mr-2 w-4 h-4" /> Stories
-                        </Button>
-                        <Button variant="outline" className="text-xs sm:text-sm">
-                            <UserCheck className="mr-1 sm:mr-2 w-4 h-4" /> Users
-                        </Button>
+                        <Link to="/admin/countryadmin">
+                            <Button variant="outline" className="text-xs sm:text-sm">
+                                <MapPin className="mr-1 sm:mr-2 w-4 h-4" /> Counties
+                            </Button>
+                        </Link>
+                        <Link to="/events">
+                            <Button variant="outline" className="text-xs sm:text-sm">
+                                <CalendarDays className="mr-1 sm:mr-2 w-4 h-4" /> Events
+                            </Button>
+                        </Link>
+                        <Link to="/stories">
+                            <Button variant="outline" className="text-xs sm:text-sm">
+                                <BookOpen className="mr-1 sm:mr-2 w-4 h-4" /> Stories
+                            </Button>
+                        </Link>
+                        <Link to="/users">
+                            <Button variant="outline" className="text-xs sm:text-sm">
+                                <UserCheck className="mr-1 sm:mr-2 w-4 h-4" /> Users
+                            </Button>
+                        </Link>
                     </div>
                 </Card>
             </div>
