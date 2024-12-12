@@ -113,7 +113,7 @@ const AboutUs = () => {
           </h2>
           <p className="text-gray-600 text-center max-w-3xl mx-auto">
             To create a vibrant platform where cultures converge, stories are shared, and 
-            traditions are celebrated. We're dedicated to fostering cultural awareness, 
+            traditions are celebrated. We are dedicated to fostering cultural awareness, 
             appreciation, and understanding in our increasingly connected world.
           </p>
         </div>
