@@ -15,6 +15,7 @@ import Login from './Components/Pages/Login & SignUp/Login'
 import SignUp from './Components/Pages/Login & SignUp/Signup'
 import InputLanguage from './Components/Pages/Translator/InputLanguage';
 import FileUpload from './Components/Pages/Translator/FileUpload';
+import AboutUs from './Components/Pages/About';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
       <Route path = '/country/:id/history' element = {<History/>}/>
       <Route path = '/country/:id/food' element = {<Food/>}/>
       <Route path = '/country/:id/traditions' element = {<Traditions/>}/>
+      <Route path = '/about' element = {<AboutUs/>}/>
     </Routes>
     <Footer/>
     </>
