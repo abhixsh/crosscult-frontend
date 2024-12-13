@@ -13,6 +13,7 @@ import MainTranslator from './Components/Pages/Translator/MainTranslator';
 import Login from './Components/Pages/Login & SignUp/Login';
 import SignUp from './Components/Pages/Login & SignUp/Signup';
 import Dashboard from './Components/Pages/admin/Dashboard';
+import EventAdmin from './Components/Pages/admin/events/eventAdmin';
 
 function App() {
   
@@ -32,6 +33,7 @@ function App() {
       <Route path = '/country/:id/food' element = {<Food/>}/>
       <Route path = '/country/:id/traditions' element = {<Traditions/>}/>
       <Route path = '/admin/countryadmin' element = {<CountryAdmin/>}/>
+      <Route path = '/admin/eventadmin' element = {<EventAdmin/>}/>
     </Routes>
     <Footer/>
     </>

@@ -187,7 +187,7 @@ const AdminDashboard = () => {
                                 <MapPin className="mr-1 sm:mr-2 w-4 h-4" /> Counties
                             </Button>
                         </Link>
-                        <Link to="/events">
+                        <Link to="/admin/eventAdmin">
                             <Button variant="outline" className="text-xs sm:text-sm">
                                 <CalendarDays className="mr-1 sm:mr-2 w-4 h-4" /> Events
                             </Button>
