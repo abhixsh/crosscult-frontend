@@ -14,6 +14,10 @@ import Login from './Components/Pages/Login & SignUp/Login';
 import SignUp from './Components/Pages/Login & SignUp/Signup';
 import Dashboard from './Components/Pages/admin/Dashboard';
 import EventAdmin from './Components/Pages/admin/events/eventAdmin';
+import AdminLogin from './Components/Pages/auth/admin/adminLogin';
+import AdminSignup from './Components/Pages/auth/admin/adminSignup';
+import UserLogin from './Components/Pages/auth/user/userLogin';
+import UserSignup from './Components/Pages/auth/user/userSignup';
 
 function App() {
   
@@ -34,6 +38,10 @@ function App() {
       <Route path = '/country/:id/traditions' element = {<Traditions/>}/>
       <Route path = '/admin/countryadmin' element = {<CountryAdmin/>}/>
       <Route path = '/admin/eventadmin' element = {<EventAdmin/>}/>
+      <Route path = '/admin/login' element = {<AdminLogin/>}/>
+      <Route path = '/admin/signup' element = {<AdminSignup/>}/>
+      <Route path = '/user/login' element = {<UserLogin/>}/>
+      <Route path = '/user/signup' element = {<UserSignup/>}/>
     </Routes>
     <Footer/>
     </>
