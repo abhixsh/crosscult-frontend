@@ -60,6 +60,13 @@ const Header = () => {
               Cultural Events
             </Link>
             <Link
+              to="/mainStory"
+              className="text-black/80 text-base font-medium hover:text-black transition"
+              onClick={toggleMenu}
+            >
+              Story Telling
+            </Link>
+            <Link
               to="/country"
               className="text-black/80 text-base font-medium hover:text-black transition"
               onClick={toggleMenu}

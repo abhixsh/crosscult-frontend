@@ -166,7 +166,6 @@ const AboutUs = () => {
 
 
       </div>
-    // </div>
   );
 };
 
