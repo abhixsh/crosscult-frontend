@@ -17,6 +17,7 @@ import InputLanguage from './Components/Pages/Translator/InputLanguage';
 import FileUpload from './Components/Pages/Translator/FileUpload';
 import AboutUs from './Components/Pages/About';
 import MainStory from './Components/Pages/storyTelling/mainStory';
+import Stories from './Components/Pages/storyTelling/Stories'
 
 function App() {
   
@@ -41,6 +42,7 @@ function App() {
       <Route path = '/country/:id/traditions' element = {<Traditions/>}/>
       <Route path = '/about' element = {<AboutUs/>}/>
       <Route path = '/mainStory' element = {<MainStory/>}/>
+      <Route path = 'stories' element={<Stories/>}/>
     </Routes>
     <Footer/>
     </>
