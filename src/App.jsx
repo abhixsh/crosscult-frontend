@@ -18,6 +18,7 @@ import FileUpload from './Components/Pages/Translator/FileUpload';
 import AboutUs from './Components/Pages/About';
 import MainStory from './Components/Pages/storyTelling/mainStory';
 import Stories from './Components/Pages/storyTelling/Stories'
+import Event from './Components/Pages/event'
 
 function App() {
   
@@ -43,6 +44,7 @@ function App() {
       <Route path = '/about' element = {<AboutUs/>}/>
       <Route path = '/mainStory' element = {<MainStory/>}/>
       <Route path = 'stories' element={<Stories/>}/>
+      <Route path = '/event' element={<Event/>}/>
     </Routes>
     <Footer/>
     </>

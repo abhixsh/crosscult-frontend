@@ -53,7 +53,7 @@ const Header = () => {
               Translator
             </Link>
             <Link
-              to="/cultural-events"
+              to="/event"
               className="text-black/80 text-base font-medium hover:text-black transition"
               onClick={toggleMenu}
             >
