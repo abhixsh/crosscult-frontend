@@ -88,9 +88,9 @@ const AboutUs = () => {
               key={i}
               className="absolute text-rose-500" 
               style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                transform: `rotate(${Math.random() * 360}deg)`
+                top: ${Math.random() * 100}%,
+                left: ${Math.random() * 100}%,
+                transform: rotate(${Math.random() * 360}deg)
               }}
             />
           ))}
