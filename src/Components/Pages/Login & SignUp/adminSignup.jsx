@@ -1,20 +1,18 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function UserRegister() {
+function AdminRegister() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/user/register', {
+      const response = await axios.post('http://localhost:5000/api/admin/register', {
         email,
         password,
-        name,
       });
-      alert('User Registration Successful');
+      alert('Admin Registration Successful');
       console.log(response.data);
     } catch (error) {
       alert(
@@ -27,22 +25,9 @@ function UserRegister() {
     <div className="relative flex items-center justify-center w-screen h-screen">
       <div className="relative w-full max-w-md p-10 space-y-8 bg-white shadow-2xl rounded-2xl">
         <h2 className="text-center text-2xl font-bold text-gray-900">
-          User Registration
+          Admin Registration
         </h2>
         <form className="space-y-6" onSubmit={handleRegister}>
-          <div>
-            <label className="block text-md font-medium text-gray-700">
-              Full Name
-            </label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Enter your full name"
-              className="mt-2 w-full px-4 py-3 border rounded-lg"
-              required
-            />
-          </div>
           <div>
             <label className="block text-md font-medium text-gray-700">
               Email Address
@@ -51,7 +36,7 @@ function UserRegister() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
+              placeholder="Enter admin email"
               className="mt-2 w-full px-4 py-3 border rounded-lg"
               required
             />
@@ -64,7 +49,7 @@ function UserRegister() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
+              placeholder="Enter password"
               className="mt-2 w-full px-4 py-3 border rounded-lg"
               required
             />
@@ -81,4 +66,4 @@ function UserRegister() {
   );
 }
 
-export default UserRegister;
+export default AdminRegister;

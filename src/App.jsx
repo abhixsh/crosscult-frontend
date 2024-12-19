@@ -11,13 +11,16 @@ import History from './Components/Pages/country/History';
 import Food from './Components/Pages/country/Food';
 import Traditions from './Components/Pages/country/Traditions';
 import MainTranslator from './Components/Pages/Translator/MainTranslator';
-import Login from './Components/Pages/Login & SignUp/Login'
-import SignUp from './Components/Pages/Login & SignUp/Signup'
-import InputLanguage from './Components/Pages/Translator/InputLanguage';
-import FileUpload from './Components/Pages/Translator/FileUpload';
-import AboutUs from './Components/Pages/About';
-import MainStory from './Components/Pages/storyTelling/mainStory';
-import Stories from './Components/Pages/storyTelling/Stories'
+import Login from './Components/Pages/Login & SignUp/Login';
+import SignUp from './Components/Pages/Login & SignUp/Signup';
+import Dashboard from './Components/Pages/admin/Dashboard';
+import EventAdmin from './Components/Pages/admin/events/eventAdmin';
+import AdminLogin from './Components/Pages/auth/admin/adminLogin';
+import AdminSignup from './Components/Pages/auth/admin/adminSignup';
+import UserLogin from './Components/Pages/auth/user/userLogin';
+import UserSignup from './Components/Pages/auth/user/userSignup';
+import UserAdmin from './Components/Pages/admin/user/userAdmin';
+
 
 function App() {
   
@@ -27,12 +30,10 @@ function App() {
     <Header/>
     <Routes>
       <Route path = '/' element = {<Home/>}/>
-      <Route path = '/MainTranslator' element = {<MainTranslator/>}/> 
+      <Route path = '/aiservice' element = {<MainTranslator/>}/> 
       <Route path = '/login' element = {<Login/>}/>
       <Route path = '/signup' element = {<SignUp/>}/>
       <Route path = '/country' element = {<Country/>}/>
-      <Route path = '/InputLanguage' element = {<InputLanguage/>}/>
-      <Route path = '/FileUpload' element = {<FileUpload/>}/>
       <Route path = '/admin' element = {<Dashboard/>}/>
       <Route path = '/admin' element = {<Sidebar/>}/>
       <Route path = '/admin' element = {<Footer/>}/>
@@ -40,9 +41,6 @@ function App() {
       <Route path = '/country/:id/history' element = {<History/>}/>
       <Route path = '/country/:id/food' element = {<Food/>}/>
       <Route path = '/country/:id/traditions' element = {<Traditions/>}/>
-      <Route path = '/about' element = {<AboutUs/>}/>
-      <Route path = '/mainStory' element = {<MainStory/>}/>
-      <Route path = 'stories' element={<Stories/>}/>
     </Routes>
     <Footer/>
     </>
