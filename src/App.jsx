@@ -20,7 +20,12 @@ import UserLogin from './Components/Pages/auth/user/userLogin';
 import UserSignup from './Components/Pages/auth/user/userSignup';
 import UserAdmin from './Components/Pages/admin/user/userAdmin';
 import AboutUs from './Components/Pages/About';
-
+import InputLanguage from './Components/Pages/Translator/InputLanguage';
+import FileUpload from './Components/Pages/Translator/FileUpload';
+import AboutUs from './Components/Pages/About';
+import MainStory from './Components/Pages/storyTelling/mainStory';
+import Stories from './Components/Pages/storyTelling/Stories'
+import Event from './Components/Pages/event'
 
 function App() {
   
@@ -30,15 +35,21 @@ function App() {
     <Header/>
     <Routes>
       <Route path = '/' element = {<Home/>}/>
-      <Route path = '/aiservice' element = {<MainTranslator/>}/> 
+      <Route path = '/MainTranslator' element = {<MainTranslator/>}/> 
       <Route path = '/login' element = {<Login/>}/>
       <Route path = '/signup' element = {<SignUp/>}/>
       <Route path = '/country' element = {<Country/>}/>
+      <Route path = '/InputLanguage' element = {<InputLanguage/>}/>
+      <Route path = '/FileUpload' element = {<FileUpload/>}/>
       <Route path = '/admin' element = {<Dashboard/>}/>
       <Route path = '/country/:id' element = {<CountryAbout/>}/>
       <Route path = '/country/:id/history' element = {<History/>}/>
       <Route path = '/country/:id/food' element = {<Food/>}/>
       <Route path = '/country/:id/traditions' element = {<Traditions/>}/>
+      <Route path = '/about' element = {<AboutUs/>}/>
+      <Route path = '/mainStory' element = {<MainStory/>}/>
+      <Route path = 'stories' element={<Stories/>}/>
+      <Route path = '/event' element={<Event/>}/>
       <Route path = '/admin/countryadmin' element = {<CountryAdmin/>}/>
       <Route path = '/admin/eventadmin' element = {<EventAdmin/>}/>
       <Route path = '/admin/login' element = {<AdminLogin/>}/>
