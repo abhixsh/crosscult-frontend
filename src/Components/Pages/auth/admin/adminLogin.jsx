@@ -1,19 +1,29 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';  // for navigation
 
 function AdminLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();  // To navigate after successful login
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/admin/login', {
+      const response = await axios.post('http://localhost:5000/admins/login', {
         email,
         password,
       });
+
+      // Store the token in localStorage
+      localStorage.setItem('adminToken', response.data.token);
+
       alert('Admin Login Successful');
       console.log(response.data);
+
+      // Redirect to Admin Panel
+      navigate('/admin');  // You can customize the route for your admin panel
+
     } catch (error) {
       alert('Login Failed: ' + (error.response?.data?.message || error.message));
     }

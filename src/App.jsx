@@ -18,6 +18,7 @@ import AdminLogin from './Components/Pages/auth/admin/adminLogin';
 import AdminSignup from './Components/Pages/auth/admin/adminSignup';
 import UserLogin from './Components/Pages/auth/user/userLogin';
 import UserSignup from './Components/Pages/auth/user/userSignup';
+import UserAdmin from './Components/Pages/admin/user/userAdmin';
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
       <Route path = '/admin/signup' element = {<AdminSignup/>}/>
       <Route path = '/user/login' element = {<UserLogin/>}/>
       <Route path = '/user/signup' element = {<UserSignup/>}/>
+      <Route path = '/admin/useradmin' element = {<UserAdmin/>}/>
     </Routes>
     <Footer/>
     </>
