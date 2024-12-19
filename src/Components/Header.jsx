@@ -46,7 +46,7 @@ const Header = () => {
 
           <div className="flex flex-col md:flex-row md:space-x-6 space-y-4 md:space-y-0 items-center">
             <Link
-              to="/aiservice"
+              to="/MainTranslator"
               className="text-black/80 text-base font-medium hover:text-black transition"
               onClick={toggleMenu}
             >
@@ -60,6 +60,13 @@ const Header = () => {
               Cultural Events
             </Link>
             <Link
+              to="/mainStory"
+              className="text-black/80 text-base font-medium hover:text-black transition"
+              onClick={toggleMenu}
+            >
+              Story Telling
+            </Link>
+            <Link
               to="/country"
               className="text-black/80 text-base font-medium hover:text-black transition"
               onClick={toggleMenu}
@@ -67,7 +74,7 @@ const Header = () => {
               Cultural Details
             </Link>
             <Link
-              to="/about-us"
+              to="/about"
               className="text-black/80 text-base font-medium hover:text-black transition"
               onClick={toggleMenu}
             >

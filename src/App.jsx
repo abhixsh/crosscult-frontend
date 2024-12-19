@@ -1,10 +1,11 @@
 import {Routes,Route} from 'react-router-dom';
 import Home from './Components/Pages/Home';
-import './index.css';
+import './index.css'; // Adjust based on your file structure
 import Header from './Components/Header';
 import Country from './Components/Pages/country/country';
-import CountryAdmin from './Components/Pages/admin/country/countryAdmin';
-import Footer from './Components/Footer';
+import Dashboard from './Components/Pages/admin/Dashboard';
+import Sidebar from './Components/Pages/admin/Sidebar';
+import Footer from './Components/footer';
 import CountryAbout from './Components/Pages/country/countryAbout';
 import History from './Components/Pages/country/History';
 import Food from './Components/Pages/country/Food';
@@ -34,17 +35,12 @@ function App() {
       <Route path = '/signup' element = {<SignUp/>}/>
       <Route path = '/country' element = {<Country/>}/>
       <Route path = '/admin' element = {<Dashboard/>}/>
+      <Route path = '/admin' element = {<Sidebar/>}/>
+      <Route path = '/admin' element = {<Footer/>}/>
       <Route path = '/country/:id' element = {<CountryAbout/>}/>
       <Route path = '/country/:id/history' element = {<History/>}/>
       <Route path = '/country/:id/food' element = {<Food/>}/>
       <Route path = '/country/:id/traditions' element = {<Traditions/>}/>
-      <Route path = '/admin/countryadmin' element = {<CountryAdmin/>}/>
-      <Route path = '/admin/eventadmin' element = {<EventAdmin/>}/>
-      <Route path = '/admin/login' element = {<AdminLogin/>}/>
-      <Route path = '/admin/signup' element = {<AdminSignup/>}/>
-      <Route path = '/user/login' element = {<UserLogin/>}/>
-      <Route path = '/user/signup' element = {<UserSignup/>}/>
-      <Route path = '/admin/useradmin' element = {<UserAdmin/>}/>
     </Routes>
     <Footer/>
     </>

@@ -1,11 +1,14 @@
 import { useState } from "react";
 
 const MainTranslator = () => {
-  const [sourceLanguage, setSourceLanguage] = useState("English");
-  const [targetLanguage, setTargetLanguage] = useState("French");
+  const [speechRecognitionLanguage, setSpeechRecognitionLanguage] =
+    useState("en-US");
+  const [language, setLanguage] = useState("en");
+  const [recognizedText, setRecognizedText] = useState("");
+  const [translation, setTranslation] = useState("");
 
-  const languages = ["English", "French", "Spanish", "German", "Chinese", "Japanese"];
-  
+ 
+
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
       <div className="text-center mb-8">
@@ -89,7 +92,7 @@ const MainTranslator = () => {
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
 export default MainTranslator;
