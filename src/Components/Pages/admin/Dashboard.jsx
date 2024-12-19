@@ -247,7 +247,7 @@ const AdminDashboard = () => {
                                         <BookOpen className="mr-1 sm:mr-2 w-4 h-4" /> Stories
                                     </Button>
                                 </Link>
-                                <Link to="/users">
+                                <Link to="/admin/useradmin">
                                     <Button variant="outline" className="text-xs sm:text-sm">
                                         <UserCheck className="mr-1 sm:mr-2 w-4 h-4" /> Users
                                     </Button>
