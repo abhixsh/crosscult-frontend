@@ -2,28 +2,66 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function UserLogin() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('/api/users/login', { email, password });
-            alert('Login successful');
-            console.log('User:', response.data.user);
-        } catch (err) {
-            console.error(err.response.data.message);
-        }
-    };
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/api/user/login', {
+        email,
+        password,
+      });
+      alert('User Login Successful');
+      console.log(response.data);
+    } catch (error) {
+      alert('Login Failed: ' + (error.response?.data?.message || error.message));
+    }
+  };
 
-    return (
-        <form onSubmit={handleLogin}>
-            <h1>User Login</h1>
-            <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
-            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" required />
-            <button type="submit">Login</button>
+  return (
+    <div className="relative flex items-center justify-center w-screen h-screen">
+      <div className="relative w-full max-w-md p-10 space-y-8 bg-white shadow-2xl rounded-2xl">
+        <h2 className="text-center text-2xl font-bold text-gray-900">
+          User Login
+        </h2>
+        <form className="space-y-6" onSubmit={handleLogin}>
+          <div>
+            <label className="block text-md font-medium text-gray-700">
+              Email Address
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              className="mt-2 w-full px-4 py-3 border rounded-lg"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-md font-medium text-gray-700">
+              Password
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+              className="mt-2 w-full px-4 py-3 border rounded-lg"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full py-3 px-4 bg-orange-500 text-white rounded-lg shadow-md"
+          >
+            Login
+          </button>
         </form>
-    );
+      </div>
+    </div>
+  );
 }
 
 export default UserLogin;

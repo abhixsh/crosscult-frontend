@@ -4,7 +4,7 @@ import './index.css';
 import Header from './Components/Header';
 import Country from './Components/Pages/country/country';
 import CountryAdmin from './Components/Pages/admin/country/countryAdmin';
-import Footer from './Components/footer';
+import Footer from './Components/Footer';
 import CountryAbout from './Components/Pages/country/countryAbout';
 import History from './Components/Pages/country/History';
 import Food from './Components/Pages/country/Food';
