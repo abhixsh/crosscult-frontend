@@ -1,76 +1,75 @@
-import { Link } from 'react-router-dom'; // Import Link
-import img1 from '../../../assets/Story/search.png';
-import img2 from '../../../assets/Story/storyimg.png';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const MainStory = () => {
-  const stories = [
-    {
-      id: 1,
-      image: img1, // Use the image directly
-      description:
-        'It is a long established fact that a reader will be distracted by the readable content of a page when...',
-      link: '/stories', // Replace with an internal route
-    },
-    {
-      id: 2,
-      image: '/api/placeholder/400/400',
-      description:
-        'It is a long established fact that a reader will be distracted by the readable content of a page when...',
-      link: '/story/2',
-    },
-    {
-      id: 3,
-      image: '/api/placeholder/400/400',
-      description:
-        'It is a long established fact that a reader will be distracted by the readable content of a page when...',
-      link: '/story/3',
-    },
-  ];
+  const [stories, setStories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    // Fetch all stories from the backend
+    const fetchStories = async () => {
+      try {
+        const response = await fetch('http://localhost:5001/stories'); // Your backend URL for stories
+        if (!response.ok) {
+          throw new Error('Failed to fetch stories');
+        }
+        const data = await response.json();
+        setStories(data); // Set the stories data
+      } catch (err) {
+        setError(err.message); // Catch any errors
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStories(); // Call the function to fetch the data
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header Section */}
       <div className="container mx-auto px-4">
-        <section className="bg-gray-100 py-12">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col lg:flex-row items-center">
-            {/* Text Content */}
-            <div className="lg:w-2/3 lg:pr-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Stories</h2>
-              <p className="text-gray-700 text-lg">
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.
-                The point of using Lorem Ipsum is that it has a more-or-less
-                normal distribution of letters, as opposed to using 'Content
-                here, content here', making it look like readable English.
-              </p>
-            </div>
-            {/* Image */}
-            <div className="lg:w-1/3 mt-8 lg:mt-0">
-              <img
-                src={img2}
-                alt="Story illustration"
-                className="rounded-lg shadow-lg"
-              />
+        {/* Header Section */}
+        <section className="bg-gray-100 py-8 sm:py-12 rounded-lg">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col lg:flex-row items-center gap-8">
+              <div className="w-full lg:w-2/3">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">
+                  Stories
+                </h2>
+                <p className="text-base sm:text-lg text-gray-700">
+                  Discover the exciting stories that celebrate various cultures.
+                </p>
+              </div>
+              <div className="w-full lg:w-1/3">
+                <img
+                  src="/api/placeholder/400/400"
+                  alt="Story illustration"
+                  className="w-full rounded-lg shadow-lg"
+                />
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Large Hero Image */}
-        <div className="relative w-full h-64 mb-8">
+        {/* Hero Section with Search */}
+        <div className="relative w-full h-48 sm:h-64 my-8">
           <img
-            src={img1}
-            alt="Ancient architecture"
+            src="/api/placeholder/1200/400"
+            alt="Story Hero"
             className="w-full h-full object-cover rounded-lg"
           />
-          {/* Centered Search Bar */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="bg-white rounded-full shadow-lg flex items-center w-96 overflow-hidden">
+          <div className="absolute inset-0 flex items-center justify-center px-4">
+            <div className="bg-white rounded-full shadow-lg flex items-center w-full max-w-md overflow-hidden">
               <input
                 type="text"
-                className="w-full px-6 py-3 outline-none"
-                placeholder="Search..."
+                className="w-full px-4 sm:px-6 py-2 sm:py-3 outline-none text-sm sm:text-base"
+                placeholder="Search stories..."
               />
-              <button className="px-6 py-3 text-gray-600 hover:bg-gray-100">
+              <button className="px-4 sm:px-6 py-2 sm:py-3 text-gray-600 hover:bg-gray-100 text-sm sm:text-base whitespace-nowrap">
                 Search
               </button>
             </div>
@@ -78,23 +77,23 @@ const MainStory = () => {
         </div>
 
         {/* Stories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 ml-36 mr-28">
-          {stories.map((story, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-8 lg:px-12 mb-12">
+          {stories.map((story) => (
             <div
-              key={story.id}
-              className="flex flex-col items-center bg-gray-200 rounded-lg p-4"
+              key={story._id} // Assuming MongoDB's `_id` for each story
+              className="flex flex-col items-center bg-gray-200 rounded-lg p-4 transition-transform hover:scale-105"
             >
               <div className="w-full aspect-square mb-4">
-                <Link to={story.link}>
+                <Link to={`/story/${story._id}`} className="block w-full h-full">
                   <img
-                    src={story.image}
-                    alt={`Story ${index + 1}`}
+                    src={story.image || '/api/placeholder/400/400'} // Fallback image if no image exists
+                    alt={`Story: ${story.title}`}
                     className="w-full h-full object-cover rounded-lg shadow-lg"
                   />
                 </Link>
               </div>
               <div className="text-center">
-                <h3 className="font-medium mb-2">Story {index + 1}</h3>
+                <h3 className="text-lg font-medium mb-2">{story.title}</h3>
                 <p className="text-sm text-gray-600">{story.description}</p>
               </div>
             </div>
