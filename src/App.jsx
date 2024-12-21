@@ -15,7 +15,7 @@ import InputLanguage from './Components/Pages/Translator/InputLanguage';
 import FileUpload from './Components/Pages/Translator/FileUpload';
 import MainStory from './Components/Pages/storyTelling/mainStory';
 import Stories from './Components/Pages/storyTelling/Stories';
-import Event from './Components/Pages/event';
+import Event from './Components/Pages/events/event';
 
 // Country Pages
 import Country from './Components/Pages/country/country';
