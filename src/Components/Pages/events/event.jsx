@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom"; // Import Link
 import axios from "axios";
 import { FaCalendarAlt, FaMapMarkerAlt, FaGlobe } from "react-icons/fa";
 
@@ -60,51 +61,51 @@ const Event = () => {
           }}
         >
           {events.map((event) => (
-            <motion.div
+            <Link
               key={event._id}
-              className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col hover:shadow-xl"
-              whileHover={{ scale: 1.05 }}
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              transition={{ duration: 0.4 }}
+              to={`/event/${event._id}`} // Navigates to individual event preview
             >
-              <div className="relative w-full pt-[56.25%]">
-                <img
-                  src={event.img_link || "/placeholder.png"}
-                  alt={event.title}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                <span className="absolute top-2 right-2 bg-[#FF6A00] text-white px-3 py-1 rounded-full text-xs sm:text-sm">
-                  {event.event_type}
-                </span>
-              </div>
+              <motion.div
+                className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col hover:shadow-xl"
+                whileHover={{ scale: 1.05 }}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                transition={{ duration: 0.4 }}
+              >
+                <div className="relative w-full pt-[56.25%]">
+                  <img
+                    src={event.img_link || "/placeholder.png"}
+                    alt={event.title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <span className="absolute top-2 right-2 bg-[#FF6A00] text-white px-3 py-1 rounded-full text-xs sm:text-sm">
+                    {event.event_type}
+                  </span>
+                </div>
 
-              <div className="p-4 flex-grow flex flex-col">
-                <h2 className="text-lg sm:text-xl font-semibold mb-2 line-clamp-2 hover:text-[#FF6A00] transition-all duration-300">
-                  {event.title}
-                </h2>
-                <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                  {event.short_description}
-                </p>
-
-                <div className="mt-auto space-y-2">
-                  <div className="flex items-center text-gray-600 text-sm">
-                    <FaCalendarAlt className="mr-2 text-[#FF6A00]" />
-                    <span>{formatDate(event.start_date, event.end_date)}</span>
-                  </div>
-                  <div className="flex items-center text-gray-600 text-sm">
-                    <FaMapMarkerAlt className="mr-2 text-[#FF6A00]" />
-                    <span>{event.location || "Not specified"}</span>
-                  </div>
-                  <div className="flex items-center text-gray-600 text-sm">
-                    <FaGlobe className="mr-2 text-[#FF6A00]" />
-                    <span>{event.country || "Not specified"}</span>
+                <div className="p-3 sm:p-4 lg:p-5 flex-grow flex flex-col">
+                  <h2 className="text-lg sm:text-xl font-semibold mb-2 line-clamp-2 hover:text-[#FF6A00] transition-all duration-300">
+                    {event.title}
+                  </h2>
+                  <p className="text-gray-600 text-xs sm:text-sm mb-4 line-clamp-3">
+                    {event.short_description}
+                  </p>
+                  <div className="mt-auto space-y-1.5 sm:space-y-2">
+                    <div className="flex items-center text-xs sm:text-sm text-gray-600">
+                      <span className="truncate">{formatDate(event.start_date, event.end_date)}</span>
+                    </div>
+                    <div className="flex items-center text-xs sm:text-sm text-gray-600">
+                      <strong>Location:</strong> {event.location || "Not specified"}
+                    </div>
+                    <div className="flex items-center text-xs sm:text-sm text-gray-600">
+                      <strong>Country:</strong> {event.country || "Not specified"}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </Link>
           ))}
         </motion.div>
       )}

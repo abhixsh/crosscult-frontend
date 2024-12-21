@@ -16,6 +16,7 @@ import FileUpload from './Components/Pages/Translator/FileUpload';
 import MainStory from './Components/Pages/storyTelling/mainStory';
 import Stories from './Components/Pages/storyTelling/Stories';
 import Event from './Components/Pages/events/event';
+import EventDetails from './Components/Pages/events/eventDetails';
 
 // Country Pages
 import Country from './Components/Pages/country/country';
@@ -57,6 +58,7 @@ function App() {
         <Route path="/mainStory" element={<MainStory />} />
         <Route path="/stories" element={<Stories />} />
         <Route path="/event" element={<Event />} />
+        <Route path="/event/:id" element={<EventDetails />} />
 
         {/* Admin Routes */}
         <Route path="/admin" element={<Dashboard />} />
