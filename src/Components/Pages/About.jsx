@@ -5,23 +5,35 @@ import { motion } from "framer-motion";
 // Testimonials data
 const testimonials = [
   {
-    text: `"ParkMate has transformed parking in Sri Lanka. Finding and reserving a parking space has never been easier. Highly recommend this web for stress-free parking!"`,
-    name: "Nimal Perera",
-    title: "Frequent User",
+    text: `"CrossCult has been an exciting project to bring to life. The website is designed to be a hub for cultural discovery and sharing stories, which I believe will create lasting connections between travelers and cultures."`,
+    name: "S. M. Panditharathna",
+    title: "Backend Developer",
     image: "img/Nimal.png",
   },
   {
-    text: `"Managing parking lots in Sri Lanka was a challenge. With ParkMate’s tools, our team can now manage operations more efficiently and provide real-time updates to users."`,
-    name: "Ruwan Fernando",
-    title: "Parking Lot Manager",
+    text: `"It’s exciting to see how CrossCult provides a personalized experience for users to explore culture and plan journeys. My aim was to make cultural exploration feel accessible and inspiring."`,
+    name: "B.C. Palliyaguru",
+    title: "Frontend and AI Developer",
     image: "img/Ruwan.png",
   },
   {
-    text: `"ParkMate is a game changer! The web has made parking simple for users in Sri Lanka, especially in high-traffic areas like Colombo."`,
-    name: "Ishani De Silva",
-    title: "Happy User",
+    text: `"I’m proud to be part of a project that connects people to the rich traditions of the world. CrossCult’s smooth functionality ensures users enjoy a reliable and engaging platform every time."`,
+    name: "A.A. Haththakage",
+    title: "DevOps Engineer",
     image: "img/Ishani.png",
   },
+  {
+    text: `"CrossCult offers a seamless way to explore cultures through an elegant, user-friendly design. It’s exciting to know this platform will inspire people to immerse themselves in unique cultural experiences."`,
+    name: "J. A. I. M. Jayasinghe",
+    title: "Frontend Developer",
+    image: "img/Ishani.png",
+  },
+  {
+    text: `"Designing CrossCult has been an enjoyable journey. My focus was to create an experience that not only feels welcoming but also makes exploring the world’s cultures intuitive and exciting."`,
+    name: "P.G. Vimukthi",
+    title: "UX/UI Designer",
+    image: "img/Ishani.png",
+  }
 ];
 
 // Testimonials carousel component
@@ -64,7 +76,7 @@ const Testimonials = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
-            Our Mission
+            Developers Thoughts
           </motion.h2>
           </div>
           <blockquote>
