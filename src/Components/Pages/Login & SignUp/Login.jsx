@@ -1,53 +1,33 @@
 import image_1 from '../../../assets/Login_Page/HalfCurve.png';
 import image_2 from '../../../assets/Login_Page/HalfCurve2.png';
-import Logo from '../../../assets/logo 1.png';
 
 function Login() {
   return (
-    <div className="relative flex min-h-screen items-center justify-center bg-gray-50">
+    <div className="relative flex items-center justify-center w-screen h-screen  overflow-hidden">
       {/* Decorative Half Moons */}
       <img
         src={image_1}
-        alt="Decorative Half Moon"
-        className="absolute top-0 right-0 h-64 w-48 transform -translate-x-5 -translate-y-5 md:h-80 md:w-64 lg:h-96 lg:w-72"
+        alt="Top Right Half Moon"
+        className="absolute top-0 right-0 w-1/3 max-w-[500px] min-w-[300px] transform -translate-y-1/4"
       />
       <img
         src={image_2}
-        alt="Decorative Half Moon"
-        className="absolute bottom-0 left-0 h-64 w-48 transform translate-x-5 translate-y-5 md:h-80 md:w-64 lg:h-96 lg:w-72"
+        alt="Bottom Left Half Moon"
+        className="absolute bottom-0 left-0 w-1/3 max-w-[500px] min-w-[300px] transform translate-y-1/4"
       />
 
-      {/* Back Button */}
-      <button
-        onClick={() => window.history.back()}
-        className="absolute top-4 left-4 flex items-center gap-2 px-3 py-2 text-sm font-medium text-blue-600 bg-white border border-blue-600 rounded-md shadow hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 md:top-6 md:left-6"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={2}
-          stroke="currentColor"
-          className="w-4 h-4"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-        </svg>
-        Back
-      </button>
-
       {/* Login Form */}
-      <div className="w-full max-w-md p-8 space-y-6 bg-white shadow-lg rounded-lg mx-4 sm:mx-auto">
-        <div className="flex justify-center">
-          <img src={Logo} alt="Logo" className="h-10 md:h-12" />
-        </div>
-        <h2 className="mt-4 text-center text-xl font-bold text-gray-900 md:text-2xl">
+      <div className="relative z-10 w-full max-w-md p-10 space-y-8 bg-white shadow-2xl rounded-2xl mx-4">
+        
+        <h2 className="text-center text-2xl font-bold text-gray-900">
           Login To Your Account
         </h2>
-        <form className="space-y-4">
+        
+        <form className="space-y-6">
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-md font-medium text-gray-700"
             >
               Email Address
             </label>
@@ -55,14 +35,15 @@ function Login() {
               type="email"
               id="email"
               placeholder="Enter your email"
-              className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#ff6a00] focus:border-[#ff6a00]"
               required
             />
           </div>
+          
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-md font-medium text-gray-700"
             >
               Password
             </label>
@@ -70,23 +51,25 @@ function Login() {
               type="password"
               id="password"
               placeholder="Enter your password"
-              className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#ff6a00] focus:border-[#ff6a00]"
               required
             />
           </div>
+          
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-blue-600 text-white font-medium rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="w-full py-3 px-4 bg-[#ff6a00] text-white text-lg font-semibold rounded-lg shadow-md hover:bg-[#ff6a00]/90 focus:outline-none focus:ring-2 focus:ring-[#ff6a00] focus:ring-offset-2 transition duration-300"
           >
             Login
           </button>
         </form>
+        
         <div className="text-center">
-          <p className="text-sm text-gray-600">
+          <p className="text-md text-gray-600">
             Not a Member?{' '}
             <a
               href="/signup"
-              className="font-medium text-blue-600 hover:text-blue-500"
+              className="font-semibold text-[#ff6a00] hover:text-[#ff6a00]/80 transition duration-300"
             >
               Create an Account
             </a>

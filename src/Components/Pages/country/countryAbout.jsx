@@ -1,112 +1,194 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import axios from 'axios';
+import { motion } from 'framer-motion';
 
-const Home = () => {
+const CountryAbout = () => {
+    const { id } = useParams();
+    const [countryData, setCountryData] = useState(null);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchCountryData = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3000/api/country/${id}`);
+                setCountryData(response.data);
+            } catch (error) {
+                console.error('Error fetching country data:', error.message);
+                setError('Failed to load country details. Please try again later.');
+            }
+        };
+
+        fetchCountryData();
+    }, [id]);
+
+    if (error) {
+        return <motion.div className="text-center text-red-500">{error}</motion.div>;
+    }
+
+    if (!countryData) {
+        return (
+            <motion.div
+                className="text-center text-gray-600"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+            >
+                Loading...
+            </motion.div>
+        );
+    }
+
     return (
-        <div className="container mx-auto px-6 md:px-12 lg:px-16 py-8">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-                {/* Title and Description Section */}
+        <motion.div
+            className="container mx-auto px-6 md:px-12 lg:px-16 py-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7 }}
+        >
+            {/* Main Information */}
+            <motion.div
+                className="grid md:grid-cols-2 gap-8 items-center"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.6 }}
+            >
                 <div className="space-y-6 px-4">
-                    <h1 className="text-4xl md:text-5xl font-bold text-gray-800">
-                        Sri Lanka
-                    </h1>
-                    <div className="space-y-4">
-                        <p className="text-lg text-gray-600 leading-relaxed">
-                            Sri Lanka is a mesmerizing island nation located in the Indian Ocean, known for its rich cultural heritage, stunning landscapes, and warm hospitality. From ancient ruins to pristine beaches, from vibrant traditions to incredible biodiversity, Sri Lanka offers a unique and unforgettable experience for travelers and culture enthusiasts.
-                        </p>
-                        <p className="text-lg text-gray-600 leading-relaxed">
-                            This island paradise blends centuries of history with modern dynamism, creating a destination that captivates visitors with its natural beauty, diverse cultures, and incredible stories waiting to be discovered.
-                        </p>
-                    </div>
+                    <motion.h1
+                        className="text-4xl md:text-5xl font-bold text-gray-800"
+                        initial={{ x: -50, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        {countryData.country_name}
+                    </motion.h1>
+                    <motion.p
+                        className="text-lg text-gray-600 leading-relaxed"
+                        initial={{ x: 50, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        {countryData.country_desc}
+                    </motion.p>
                 </div>
-
-                {/* Hero Image */}
-                <div className="flex justify-center px-4">
+                <motion.div
+                    className="flex justify-center px-4"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.7 }}
+                >
                     <img
                         className="rounded-xl shadow-lg max-w-full h-auto object-cover"
-                        src="/api/placeholder/489/807"
-                        alt="Sri Lanka Landscape"
+                        src={countryData.country_img || 'https://via.placeholder.com/600'}
+                        alt={`${countryData.country_name} Landscape`}
                     />
-                </div>
-            </div>
+                </motion.div>
+            </motion.div>
 
-            {/* Information Cards Section */}
-            <div className="mt-16 px-4">
+            {/* Explore Sections */}
+            <motion.div
+                className="mt-16 px-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+            >
                 <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
-                    Explore Sri Lanka
+                    Explore {countryData.country_name}
                 </h2>
-                <div className="grid md:grid-cols-3 gap-8">
+                <motion.div
+                    className="grid md:grid-cols-3 gap-8"
+                    initial="hidden"
+                    animate="visible"
+                    variants={{
+                        hidden: { opacity: 0, scale: 0.8 },
+                        visible: {
+                            opacity: 1,
+                            scale: 1,
+                            transition: {
+                                delayChildren: 0.3,
+                                staggerChildren: 0.2,
+                            },
+                        },
+                    }}
+                >
                     {/* History Card */}
-                    <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
+                    <motion.div
+                        className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.3 }}
+                    >
                         <img
                             className="w-full h-64 object-cover"
-                            src="/api/placeholder/359/359"
-                            alt="Sri Lankan History"
+                            src={countryData.history_small_img || 'https://via.placeholder.com/300'}
+                            alt="History"
                         />
                         <div className="p-6">
-                            <h3 className="text-2xl font-bold mb-3 text-gray-800">
-                                History
-                            </h3>
+                            <h3 className="text-2xl font-bold mb-3 text-gray-800">History</h3>
                             <p className="text-gray-600 mb-4">
-                                Dive into the fascinating historical journey of Sri Lanka, spanning ancient kingdoms, colonial periods, and modern independence.
+                                Dive into the fascinating historical journey of {countryData.country_name}.
                             </p>
-                            <a
-                                href="#"
-                                className="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+                            <Link
+                                to={`/country/${id}/history`}
+                                className="inline-block bg-[#ff6a00db] text-white px-4 py-2 rounded-md hover:bg-[#ff6a00] transition-colors"
                             >
                                 Learn More
-                            </a>
+                            </Link>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Traditions Card */}
-                    <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
+                    <motion.div
+                        className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.3 }}
+                    >
                         <img
                             className="w-full h-64 object-cover"
-                            src="/api/placeholder/359/359"
-                            alt="Sri Lankan Traditions"
+                            src={countryData.traditions_small_img || 'https://via.placeholder.com/300'}
+                            alt="Traditions"
                         />
                         <div className="p-6">
-                            <h3 className="text-2xl font-bold mb-3 text-gray-800">
-                                Traditions
-                            </h3>
+                            <h3 className="text-2xl font-bold mb-3 text-gray-800">Traditions</h3>
                             <p className="text-gray-600 mb-4">
-                                Explore the intricate cultural tapestry of Sri Lanka, featuring vibrant festivals, traditional arts, and time-honored customs.
+                                Explore the intricate cultural traditions of {countryData.country_name}.
                             </p>
-                            <a
-                                href="#"
-                                className="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+                            <Link
+                                to={`/country/${id}/traditions`}
+                                className="inline-block bg-[#ff6a00db] text-white px-4 py-2 rounded-md hover:bg-[#ff6a00] transition-colors"
                             >
                                 Learn More
-                            </a>
+                            </Link>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Food Card */}
-                    <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
+                    <motion.div
+                        className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.3 }}
+                    >
                         <img
                             className="w-full h-64 object-cover"
-                            src="/api/placeholder/359/359"
-                            alt="Sri Lankan Cuisine"
+                            src={countryData.food_small_img || 'https://via.placeholder.com/300'}
+                            alt="Cuisine"
                         />
                         <div className="p-6">
-                            <h3 className="text-2xl font-bold mb-3 text-gray-800">
-                                Cuisine
-                            </h3>
+                            <h3 className="text-2xl font-bold mb-3 text-gray-800">Cuisine</h3>
                             <p className="text-gray-600 mb-4">
-                                Discover the mouth-watering world of Sri Lankan cuisine, a delightful blend of spices, tropical ingredients, and unique culinary techniques.
+                                Discover the culinary delights of {countryData.country_name}.
                             </p>
-                            <a
-                                href="#"
-                                className="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+                            <Link
+                                to={`/country/${id}/food`}
+                                className="inline-block bg-[#ff6a00db] text-white px-4 py-2 rounded-md hover:bg-[#ff6a00] transition-colors"
                             >
                                 Learn More
-                            </a>
+                            </Link>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </motion.div>
+                </motion.div>
+            </motion.div>
+        </motion.div>
     );
 };
 
-export default Home;
+export default CountryAbout;

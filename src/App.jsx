@@ -11,8 +11,15 @@ import History from './Components/Pages/country/History';
 import Food from './Components/Pages/country/Food';
 import Traditions from './Components/Pages/country/Traditions';
 import MainTranslator from './Components/Pages/Translator/MainTranslator';
-import Login from './Components/Pages/Login & SignUp/Login'
-import SignUp from './Components/Pages/Login & SignUp/Signup'
+import Login from './Components/Pages/Login & SignUp/Login';
+import SignUp from './Components/Pages/Login & SignUp/Signup';
+import Dashboard from './Components/Pages/admin/Dashboard';
+import EventAdmin from './Components/Pages/admin/events/eventAdmin';
+import AdminLogin from './Components/Pages/auth/admin/adminLogin';
+import AdminSignup from './Components/Pages/auth/admin/adminSignup';
+import UserLogin from './Components/Pages/auth/user/userLogin';
+import UserSignup from './Components/Pages/auth/user/userSignup';
+import UserAdmin from './Components/Pages/admin/user/userAdmin';
 
 
 function App() {
@@ -30,10 +37,10 @@ function App() {
       <Route path = '/admin' element = {<Dashboard/>}/>
       <Route path = '/admin' element = {<Sidebar/>}/>
       <Route path = '/admin' element = {<Footer/>}/>
-      <Route path = '/countryabout' element = {<CountryAbout/>}/>
-      <Route path = '/history' element = {<History/>}/>
-      <Route path = '/food' element = {<Food/>}/>
-      <Route path = '/traditions' element = {<Traditions/>}/>
+      <Route path = '/country/:id' element = {<CountryAbout/>}/>
+      <Route path = '/country/:id/history' element = {<History/>}/>
+      <Route path = '/country/:id/food' element = {<Food/>}/>
+      <Route path = '/country/:id/traditions' element = {<Traditions/>}/>
     </Routes>
     <Footer/>
     </>

@@ -1,21 +1,37 @@
-import React from 'react';
+import { motion } from 'framer-motion';
 
 function Home() {
   return (
-    <div className="relative w-full bg-white overflow-x-hidden pt-15 pb-20">
-
+    <motion.div
+      className="relative w-full bg-white overflow-x-hidden pt-15 pb-20"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       {/* Main Content with Top Margin */}
-      <div className="relative w-full max-w-full mt-16">
-        <div className="relative w-full max-w-[90%] mx-auto rounded-[20px] overflow-hidden">
+      <div className="relative w-full max-w-full mt-2">
+        <motion.div
+          className="relative w-full max-w-[90%] mx-auto rounded-[20px] overflow-hidden"
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
           {/* Backdrop Image */}
-          <img
+          <motion.img
             className="w-full h-auto object-cover"
             src="public/img/landingImg.png"
             alt="Backdrop"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
           />
 
           {/* Text Content */}
-          <div className="absolute inset-0 flex flex-col items-start justify-center pl-4 sm:pl-10">
+          <motion.div
+            className="absolute inset-0 flex flex-col items-start justify-center pl-4 sm:pl-10"
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
             <h1 className="text-white text-2xl md:text-4xl lg:text-5xl font-bold font-['Inter'] leading-tight">
               Traditional Concepts
             </h1>
@@ -25,52 +41,84 @@ function Home() {
             <p className="text-white text-sm md:text-base lg:text-lg font-normal font-['Inter'] mt-4 max-w-[80%] md:max-w-[60%] text-left">
               Release of Letraset sheets containing Lorem Ipsum passages
             </p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Description Section */}
-      <div className="w-full px-4 sm:px-10 mt-8">
+      <motion.div
+        className="w-full px-4 sm:px-10 mt-8"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
+      >
         <div className="w-full text-center mb-4">
           <h3 className="text-black/80 text-xl md:text-2xl font-bold font-['Inter']">
             Description
           </h3>
         </div>
         <div className="max-w-4xl mx-auto text-center text-black text-base md:text-lg font-normal font-['Inter'] leading-relaxed px-4">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+          Culture encompasses the beliefs, values, norms, customs, arts, and practices that define a group or society. It shapes how people view the world, interact with each other, and express themselves, giving each community a distinct identity. Culture includes language, religion, cuisine, social habits, music, and arts, which are passed down through generations, fostering a sense of belonging and continuity.
         </div>
-      </div>
+      </motion.div>
 
       {/* Main Content Section */}
-      <div className="relative w-full px-4 sm:px-10 mt-8">
+      <div className="relative w-full px-4 sm:px-10 mt-16">
         {/* Traditional Concepts Title */}
-        <div className="text-center mb-6">
+        <motion.div
+          className="text-center mb-6"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+        >
           <span className="text-black/80 text-xl md:text-2xl font-bold font-['Inter']">Traditional</span>
           <span className="text-black/30 text-xl md:text-2xl font-bold font-['Inter'] ml-2">Concepts</span>
-        </div>
+        </motion.div>
 
         {/* Main Layout Container */}
         <div className="relative w-full max-w-[1324px] mx-auto flex flex-col md:flex-row items-center gap-6">
           {/* Main Image - Reduced Height */}
-          <div className="w-full md:w-[40%] flex justify-center">
+          <motion.div
+            className="w-full md:w-[40%] flex justify-center"
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+          >
             <img
               className="w-full max-w-[362px] h-auto aspect-[362/524] object-cover rounded-3xl"
               src="public/img/girl.png"
               alt="Home Image 1"
             />
-          </div>
+          </motion.div>
 
           {/* Icons Grid */}
-          <div className="w-full md:w-[60%] grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 justify-center items-center">
+          <motion.div
+            className="w-full md:w-[60%] grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 justify-center items-center"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0, scale: 0.8 },
+              visible: {
+                opacity: 1,
+                scale: 1,
+                transition: {
+                  delayChildren: 0.7,
+                  staggerChildren: 0.2,
+                },
+              },
+            }}
+          >
             {[
-              { icon: "public/img/001.png", text: "Tradition", subtext: "It is a long established fact that" },
-              { icon: "public/img/002.png", text: "Tradition", subtext: "It is a long established fact that" },
-              { icon: "public/img/003.png", text: "Tradition", subtext: "It is a long established fact that" },
-              { icon: "public/img/004.png", text: "Tradition", subtext: "It is a long established fact that" }
+              { icon: "public/img/001.png", text: "Festivals", subtext: "Experience the vibrant celebrations and cultural traditions." },
+              { icon: "public/img/002.png", text: "Music", subtext: "Dive into the rhythms and melodies of diverse cultures." },
+              { icon: "public/img/003.png", text: "Cuisine", subtext: "Savor the unique flavors and dishes from around the world." },
+              { icon: "public/img/004.png", text: "Clothing", subtext: "Discover traditional attire and modern fashion trends." }
             ].map((item, index) => (
-              <div
+              <motion.div
                 key={index}
                 className="flex flex-col items-center justify-center text-center space-y-2"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.3 }}
               >
                 <div className="w-[125px] h-[125px] bg-[#d9d9d9] rounded-lg flex items-center justify-center">
                   <img
@@ -85,14 +133,12 @@ function Home() {
                 <div className="text-black/50 text-xs font-['Inter'] px-2">
                   {item.subtext}
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
-
-
-    </div >
+    </motion.div>
   );
 }
 
