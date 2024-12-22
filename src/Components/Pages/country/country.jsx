@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { motion } from 'framer-motion';
+import { Search, X, Globe2 } from 'lucide-react';
 
 function Home() {
     const [countries, setCountries] = useState([]);
@@ -86,9 +87,11 @@ function Home() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
             >
-                <h2 className="text-3xl font-bold text-center mb-10 text-gray-800">
-                    Explore Countries
-                </h2>
+
+                <div className="flex items-center justify-center gap-3 mb-8">
+                    <Globe2 className="w-8 h-8 md:w-10 md:h-10 text-[#FF6A00]" />
+                    <h1 className="text-4xl md:text-5xl font-bold">Explore Countries</h1>
+                </div>
 
                 {isLoading ? (
                     <div className="flex justify-center items-center">
@@ -105,7 +108,7 @@ function Home() {
                     </motion.div>
                 ) : filteredCountries.length > 0 ? (
                     <motion.div
-                        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6"
+                        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 justify-center"
                         initial="hidden"
                         animate="visible"
                         variants={{
