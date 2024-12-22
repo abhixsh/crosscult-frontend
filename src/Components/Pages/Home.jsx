@@ -19,7 +19,7 @@ function Home() {
           {/* Backdrop Image */}
           <motion.img
             className="w-full h-auto object-cover"
-            src="/img/landingImg.png"
+            src="/img/home/landingImg.png"
             alt="Backdrop"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
@@ -86,7 +86,7 @@ function Home() {
           >
             <img
               className="w-full max-w-[362px] h-auto aspect-[362/524] object-cover rounded-3xl"
-              src="/img/girl.png"
+              src="/img/home/girl.png"
               alt="Home Image 1"
             />
           </motion.div>
@@ -109,10 +109,10 @@ function Home() {
             }}
           >
             {[
-              { icon: "/img/001.png", text: "Festivals", subtext: "Experience the vibrant celebrations and cultural traditions." },
-              { icon: "/img/002.png", text: "Music", subtext: "Dive into the rhythms and melodies of diverse cultures." },
-              { icon: "/img/003.png", text: "Cuisine", subtext: "Savor the unique flavors and dishes from around the world." },
-              { icon: "/img/004.png", text: "Clothing", subtext: "Discover traditional attire and modern fashion trends." }
+              { icon: "/img/home/001.png", text: "Festivals", subtext: "Experience the vibrant celebrations and cultural traditions." },
+              { icon: "/img/home/002.png", text: "Music", subtext: "Dive into the rhythms and melodies of diverse cultures." },
+              { icon: "/img/home/003.png", text: "Cuisine", subtext: "Savor the unique flavors and dishes from around the world." },
+              { icon: "/img/home/004.png", text: "Clothing", subtext: "Discover traditional attire and modern fashion trends." }
             ].map((item, index) => (
               <motion.div
                 key={index}
