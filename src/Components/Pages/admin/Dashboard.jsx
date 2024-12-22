@@ -242,7 +242,7 @@ const AdminDashboard = () => {
                                         <CalendarDays className="mr-1 sm:mr-2 w-4 h-4" /> Events
                                     </Button>
                                 </Link>
-                                <Link to="/stories">
+                                <Link to="/admin/storyAdmin">
                                     <Button variant="outline" className="text-xs sm:text-sm">
                                         <BookOpen className="mr-1 sm:mr-2 w-4 h-4" /> Stories
                                     </Button>
