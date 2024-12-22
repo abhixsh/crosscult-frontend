@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom"; // Import Link
+import { Link } from "react-router-dom";
+import { Search, Globe2 } from "lucide-react";
 import axios from "axios";
-import { FaCalendarAlt, FaMapMarkerAlt, FaGlobe } from "react-icons/fa";
 
 const Event = () => {
   const [events, setEvents] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get("http://localhost:3001/api/events/");
-        setEvents(Array.isArray(response.data) ? response.data : []);
+        const data = Array.isArray(response.data) ? response.data : [];
+        setEvents(data);
+        setFilteredEvents(data);
         setLoading(false);
       } catch (err) {
         setError("Failed to fetch events. Please try again later.");
@@ -23,6 +27,18 @@ const Event = () => {
     fetchEvents();
   }, []);
 
+  useEffect(() => {
+    const filtered = events.filter((event) => {
+      const query = searchQuery.toLowerCase();
+      return (
+        event.title.toLowerCase().includes(query) ||
+        event.location?.toLowerCase().includes(query) ||
+        event.country?.toLowerCase().includes(query)
+      );
+    });
+    setFilteredEvents(filtered);
+  }, [searchQuery, events]);
+
   const formatDate = (startDate, endDate) => {
     const start = new Date(startDate).toLocaleDateString();
     const end = new Date(endDate).toLocaleDateString();
@@ -31,20 +47,58 @@ const Event = () => {
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <motion.h1
-        className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        Cultural Events
-      </motion.h1>
+      {/* Header */}
+      <div className="flex items-center gap-3 mb-8">
+        <Globe2 className="w-8 h-8 md:w-10 md:h-10 text-[#FF6A00]" />
+        <h1 className="text-4xl md:text-5xl font-bold">Cultural Events</h1>
+      </div>
+
+      {/* Main Section with Image and Description */}
+      <div className="mb-8">
+        <div className="relative rounded-xl overflow-hidden">
+          <img
+            src="/api/placeholder/1200/400"
+            alt="Cultural Events Showcase"
+            className="w-full h-[300px] object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent">
+            <div className="absolute bottom-0 left-0 p-6 max-w-xl">
+              <h2 className="text-white text-2xl font-bold mb-2">
+                Experience World Cultures
+              </h2>
+              <p className="text-gray-200 text-sm">
+                Immerse yourself in a diverse array of cultural events from across the globe. 
+                Discover traditional festivals, art exhibitions, musical performances, and 
+                cultural workshops that bring communities together and celebrate our rich 
+                global heritage.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Search Bar */}
+      <div className="mb-8 relative">
+        <div className="relative max-w-2xl mx-auto">
+          <Search 
+            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" 
+            size={20} 
+          />
+          <input
+            type="text"
+            placeholder="Search events by title, location, or country..."
+            className="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-[#FF6A00] focus:ring focus:ring-[#FF6A00] focus:ring-opacity-50 transition-colors"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+      </div>
 
       {loading ? (
         <div className="text-center text-gray-500">Loading events...</div>
       ) : error ? (
         <div className="text-center text-red-500">{error}</div>
-      ) : events.length === 0 ? (
+      ) : filteredEvents.length === 0 ? (
         <div className="text-center text-gray-500">No events found.</div>
       ) : (
         <motion.div
@@ -60,14 +114,14 @@ const Event = () => {
             },
           }}
         >
-          {events.map((event) => (
+          {filteredEvents.map((event) => (
             <Link
               key={event._id}
-              to={`/event/${event._id}`} // Navigates to individual event preview
+              to={`/event/${event._id}`}
             >
               <motion.div
                 className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col hover:shadow-xl"
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.02 }}
                 variants={{
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0 },
