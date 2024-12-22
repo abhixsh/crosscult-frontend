@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 const UnderConstruction = () => {
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
+        <div className="flex items-center justify-center min-h-screen p-4">
             <div className="text-center">
                 {/* Heading with animation */}
                 <motion.h1
