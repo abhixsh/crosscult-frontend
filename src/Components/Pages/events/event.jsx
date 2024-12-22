@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Search, Globe2 } from "lucide-react";
+import { Search, Globe2, Calendar, MapPin, Flag } from "lucide-react";
 import axios from "axios";
 
 const Event = () => {
@@ -67,7 +67,7 @@ const Event = () => {
       >
         <div className="relative rounded-xl overflow-hidden">
           <motion.img
-            src="/api/placeholder/1200/400"
+            src="/img/event/EventCover.jpeg"
             alt="Cultural Events Showcase"
             className="w-full h-[300px] object-cover"
             initial={{ opacity: 0 }}
@@ -98,9 +98,9 @@ const Event = () => {
         transition={{ duration: 0.5 }}
       >
         <div className="relative max-w-2xl mx-auto">
-          <Search 
-            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" 
-            size={20} 
+          <Search
+            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+            size={20}
           />
           <motion.input
             type="text"
@@ -160,7 +160,7 @@ const Event = () => {
                 </div>
 
                 <div className="p-3 sm:p-4 lg:p-5 flex-grow flex flex-col">
-                  <h2 className="text-lg sm:text-xl font-semibold mb-2 line-clamp-2 hover:text-[#FF6A00] transition-all duration-300">
+                  <h2 className="text-lg sm:text-xl font-semibold mb-2 line-clamp-2 transition-all duration-300">
                     {event.title}
                   </h2>
                   <p className="text-gray-600 text-xs sm:text-sm mb-4 line-clamp-3">
@@ -168,12 +168,17 @@ const Event = () => {
                   </p>
                   <div className="mt-auto space-y-1.5 sm:space-y-2">
                     <div className="flex items-center text-xs sm:text-sm text-gray-600">
-                      <span className="truncate">{formatDate(event.start_date, event.end_date)}</span>
+                      <Calendar className="w-4 h-4 mr-2" />
+                      <span className="truncate">
+                        {formatDate(event.start_date, event.end_date)}
+                      </span>
                     </div>
                     <div className="flex items-center text-xs sm:text-sm text-gray-600">
+                      <MapPin className="w-4 h-4 mr-2" />
                       <strong>Location:</strong> {event.location || "Not specified"}
                     </div>
                     <div className="flex items-center text-xs sm:text-sm text-gray-600">
+                      <Flag className="w-4 h-4 mr-2" />
                       <strong>Country:</strong> {event.country || "Not specified"}
                     </div>
                   </div>
