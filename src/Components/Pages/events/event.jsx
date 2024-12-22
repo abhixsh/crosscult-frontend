@@ -48,18 +48,31 @@ const Event = () => {
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Header */}
-      <div className="flex items-center gap-3 mb-8">
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+        className="flex items-center gap-3 mb-8"
+      >
         <Globe2 className="w-8 h-8 md:w-10 md:h-10 text-[#FF6A00]" />
         <h1 className="text-4xl md:text-5xl font-bold">Cultural Events</h1>
-      </div>
+      </motion.div>
 
       {/* Main Section with Image and Description */}
-      <div className="mb-8">
+      <motion.div
+        className="mb-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.7 }}
+      >
         <div className="relative rounded-xl overflow-hidden">
-          <img
+          <motion.img
             src="/api/placeholder/1200/400"
             alt="Cultural Events Showcase"
             className="w-full h-[300px] object-cover"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7 }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent">
             <div className="absolute bottom-0 left-0 p-6 max-w-xl">
@@ -75,24 +88,31 @@ const Event = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Search Bar */}
-      <div className="mb-8 relative">
+      <motion.div
+        className="mb-8 relative"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="relative max-w-2xl mx-auto">
           <Search 
             className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" 
             size={20} 
           />
-          <input
+          <motion.input
             type="text"
             placeholder="Search events by title, location, or country..."
             className="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-[#FF6A00] focus:ring focus:ring-[#FF6A00] focus:ring-opacity-50 transition-colors"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            whileFocus={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
           />
         </div>
-      </div>
+      </motion.div>
 
       {loading ? (
         <div className="text-center text-gray-500">Loading events...</div>
