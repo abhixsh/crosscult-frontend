@@ -17,6 +17,7 @@ import MainStory from './Components/Pages/storyTelling/mainStory';
 import Stories from './Components/Pages/storyTelling/Stories';
 import Event from './Components/Pages/events/event';
 import EventDetails from './Components/Pages/events/eventDetails';
+import UnderConstruction from './Components/Pages/underReview';
 
 // Country Pages
 import Country from './Components/Pages/country/country';
@@ -60,6 +61,7 @@ function App() {
         <Route path="/stories/:id" element={<Stories />} />
         <Route path="/event" element={<Event />} />
         <Route path="/event/:id" element={<EventDetails />} />
+        <Route path="/underConstruction" element={<UnderConstruction />} />
 
         {/* Admin Routes */}
         <Route path="/admin" element={<Dashboard />} />
