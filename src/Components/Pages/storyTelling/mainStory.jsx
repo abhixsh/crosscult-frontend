@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, X } from 'lucide-react';
+import { Search, X, Globe2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const MainStory = () => {
@@ -72,16 +72,11 @@ const MainStory = () => {
             <div className="flex flex-col lg:flex-row items-center gap-8">
               <div className="w-full lg:w-2/3">
                 <div className="relative mb-4 sm:mb-6">
-                  <motion.h2
-                    className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-gray-900 to-orange-600 bg-clip-text text-transparent"
-                    initial={{ y: -50 }}
-                    animate={{ y: 0 }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                  >
-                    Stories
-                  </motion.h2>
-                  <div className="absolute -bottom-2 left-0 h-1 w-24 bg-[#FF6A00] rounded-full"></div>
-                </div>
+        <div className="flex items-center gap-3 mb-8">
+          <Globe2 className="w-8 h-8 md:w-10 md:h-10 text-[#FF6A00]" />
+          <h1 className="text-4xl md:text-5xl font-bold">Cultural Stories</h1>
+        </div>
+                                  </div>
                 <p className="text-base sm:text-lg text-gray-700">
                   Discover the exciting stories that celebrate various cultures.
                 </p>
