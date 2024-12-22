@@ -1,4 +1,5 @@
 import { FaFacebookF, FaInstagram, FaTwitter, FaPinterest, FaYoutube } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -8,20 +9,52 @@ const Footer = () => {
                 <div>
                     <h2 className="text-xl font-bold mb-4">CrossCult</h2>
                     <ul className="space-y-2">
-                        <li><a href="#" className="hover:underline">Translator</a></li>
-                        <li><a href="#" className="hover:underline">Events</a></li>
-                        <li><a href="#" className="hover:underline">Details</a></li>
-                        <li><a href="#" className="hover:underline">About Us</a></li>
+                        <li>
+                            <Link to="/MainTranslator" className="hover:underline">
+                                Translator
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/event" className="hover:underline">
+                                Events
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/country" className="hover:underline">
+                                Cultural Details
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/about" className="hover:underline">
+                                About Us
+                            </Link>
+                        </li>
                     </ul>
                 </div>
 
                 {/* Column 2 */}
                 <div>
                     <ul className="space-y-2">
-                        <li><a href="#" className="hover:underline">Consumer Care</a></li>
-                        <li><a href="#" className="hover:underline">Alumni</a></li>
-                        <li><a href="#" className="hover:underline">CrossCult Canada</a></li>
-                        <li><a href="#" className="hover:underline">CrossCult Mexico</a></li>
+                        <li>
+                            <Link to="/underConstruction" className="hover:underline">
+                                Consumer Care
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/underConstruction" className="hover:underline">
+                                Alumni
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/underConstruction" className="hover:underline">
+                                CrossCult Canada
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/underConstruction" className="hover:underline">
+                                CrossCult Mexico
+                            </Link>
+                        </li>
                     </ul>
                 </div>
 
@@ -35,18 +68,14 @@ const Footer = () => {
                             className="px-4 py-2 rounded-md text-gray-900"
                         />
                         <div className="flex items-start space-x-2">
-                            <input
-                                type="checkbox"
-                                id="agree"
-                                className="mt-1"
-                            />
+                            <input type="checkbox" id="agree" className="mt-1" />
                             <label htmlFor="agree" className="text-sm">
                                 By checking the box, you agree that you are at least 16 years of age.
                             </label>
                         </div>
                         <button
                             type="submit"
-                            className="bg-white text-green-900 font-bold px-6 py-2 rounded-md hover:bg-gray-100"
+                            className="bg-white text-[#FF6A00] font-bold px-6 py-2 rounded-md hover:bg-gray-100"
                         >
                             Subscribe
                         </button>
@@ -59,17 +88,38 @@ const Footer = () => {
             {/* Social Media Links */}
             <div className="container mx-auto px-4 flex flex-wrap justify-between items-center space-y-4 md:space-y-0">
                 <div className="flex flex-wrap justify-center md:justify-start space-x-4">
-                    <a href="#" className="text-white hover:text-gray-400 text-xl"><FaFacebookF /></a>
-                    <a href="#" className="text-white hover:text-gray-400 text-xl"><FaInstagram /></a>
-                    <a href="#" className="text-white hover:text-gray-400 text-xl"><FaTwitter /></a>
-                    <a href="#" className="text-white hover:text-gray-400 text-xl"><FaPinterest /></a>
-                    <a href="#" className="text-white hover:text-gray-400 text-xl"><FaYoutube /></a>
+                    <a href="#" className="text-white hover:text-gray-400 text-xl">
+                        <FaFacebookF />
+                    </a>
+                    <a href="#" className="text-white hover:text-gray-400 text-xl">
+                        <FaInstagram />
+                    </a>
+                    <a href="#" className="text-white hover:text-gray-400 text-xl">
+                        <FaTwitter />
+                    </a>
+                    <a href="#" className="text-white hover:text-gray-400 text-xl">
+                        <FaPinterest />
+                    </a>
+                    <a href="#" className="text-white hover:text-gray-400 text-xl">
+                        <FaYoutube />
+                    </a>
                 </div>
                 <div className="text-sm text-gray-400 text-center md:text-left">
-                    <a href="#" className="hover:underline">Website Terms</a> |
-                    <a href="#" className="hover:underline"> Privacy Policy</a> |
-                    <a href="#" className="hover:underline"> Accessibility Statement</a> |
-                    <a href="#" className="hover:underline"> CA Transparency</a>
+                    <Link to="/underConstruction" className="hover:underline">
+                        Website Terms
+                    </Link>{" "}
+                    |
+                    <Link to="/underConstruction" className="hover:underline">
+                        Privacy Policy
+                    </Link>{" "}
+                    |
+                    <Link to="/underConstruction" className="hover:underline">
+                        Accessibility Statement
+                    </Link>{" "}
+                    |
+                    <Link to="/underConstruction" className="hover:underline">
+                        CA Transparency
+                    </Link>
                 </div>
                 <p className="text-sm text-gray-400 text-center md:text-left">
                     ©2024 CrossCult. All Rights Reserved.
