@@ -30,6 +30,7 @@ import Dashboard from './Components/Pages/admin/Dashboard';
 import CountryAdmin from './Components/Pages/admin/country/countryAdmin';
 import EventAdmin from './Components/Pages/admin/events/eventAdmin';
 import UserAdmin from './Components/Pages/admin/user/userAdmin';
+import StoryAdmin from './Components/Pages/admin/story/storyAdmin';
 
 // Authentication
 import AdminLogin from './Components/Pages/auth/admin/adminLogin';
@@ -56,7 +57,7 @@ function App() {
         <Route path="/inputLanguage" element={<InputLanguage />} />
         <Route path="/fileUpload" element={<FileUpload />} />
         <Route path="/mainStory" element={<MainStory />} />
-        <Route path="/stories" element={<Stories />} />
+        <Route path="/stories/:id" element={<Stories />} />
         <Route path="/event" element={<Event />} />
         <Route path="/event/:id" element={<EventDetails />} />
 
@@ -67,6 +68,7 @@ function App() {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/signup" element={<AdminSignup />} />
         <Route path="/admin/useradmin" element={<UserAdmin />} />
+        <Route path="/admin/storyadmin" element={<StoryAdmin />} />
 
         {/* User Authentication */}
         <Route path="/user/login" element={<UserLogin />} />

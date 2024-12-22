@@ -1,30 +1,59 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Search, X } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const MainStory = () => {
   const [stories, setStories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredStories, setFilteredStories] = useState([]);
 
   useEffect(() => {
-    // Fetch all stories from the backend
     const fetchStories = async () => {
       try {
-        const response = await fetch('http://localhost:5001/stories'); // Your backend URL for stories
+        const response = await fetch('http://localhost:5001/stories');
         if (!response.ok) {
           throw new Error('Failed to fetch stories');
         }
         const data = await response.json();
-        setStories(data); // Set the stories data
+        setStories(data);
+        setFilteredStories(data); // Initialize filteredStories with all stories
       } catch (err) {
-        setError(err.message); // Catch any errors
+        setError(err.message);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchStories(); // Call the function to fetch the data
+    fetchStories();
   }, []);
+
+  const handleSearch = () => {
+    const lowercasedSearchTerm = searchTerm.toLowerCase();
+
+    // Filter stories based on the criteria
+    const filtered = stories.filter(story => {
+      const titleMatch = story.title.toLowerCase().includes(lowercasedSearchTerm);
+      const seasonMatch = story.season?.toLowerCase().includes(lowercasedSearchTerm);
+      const countyMatch = story.county?.toLowerCase().includes(lowercasedSearchTerm);
+      const tagsMatch = story.tags.some(tag => tag.toLowerCase().includes(lowercasedSearchTerm));
+      const monthMatch = story.month?.toLowerCase().includes(lowercasedSearchTerm);
+
+      return titleMatch || seasonMatch || countyMatch || tagsMatch || monthMatch;
+    });
+
+    setFilteredStories(filtered);
+  };
+
+  useEffect(() => {
+    if (searchTerm) {
+      handleSearch();
+    } else {
+      setFilteredStories(stories); // Reset to all stories when search is cleared
+    }
+  }, [searchTerm, stories]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -32,14 +61,27 @@ const MainStory = () => {
   return (
     <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4">
-        {/* Header Section */}
-        <section className="bg-gray-100 py-8 sm:py-12 rounded-lg">
+        {/* Header Section with Enhanced Stories Text */}
+        <motion.section
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="py-8 sm:py-12 rounded-lg"
+        >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col lg:flex-row items-center gap-8">
               <div className="w-full lg:w-2/3">
-                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">
-                  Stories
-                </h2>
+                <div className="relative mb-4 sm:mb-6">
+                  <motion.h2
+                    className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-gray-900 to-orange-600 bg-clip-text text-transparent"
+                    initial={{ y: -50 }}
+                    animate={{ y: 0 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  >
+                    Stories
+                  </motion.h2>
+                  <div className="absolute -bottom-2 left-0 h-1 w-24 bg-[#FF6A00] rounded-full"></div>
+                </div>
                 <p className="text-base sm:text-lg text-gray-700">
                   Discover the exciting stories that celebrate various cultures.
                 </p>
@@ -53,52 +95,124 @@ const MainStory = () => {
               </div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Hero Section with Search */}
-        <div className="relative w-full h-48 sm:h-64 my-8">
+        <motion.div
+          className="relative w-full h-48 sm:h-64 my-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
           <img
             src="/api/placeholder/1200/400"
             alt="Story Hero"
             className="w-full h-full object-cover rounded-lg"
           />
+          <div className="absolute inset-0 bg-black bg-opacity-30 rounded-lg" />
           <div className="absolute inset-0 flex items-center justify-center px-4">
-            <div className="bg-white rounded-full shadow-lg flex items-center w-full max-w-md overflow-hidden">
-              <input
-                type="text"
-                className="w-full px-4 sm:px-6 py-2 sm:py-3 outline-none text-sm sm:text-base"
-                placeholder="Search stories..."
-              />
-              <button className="px-4 sm:px-6 py-2 sm:py-3 text-gray-600 hover:bg-gray-100 text-sm sm:text-base whitespace-nowrap">
-                Search
-              </button>
+            <div className="w-full max-w-2xl">
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <Search className="h-5 w-5 text-[#FF6A00]" />
+                </div>
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-12 pr-12 py-4 bg-white/95 backdrop-blur-sm text-base rounded-xl border-2 border-transparent focus:border-[#FF6A00] focus:bg-white transition-all outline-none placeholder:text-gray-500"
+                  placeholder="Search stories by title, content, or tags..."
+                />
+                {searchTerm && (
+                  <button
+                    onClick={() => setSearchTerm('')}
+                    className="absolute inset-y-0 right-0 pr-4 flex items-center"
+                  >
+                    <X className="h-5 w-5 text-gray-400 hover:text-[#FF6A00] transition-colors" />
+                  </button>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Stories Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-8 lg:px-12 mb-12">
-          {stories.map((story) => (
-            <div
-              key={story._id} // Assuming MongoDB's `_id` for each story
-              className="flex flex-col items-center bg-gray-200 rounded-lg p-4 transition-transform hover:scale-105"
-            >
-              <div className="w-full aspect-square mb-4">
-                <Link to={`/story/${story._id}`} className="block w-full h-full">
-                  <img
-                    src={story.image || '/api/placeholder/400/400'} // Fallback image if no image exists
-                    alt={`Story: ${story.title}`}
-                    className="w-full h-full object-cover rounded-lg shadow-lg"
-                  />
-                </Link>
-              </div>
-              <div className="text-center">
-                <h3 className="text-lg font-medium mb-2">{story.title}</h3>
-                <p className="text-sm text-gray-600">{story.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-8 lg:px-12 mb-12"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          {filteredStories.length === 0 ? (
+            <div>No stories found for the given search term.</div>
+          ) : (
+            filteredStories.map((story) => (
+              <motion.div
+                key={story._id}
+                className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="relative">
+                  <Link to={`/story/${story._id}`} className="block">
+                    <div className="aspect-square overflow-hidden">
+                      <motion.img
+                        src={story.preview_img || '/api/placeholder/400/400'}
+                        alt={`Story: ${story.title}`}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        whileHover={{ scale: 1.1 }}
+                      />
+                    </div>
+                  </Link>
+                  {story.badge && (
+                    <span className="absolute top-3 right-3 text-sm font-medium text-white bg-[#FF6A00] px-3 py-1 rounded-full">
+                      {story.badge}
+                    </span>
+                  )}
+                </div>
+
+                <div className="p-5">
+                  <Link to={`/story/${story._id}`}>
+                    <motion.h3
+                      className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-[#FF6A00] transition-colors"
+                      whileHover={{ color: '#FF6A00' }}
+                    >
+                      {story.title}
+                    </motion.h3>
+                  </Link>
+
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                    {story.short_content}
+                  </p>
+
+                  <div className="space-y-3">
+                    <div className="flex flex-wrap gap-2">
+                      {story.tags.map((tag, index) => (
+                        <span
+                          key={index}
+                          className="text-xs px-2.5 py-1 bg-gray-100 text-gray-600 rounded-full hover:bg-[#FF6A00] hover:text-white transition-colors"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="flex items-center justify-between pt-2 border-t border-gray-100">
+                      <span className="text-xs text-gray-500">{story.season}</span>
+                      <Link
+                        to={`/stories/${story._id}`}
+                        className="text-sm font-medium text-[#FF6A00] hover:text-orange-700 transition-colors"
+                      >
+                        Read more →
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))
+          )}
+        </motion.div>
       </div>
     </div>
   );
