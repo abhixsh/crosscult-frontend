@@ -83,7 +83,7 @@ const MainStory = () => {
               </div>
               <div className="w-full lg:w-1/3">
                 <img
-                  src="/api/placeholder/400/400"
+                  src="/img/story/MainStory.png"
                   alt="Story illustration"
                   className="w-full rounded-lg shadow-lg"
                 />
@@ -100,7 +100,7 @@ const MainStory = () => {
           transition={{ duration: 1 }}
         >
           <img
-            src="/api/placeholder/1200/400"
+            src="/img/story/StoryCover.png"
             alt="Story Hero"
             className="w-full h-full object-cover rounded-lg"
           />
