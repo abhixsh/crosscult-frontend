@@ -32,7 +32,7 @@ function UserRegister() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/users/register', formData, {
+            const response = await axios.post('http://localhost:3001/users/register', formData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },

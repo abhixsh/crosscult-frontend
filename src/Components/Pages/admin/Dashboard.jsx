@@ -85,7 +85,7 @@ const AdminDashboard = () => {
                 setAdminEmail(decoded.email || "Unknown Email");
 
                 const statsResponse = await fetch(
-                    "http://localhost:5000/users/count",
+                    "http://localhost:3001/users/count",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -99,7 +99,7 @@ const AdminDashboard = () => {
                 });
 
                 const adminResponse = await fetch(
-                    "http://localhost:5000/admins",
+                    "http://localhost:3001/admins",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -124,7 +124,7 @@ const AdminDashboard = () => {
     const handleUpdateAdmin = async (adminId) => {
         try {
             const token = localStorage.getItem("adminToken");
-            const response = await fetch(`http://localhost:5000/admins/${adminId}`, {
+            const response = await fetch(`http://localhost:3001/admins/${adminId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -155,7 +155,7 @@ const AdminDashboard = () => {
     const handleDeleteAdmin = async (adminId) => {
         try {
             const token = localStorage.getItem("adminToken");
-            const response = await fetch(`http://localhost:5000/admins/${adminId}`, {
+            const response = await fetch(`http://localhost:3001/admins/${adminId}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`,

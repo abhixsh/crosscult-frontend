@@ -16,7 +16,7 @@ const Stories = () => {
 
     const fetchStory = async () => {
       try {
-        const response = await fetch(`http://localhost:5001/stories/${id}`);
+        const response = await fetch(`http://localhost:3003/stories/${id}`);
         if (!response.ok) throw new Error('Failed to fetch story');
         const data = await response.json();
         setStory(data);

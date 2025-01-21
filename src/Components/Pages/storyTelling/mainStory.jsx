@@ -13,7 +13,7 @@ const MainStory = () => {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const response = await fetch('http://localhost:5001/stories');
+        const response = await fetch('http://localhost:3003/stories');
         if (!response.ok) {
           throw new Error('Failed to fetch stories');
         }
@@ -168,7 +168,7 @@ const MainStory = () => {
                 </div>
 
                 <div className="p-5">
-                  <Link to={`/story/${story._id}`}>
+                  <Link to={`/stories/${story._id}`}>
                     <motion.h3
                       className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-[#FF6A00] transition-colors"
                       whileHover={{ color: '#FF6A00' }}

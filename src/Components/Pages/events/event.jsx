@@ -14,7 +14,7 @@ const Event = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/api/events/");
+        const response = await axios.get("http://localhost:3002/api/events/");
         const data = Array.isArray(response.data) ? response.data : [];
         setEvents(data);
         setFilteredEvents(data);
