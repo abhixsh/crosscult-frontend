@@ -139,7 +139,7 @@ const MainStory = () => {
                 transition={{ duration: 0.5 }}
               >
                 <div className="relative">
-                  <Link to={`/story/${story._id}`} className="block">
+                  <Link to={`/stories/${story._id}`} className="block">
                     <div className="aspect-square overflow-hidden">
                       <motion.img
                         src={story.preview_img || '/api/placeholder/400/400'}

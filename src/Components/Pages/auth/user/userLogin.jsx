@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { Toaster, toast } from "react-hot-toast";
+import image_1 from "/assets/HalfCurve-CyV8KPdo.png";
+import image_2 from "/assets/HalfCurve2-CiEiBTnL.png";
 
 function Login() {
     const navigate = useNavigate();
@@ -69,73 +71,91 @@ function Login() {
         }
     };
 
-    // Rest of the component remains the same
     return (
-        <div className="relative flex items-center justify-center min-h-screen bg-gray-50 overflow-hidden">
-            <Toaster />
-            
+        <div className="relative flex items-center justify-center min-h-screen p-4 overflow-hidden bg-gray-100">
+            {/* Decorative Half Moons - Responsive Adjustments */}
+            <motion.img
+                src={image_1}
+                alt="Top Right Half Moon"
+                initial={{ opacity: 0, x: 50, y: -50 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="absolute top-0 right-0 w-1/2 md:w-1/3 max-w-[500px] min-w-[200px] transform -translate-y-1/4 z-0"
+            />
+            <motion.img
+                src={image_2}
+                alt="Bottom Left Half Moon"
+                initial={{ opacity: 0, x: -50, y: 50 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="absolute bottom-0 left-0 w-1/2 md:w-1/3 max-w-[500px] min-w-[200px] transform translate-y-1/4 z-0"
+            />
+
+            {/* Login Form - Responsive Container */}
             <motion.div
-                className="w-full max-w-md p-10 bg-white rounded-xl shadow-2xl z-10"
+                className="relative z-10 w-full max-w-lg p-6 md:p-10 space-y-6 bg-white shadow-2xl rounded-2xl mx-auto"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6 }}
             >
-                <h2 className="text-center text-3xl font-extrabold text-gray-900 mb-8">
+                <Toaster />
+
+                <motion.h2
+                    className="text-center text-xl md:text-2xl font-bold text-gray-900"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
                     Welcome Back
-                </h2>
+                </motion.h2>
 
-                <form onSubmit={handleLogin} className="space-y-6">
-                    <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                            Email Address
-                        </label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={loginData.email}
-                            onChange={handleChange}
-                            placeholder="Enter your email"
-                            className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            required
-                        />
-                    </div>
+                <form className="space-y-4 md:space-y-6" onSubmit={handleLogin}>
+                    {[
+                        { label: "Email Address", name: "email", type: "email" },
+                        { label: "Password", name: "password", type: "password" }
+                    ].map((field, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.5, delay: index * 0.2 }}
+                        >
+                            <label className="block text-sm md:text-md font-medium text-gray-700">
+                                {field.label}
+                            </label>
+                            <input
+                                type={field.type}
+                                name={field.name}
+                                value={loginData[field.name]}
+                                onChange={handleChange}
+                                placeholder={`Enter your ${field.label.toLowerCase()}`}
+                                className="mt-1 md:mt-2 w-full px-3 py-2 md:px-4 md:py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm md:text-base"
+                                required
+                            />
+                        </motion.div>
+                    ))}
 
-                    <div>
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                            Password
-                        </label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={loginData.password}
-                            onChange={handleChange}
-                            placeholder="Enter your password"
-                            className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            required
-                        />
-                    </div>
-
-                    <button
+                    <motion.button
                         type="submit"
                         disabled={isLoading}
-                        className={`w-full py-3 px-4 text-white rounded-lg font-semibold transition duration-300 ${
+                        className={`w-full py-2 md:py-3 px-3 md:px-4 text-white text-base md:text-lg font-semibold rounded-lg shadow-md transition duration-300 ${
                             isLoading 
                                 ? 'bg-gray-400 cursor-not-allowed' 
-                                : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500'
+                                : 'bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2'
                         }`}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                     >
                         {isLoading ? 'Logging In...' : 'Login'}
-                    </button>
+                    </motion.button>
                 </form>
 
                 <div className="mt-6 text-center">
                     <p className="text-sm text-gray-600">
                         Don't have an account?{" "}
                         <a 
-                            href="/signup" 
-                            className="font-medium text-blue-600 hover:text-blue-500 transition duration-300"
+                            href="/user/signup" 
+                            className="font-medium text-orange-500 hover:text-orange-600 transition duration-300"
                         >
                             Sign Up
                         </a>
