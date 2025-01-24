@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, User } from 'lucide-react';
+import { Menu, X, User, LogOut  } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Header = () => {
@@ -42,29 +42,53 @@ const Header = () => {
     return name ? name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2) : 'U';
   };
 
-  // Render user profile or login/signup
   const renderUserSection = () => {
-    if (user) {
+    const storedUserData = localStorage.getItem('userData');
+
+    if (storedUserData) {
+      const user = JSON.parse(storedUserData);
       return (
-        <div className="flex items-center space-x-3">
-          {user.image ? (
-            <img 
-              src={user.image} 
-              alt="User profile" 
-              className="w-10 h-10 rounded-full object-cover"
-            />
-          ) : (
-            <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-white font-medium">
-              {getUserInitials(user.name)}
+        <div className="relative group">
+          <Link to="/user/profile">
+            {user.profile_picture ? (
+              <img
+                src={user.profile_picture}
+                alt="User profile"
+                className="w-10 h-10 rounded-full object-cover cursor-pointer hover:ring-2 hover:ring-blue-500 transition"
+              />
+            ) : (
+              <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-white font-medium cursor-pointer hover:ring-2 hover:ring-blue-500 transition">
+                {getUserInitials(user.name)}
+              </div>
+            )}
+          </Link>
+
+          <div className="absolute top-full right-0 z-50 hidden group-hover:block">
+            <div className="w-48 bg-white shadow-lg rounded-xl border mt-2 overflow-hidden">
+              <Link
+                to="/user/profile"
+                className="flex items-center px-4 py-3 hover:bg-gray-100 transition"
+              >
+                <User className="mr-3 text-gray-600" size={20} />
+                <span>My Profile</span>
+              </Link>
+              <button
+                onClick={() => {
+                  localStorage.removeItem('userData');
+                  localStorage.removeItem('userToken');
+                  window.location.href = '/';
+                }}
+                className="flex items-center w-full px-4 py-3 text-left hover:bg-red-50 text-red-600 hover:text-red-700 transition"
+              >
+                <LogOut className="mr-3" size={20} />
+                <span>Logout</span>
+              </button>
             </div>
-          )}
-          <span className="hidden md:block text-black/80 text-base font-medium">
-            {user.name}
-          </span>
+          </div>
         </div>
       );
     }
-    
+
     return (
       <>
         <Link
@@ -172,7 +196,7 @@ const Header = () => {
             >
               About Us
             </Link>
-            
+
             {/* Conditionally render user profile or login/signup */}
             {renderUserSection()}
           </motion.div>
