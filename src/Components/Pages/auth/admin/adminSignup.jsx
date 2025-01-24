@@ -46,7 +46,7 @@ function AdminRegister() {
             const response = await axios.post('http://localhost:3001/admins/verify-otp', { email: formData.email, otp });
             console.log('Response from verify OTP:', response.data);
             setMessage(response.data.message);
-            navigate('/admin-login');
+            navigate('/admin/login');
         } catch (error) {
             console.error('Error during OTP verification:', error);
             setMessage(`Error: ${error.response?.data?.message || 'OTP verification failed.'}`);

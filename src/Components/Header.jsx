@@ -1,20 +1,88 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, User } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [user, setUser] = useState(null);
 
-  // Effect to ensure menu starts as closed on page load in mobile view
+  // Effect to check for user token and fetch user info
   useEffect(() => {
-    if (window.innerWidth < 768) {
-      setIsMenuOpen(false);
+    const token = localStorage.getItem('jwt_token');
+    if (token) {
+      // Decode token or fetch user details from backend
+      try {
+        // Example of decoding JWT (you'd typically use a library like jwt-decode)
+        const userInfo = decodeUserToken(token);
+        setUser(userInfo);
+      } catch (error) {
+        console.error('Error decoding token', error);
+      }
     }
   }, []);
 
+  // Placeholder function to decode token
+  const decodeUserToken = (token) => {
+    // This is a simplified example - replace with actual token decoding
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return {
+      name: payload.name || 'User',
+      image: payload.profileImage || null,
+      id: payload.userId
+    };
+  };
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  // Helper to get initials or first letter
+  const getUserInitials = (name) => {
+    return name ? name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2) : 'U';
+  };
+
+  // Render user profile or login/signup
+  const renderUserSection = () => {
+    if (user) {
+      return (
+        <div className="flex items-center space-x-3">
+          {user.image ? (
+            <img 
+              src={user.image} 
+              alt="User profile" 
+              className="w-10 h-10 rounded-full object-cover"
+            />
+          ) : (
+            <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-white font-medium">
+              {getUserInitials(user.name)}
+            </div>
+          )}
+          <span className="hidden md:block text-black/80 text-base font-medium">
+            {user.name}
+          </span>
+        </div>
+      );
+    }
+    
+    return (
+      <>
+        <Link
+          to="/user/login"
+          className="text-black/80 text-base font-medium hover:text-black transition"
+          onClick={toggleMenu}
+        >
+          Login
+        </Link>
+        <Link
+          to="/user/signup"
+          className="text-black/80 text-base font-medium px-4 py-2 rounded-[10px] border border-black hover:bg-black hover:text-white transition"
+          onClick={toggleMenu}
+        >
+          Signup
+        </Link>
+      </>
+    );
   };
 
   return (
@@ -73,8 +141,6 @@ const Header = () => {
               to="/MainTranslator"
               className="text-black/80 text-base font-medium hover:text-black transition"
               onClick={toggleMenu}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
               Translator
             </Link>
@@ -82,8 +148,6 @@ const Header = () => {
               to="/event"
               className="text-black/80 text-base font-medium hover:text-black transition"
               onClick={toggleMenu}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
               Cultural Events
             </Link>
@@ -91,8 +155,6 @@ const Header = () => {
               to="/mainStory"
               className="text-black/80 text-base font-medium hover:text-black transition"
               onClick={toggleMenu}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
               Story Telling
             </Link>
@@ -100,8 +162,6 @@ const Header = () => {
               to="/country"
               className="text-black/80 text-base font-medium hover:text-black transition"
               onClick={toggleMenu}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
               Cultural Details
             </Link>
@@ -109,29 +169,12 @@ const Header = () => {
               to="/about"
               className="text-black/80 text-base font-medium hover:text-black transition"
               onClick={toggleMenu}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
               About Us
             </Link>
-            <Link
-              to="/login"
-              className="text-black/80 text-base font-medium hover:text-black transition"
-              onClick={toggleMenu}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Login
-            </Link>
-            <Link
-              to="/signup"
-              className="text-black/80 text-base font-medium px-4 py-2 rounded-[10px] border border-black hover:bg-black hover:text-white transition"
-              onClick={toggleMenu}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Signup
-            </Link>
+            
+            {/* Conditionally render user profile or login/signup */}
+            {renderUserSection()}
           </motion.div>
         </motion.nav>
       </div>

@@ -14,7 +14,7 @@ const UserAdmin = () => {
     const [updateMessage, setUpdateMessage] = useState('');
     const [showForm, setShowForm] = useState(false); // To toggle the form visibility
 
-    const API_BASE_URL = 'http://localhost:5000';
+    const API_BASE_URL = 'http://localhost:3001';
 
     const fetchUsers = async () => {
         try {
@@ -33,7 +33,7 @@ const UserAdmin = () => {
         e.preventDefault();
         try {
             if (editingId) {
-                const response = await axios.put(`${API_BASE_URL}/user/${editingId}`, form);
+                const response = await axios.put(`${API_BASE_URL}/users/${editingId}`, form);
                 if (response.status === 200) {
                     setUpdateMessage('User updated successfully!');
                 }
@@ -58,7 +58,7 @@ const UserAdmin = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`${API_BASE_URL}/user/${id}`);
+            await axios.delete(`${API_BASE_URL}/users/${id}`);
             fetchUsers();
         } catch (error) {
             console.error('Error deleting user:', error);

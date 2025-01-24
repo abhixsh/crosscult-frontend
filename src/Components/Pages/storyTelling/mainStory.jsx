@@ -19,10 +19,10 @@ const MainStory = () => {
         }
         const data = await response.json();
         setStories(data);
-        setFilteredStories(data); // Initialize filteredStories with all stories
+        setFilteredStories(data);
+        setLoading(false);
       } catch (err) {
         setError(err.message);
-      } finally {
         setLoading(false);
       }
     };
@@ -30,38 +30,25 @@ const MainStory = () => {
     fetchStories();
   }, []);
 
-  const handleSearch = () => {
+  useEffect(() => {
     const lowercasedSearchTerm = searchTerm.toLowerCase();
 
-    // Filter stories based on the criteria
     const filtered = stories.filter(story => {
       const titleMatch = story.title.toLowerCase().includes(lowercasedSearchTerm);
       const seasonMatch = story.season?.toLowerCase().includes(lowercasedSearchTerm);
       const countyMatch = story.county?.toLowerCase().includes(lowercasedSearchTerm);
       const tagsMatch = story.tags.some(tag => tag.toLowerCase().includes(lowercasedSearchTerm));
-      const monthMatch = story.month?.toLowerCase().includes(lowercasedSearchTerm);
 
-      return titleMatch || seasonMatch || countyMatch || tagsMatch || monthMatch;
+      return titleMatch || seasonMatch || countyMatch || tagsMatch;
     });
 
     setFilteredStories(filtered);
-  };
-
-  useEffect(() => {
-    if (searchTerm) {
-      handleSearch();
-    } else {
-      setFilteredStories(stories); // Reset to all stories when search is cleared
-    }
   }, [searchTerm, stories]);
-
-  if (loading) return <div></div>;
-  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4">
-        {/* Header Section with Enhanced Stories Text */}
+        {/* Header Section - Always Visible */}
         <motion.section
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -71,12 +58,10 @@ const MainStory = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col lg:flex-row items-center gap-8">
               <div className="w-full lg:w-2/3">
-                <div className="relative mb-4 sm:mb-6">
-        <div className="flex items-center gap-3 mb-8">
-          <Globe2 className="w-8 h-8 md:w-10 md:h-10 text-[#FF6A00]" />
-          <h1 className="text-4xl md:text-5xl font-bold">Cultural Stories</h1>
-        </div>
-                                  </div>
+                <div className="flex items-center gap-3 mb-8">
+                  <Globe2 className="w-8 h-8 md:w-10 md:h-10 text-[#FF6A00]" />
+                  <h1 className="text-4xl md:text-5xl font-bold">Cultural Stories</h1>
+                </div>
                 <p className="text-base sm:text-lg text-gray-700">
                   Discover the exciting stories that celebrate various cultures.
                 </p>
@@ -92,7 +77,7 @@ const MainStory = () => {
           </div>
         </motion.section>
 
-        {/* Hero Section with Search */}
+        {/* Search Section - Always Visible */}
         <motion.div
           className="relative w-full h-48 sm:h-64 my-8"
           initial={{ opacity: 0 }}
@@ -138,8 +123,12 @@ const MainStory = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          {filteredStories.length === 0 ? (
-            <div>No stories found for the given search term.</div>
+          {loading ? (
+            <div className="col-span-full text-center">Loading stories...</div>
+          ) : error ? (
+            <div className="col-span-full text-center text-red-500">Error: {error}</div>
+          ) : filteredStories.length === 0 ? (
+            <div className="col-span-full text-center">No stories found for the given search term.</div>
           ) : (
             filteredStories.map((story) => (
               <motion.div

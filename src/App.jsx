@@ -8,8 +8,6 @@ import Footer from './Components/Footer';
 // Pages
 import Home from './Components/Pages/Home';
 import AboutUs from './Components/Pages/About';
-import Login from './Components/Pages/Login & SignUp/Login';
-import SignUp from './Components/Pages/Login & SignUp/Signup';
 import MainTranslator from './Components/Pages/Translator/MainTranslator';
 import InputLanguage from './Components/Pages/Translator/InputLanguage';
 import FileUpload from './Components/Pages/Translator/FileUpload';
@@ -47,8 +45,6 @@ function App() {
         {/* Public Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/mainTranslator" element={<MainTranslator />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/country" element={<Country />} />
         <Route path="/country/:id" element={<CountryAbout />} />

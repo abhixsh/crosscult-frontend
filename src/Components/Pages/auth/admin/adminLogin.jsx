@@ -6,24 +6,21 @@ function AdminLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();  // To navigate after successful login
-
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:3001/admins/login', {
         email,
-        password,
+        password
       });
 
-      // Store the token in localStorage
+      // Secure token storage
       localStorage.setItem('adminToken', response.data.token);
 
-      alert('Admin Login Successful');
-      console.log(response.data);
+      // Store admin details
+      localStorage.setItem('adminDetails', JSON.stringify(response.data.admin));
 
-      // Redirect to Admin Panel
-      navigate('/admin');  // You can customize the route for your admin panel
-
+      navigate('/admin');
     } catch (error) {
       alert('Login Failed: ' + (error.response?.data?.message || error.message));
     }
