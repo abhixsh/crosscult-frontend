@@ -18,6 +18,11 @@ import Stories from './Components/Pages/storyTelling/Stories';
 import Event from './Components/Pages/events/event';
 import EventDetails from './Components/Pages/events/eventDetails';
 import UnderConstruction from './Components/Pages/underReview';
+import Chatbot from './Components/Pages/chatbot/chatbot'
+import ChatbotIcon from './Components/Pages/chatbot/ChatbotIcon';
+import ChatForm from './Components/Pages/chatbot/ChatForm';
+import ChatMessage from './Components/Pages/chatbot/ChatMessage';
+
 
 // Country Pages
 import Country from './Components/Pages/country/country';
@@ -62,6 +67,12 @@ function App() {
         <Route path="/event" element={<Event />} />
         <Route path="/event/:id" element={<EventDetails />} />
         <Route path="/underConstruction" element={<UnderConstruction />} />
+        <Route path='/chatbot' element={<Chatbot/>}/>
+        <Route path='/chatbotIcon' element={<ChatbotIcon/>}/>
+        <Route path='/chatbotIcon' element={<ChatForm/>}/>
+        <Route path='/chatbotIcon' element={<ChatMessage/>}/>
+
+
 
         {/* Admin Routes */}
         <Route path="/admin" element={<Dashboard />} />

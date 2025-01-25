@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, X, Globe2 } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -13,7 +13,7 @@ const MainStory = () => {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const response = await fetch('http://localhost:5001/stories');
+        const response = await fetch('http://localhost:3003/stories');
         if (!response.ok) {
           throw new Error('Failed to fetch stories');
         }
