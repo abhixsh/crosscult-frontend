@@ -102,30 +102,32 @@ const MainTranslator = () => {
         </motion.div>
       </motion.section>
 
-      {/* Translation Display */}
-      <motion.section
-        className="grid grid-cols-1 lg:grid-cols-2 gap-4 mx-auto max-w-6xl"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, staggerChildren: 0.3 }}
-      >
-        <motion.div
-          className="bg-white shadow-md rounded-lg p-4 md:p-6 border border-black min-h-[200px]"
-          initial={{ y: 20 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.5 }}
+      {/* Conditional Translation Display */}
+      {(recognizedText || translation) && (
+        <motion.section
+          className="grid grid-cols-1 lg:grid-cols-2 gap-4 mx-auto max-w-6xl"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, staggerChildren: 0.3 }}
         >
-          <p className="text-gray-600 break-words">{recognizedText}</p>
-        </motion.div>
-        <motion.div
-          className="bg-white shadow-md rounded-lg p-4 md:p-6 border border-black min-h-[200px]"
-          initial={{ y: 20 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <p className="text-gray-600 break-words">{translation}</p>
-        </motion.div>
-      </motion.section>
+          <motion.div
+            className="bg-white shadow-md rounded-lg p-4 md:p-6 border border-black min-h-[200px]"
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <p className="text-gray-600 break-words">{recognizedText}</p>
+          </motion.div>
+          <motion.div
+            className="bg-white shadow-md rounded-lg p-4 md:p-6 border border-black min-h-[200px]"
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <p className="text-gray-600 break-words">{translation}</p>
+          </motion.div>
+        </motion.section>
+      )}
     </div>
   );
 };
