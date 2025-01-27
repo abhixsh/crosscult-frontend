@@ -1,135 +1,169 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import image_1 from '../../../../assets/Login_Page/HalfCurve.png';
-import image_2 from '../../../../assets/Login_Page/HalfCurve2.png';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { motion } from "framer-motion";
+import { Toaster, toast } from "react-hot-toast";
+import image_1 from "/assets/HalfCurve-CyV8KPdo.png";
+import image_2 from "/assets/HalfCurve2-CiEiBTnL.png";
 
-function UserLogin() {
-    const [formData, setFormData] = useState({
+function Login() {
+    const navigate = useNavigate();
+    const [loginData, setLoginData] = useState({
         email: '',
-        password: '',
+        password: ''
     });
-    const [message, setMessage] = useState('');
-    const navigate = useNavigate();  // Hook to handle redirection
+    const [isLoading, setIsLoading] = useState(false);
 
-    // Handle form data input
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
+        setLoginData(prev => ({
+            ...prev,
+            [name]: value
+        }));
     };
 
-    // Handle form submission to trigger login request
-    const handleSubmit = async (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
+
         try {
-            // Send POST request to backend API (localhost for dev)
-            const response = await axios.post('http://localhost:5000/users/login', formData, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.post(
+                'http://localhost:3001/users/login',
+                loginData
+            );
+
+            const { token, user } = response.data;
+            
+            // Store token
+            localStorage.setItem('userToken', JSON.stringify({
+                value: token,
+                timestamp: Date.now()
+            }));
+            
+            // Store specific user details
+            localStorage.setItem('userData', JSON.stringify({
+                name: user.name,
+                username: user.username,
+                country: user.country,
+                email: user.email,
+                profile_picture: user.profile_picture,
+                registration_date: user.registration_date,
+                fav_Country: user.fav_Country,
+                preferences: user.preferences
+            }));
+
+            toast.success('Login Successful', {
+                duration: 2000,
+                position: 'top-right'
             });
 
-            // Successful login: Store token in localStorage
-            localStorage.setItem('token', response.data.token);
-            setMessage('Login successful!');
-            console.log('User Logged In:', response.data);
-
-            // Redirect the user to the home page or another protected route
-            navigate('/home');  // You can change '/home' to wherever you want the user to be redirected
+            setTimeout(() => {
+                navigate('/');
+            }, 2000);
 
         } catch (error) {
-            if (error.response) {
-                // If response exists (400, 500 status errors)
-                setMessage(error.response.data.message || 'Something went wrong during login.');
-            } else {
-                // Network error or server not reachable
-                setMessage('Network error. Please try again later.');
-            }
+            toast.error(
+                error.response?.data?.message || 'Login Failed. Please check your credentials.',
+                { duration: 3000, position: 'top-right' }
+            );
+        } finally {
+            setIsLoading(false);
         }
     };
 
     return (
-        <div className="min-h-screen flex flex-col">
-            {/* Main Form Container */}
-            <main className="flex-grow relative flex items-center justify-center w-screen py-12 px-4">
-                {/* Decorative Half Moons */}
-                <img
-                    src={image_1}
-                    alt="Top Right Half Moon"
-                    className="absolute top-0 right-0 w-1/3 max-w-[500px] min-w-[300px] transform -translate-y-1/4"
-                />
-                <img
-                    src={image_2}
-                    alt="Bottom Left Half Moon"
-                    className="absolute bottom-0 left-0 w-1/3 max-w-[500px] min-w-[300px] transform translate-y-1/4"
-                />
+        <div className="relative flex items-center justify-center min-h-screen p-4 overflow-hidden bg-gray-100">
+            {/* Decorative Half Moons - Responsive Adjustments */}
+            <motion.img
+                src={image_1}
+                alt="Top Right Half Moon"
+                initial={{ opacity: 0, x: 50, y: -50 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="absolute top-0 right-0 w-1/2 md:w-1/3 max-w-[500px] min-w-[200px] transform -translate-y-1/4 z-0"
+            />
+            <motion.img
+                src={image_2}
+                alt="Bottom Left Half Moon"
+                initial={{ opacity: 0, x: -50, y: 50 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="absolute bottom-0 left-0 w-1/2 md:w-1/3 max-w-[500px] min-w-[200px] transform translate-y-1/4 z-0"
+            />
 
-                {/* Login Form */}
-                <div className="relative z-10 w-full max-w-md p-10 space-y-8 bg-white shadow-2xl rounded-2xl mx-4">
-                    <h2 className="text-center text-2xl font-bold text-gray-900">User Login</h2>
-                    {message && <div className="text-center text-red-500">{message}</div>}
+            {/* Login Form - Responsive Container */}
+            <motion.div
+                className="relative z-10 w-full max-w-lg p-6 md:p-10 space-y-6 bg-white shadow-2xl rounded-2xl mx-auto"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6 }}
+            >
+                <Toaster />
 
-                    <form className="space-y-6" onSubmit={handleSubmit}>
-                        <div>
-                            <label htmlFor="email" className="block text-md font-medium text-gray-700">
-                                Email Address
+                <motion.h2
+                    className="text-center text-xl md:text-2xl font-bold text-gray-900"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    Welcome Back
+                </motion.h2>
+
+                <form className="space-y-4 md:space-y-6" onSubmit={handleLogin}>
+                    {[
+                        { label: "Email Address", name: "email", type: "email" },
+                        { label: "Password", name: "password", type: "password" }
+                    ].map((field, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.5, delay: index * 0.2 }}
+                        >
+                            <label className="block text-sm md:text-md font-medium text-gray-700">
+                                {field.label}
                             </label>
                             <input
-                                id="email"
-                                name="email"
-                                type="email"
-                                value={formData.email}
+                                type={field.type}
+                                name={field.name}
+                                value={loginData[field.name]}
                                 onChange={handleChange}
-                                placeholder="Enter your email"
-                                className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#ff6a00] focus:border-[#ff6a00]"
+                                placeholder={`Enter your ${field.label.toLowerCase()}`}
+                                className="mt-1 md:mt-2 w-full px-3 py-2 md:px-4 md:py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm md:text-base"
                                 required
                             />
-                        </div>
+                        </motion.div>
+                    ))}
 
-                        <div>
-                            <label htmlFor="password" className="block text-md font-medium text-gray-700">
-                                Password
-                            </label>
-                            <input
-                                id="password"
-                                name="password"
-                                type="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                placeholder="Enter your password"
-                                className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#ff6a00] focus:border-[#ff6a00]"
-                                required
-                            />
-                        </div>
+                    <motion.button
+                        type="submit"
+                        disabled={isLoading}
+                        className={`w-full py-2 md:py-3 px-3 md:px-4 text-white text-base md:text-lg font-semibold rounded-lg shadow-md transition duration-300 ${
+                            isLoading 
+                                ? 'bg-gray-400 cursor-not-allowed' 
+                                : 'bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2'
+                        }`}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        {isLoading ? 'Logging In...' : 'Login'}
+                    </motion.button>
+                </form>
 
-                        <div>
-                            <button
-                                type="submit"
-                                className="w-full py-3 px-4 bg-[#ff6a00] text-white text-lg font-semibold rounded-lg shadow-md hover:bg-[#ff6a00]/90 focus:outline-none focus:ring-2 focus:ring-[#ff6a00] focus:ring-offset-2 transition duration-300"
-                            >
-                                Login
-                            </button>
-                        </div>
-                    </form>
-
-                    <div className="text-center">
-                        <p className="text-md text-gray-600">
-                            Don't have an account?{' '}
-                            <a
-                                href="/register"
-                                className="font-semibold text-[#ff6a00] hover:text-[#ff6a00]/80 transition duration-300"
-                            >
-                                Register Now
-                            </a>
-                        </p>
-                    </div>
+                <div className="mt-6 text-center">
+                    <p className="text-sm text-gray-600">
+                        Don't have an account?{" "}
+                        <a 
+                            href="/user/signup" 
+                            className="font-medium text-orange-500 hover:text-orange-600 transition duration-300"
+                        >
+                            Sign Up
+                        </a>
+                    </p>
                 </div>
-            </main>
+            </motion.div>
         </div>
     );
 }
 
-export default UserLogin;
+export default Login;

@@ -17,7 +17,7 @@ function FileUpload({ speechRecognitionLanguage, language, setRecognizedText, se
     formData.append('language', language);
 
     fetch(
-      'http://localhost:3000/api/translate',
+      'http://localhost:3004/api/translate',
       {
         method: "POST",
         body: formData

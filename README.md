@@ -32,12 +32,14 @@ The goal is to foster cultural understanding and connectivity through a user-fri
 - **Language Translation**: Supports multilingual translation for easy accessibility.
 - **User and Admin Panels**: Secure user login, with separate admin and user controls.
 
-## Tech Stack
-
-- **Frontend Framework**: React
-- **Development Tool**: Vite
-- **Styling**: Tailwind CSS
-- **Routing**: React Router
+## Tech Stack  
+- **Frontend Framework:** React  
+- **Build Tool:** Vite  
+- **Styling:** Tailwind CSS  
+- **Routing:** React Router  
+- **Backend:** Node.js, Express.js  
+- **Database:** MongoDB  
+- **Hosting & Deployment:** Azure
 
 ## Project Structure
 

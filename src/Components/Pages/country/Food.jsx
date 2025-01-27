@@ -98,7 +98,7 @@ const Food = () => {
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 text-center md:text-left">
                         Food of {foodData.country_name}
                     </h1>
-                    <p className="text-lg md:text-xl lg:text-2xl text-gray-700 text-justify leading-relaxed">
+                    <p className="text-md md:text-xl lg:text-xl text-gray-700 text-justify leading-relaxed font-sans">
                         {foodData.food_desc}
                     </p>
                 </motion.div>

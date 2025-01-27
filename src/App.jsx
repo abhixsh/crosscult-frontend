@@ -8,8 +8,6 @@ import Footer from './Components/Footer';
 // Pages
 import Home from './Components/Pages/Home';
 import AboutUs from './Components/Pages/About';
-import Login from './Components/Pages/Login & SignUp/Login';
-import SignUp from './Components/Pages/Login & SignUp/Signup';
 import MainTranslator from './Components/Pages/Translator/MainTranslator';
 import InputLanguage from './Components/Pages/Translator/InputLanguage';
 import FileUpload from './Components/Pages/Translator/FileUpload';
@@ -23,6 +21,7 @@ import ChatbotIcon from './Components/Pages/chatbot/ChatbotIcon';
 import ChatForm from './Components/Pages/chatbot/ChatForm';
 import ChatMessage from './Components/Pages/chatbot/ChatMessage';
 
+import UserProfile from './Components/Pages/user/profile';
 
 // Country Pages
 import Country from './Components/Pages/country/country';
@@ -52,8 +51,6 @@ function App() {
         {/* Public Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/mainTranslator" element={<MainTranslator />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/country" element={<Country />} />
         <Route path="/country/:id" element={<CountryAbout />} />
@@ -67,12 +64,7 @@ function App() {
         <Route path="/event" element={<Event />} />
         <Route path="/event/:id" element={<EventDetails />} />
         <Route path="/underConstruction" element={<UnderConstruction />} />
-        <Route path='/chatbot' element={<Chatbot/>}/>
-        <Route path='/chatbotIcon' element={<ChatbotIcon/>}/>
-        <Route path='/chatbotIcon' element={<ChatForm/>}/>
-        <Route path='/chatbotIcon' element={<ChatMessage/>}/>
-
-
+        <Route path="/user/profile" element={<UserProfile />} />
 
         {/* Admin Routes */}
         <Route path="/admin" element={<Dashboard />} />

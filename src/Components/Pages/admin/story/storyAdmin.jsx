@@ -22,7 +22,7 @@ const StoryAdmin = () => {
     const [updateMessage, setUpdateMessage] = useState('');
     const [showForm, setShowForm] = useState(false);
 
-    const API_BASE_URL = 'http://localhost:5001';
+    const API_BASE_URL = 'http://localhost:3003';
 
     const fetchStories = async () => {
         try {

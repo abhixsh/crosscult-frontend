@@ -1,242 +1,170 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Importing useNavigate
-import image_1 from '../../../../assets/Login_Page/HalfCurve.png';
-import image_2 from '../../../../assets/Login_Page/HalfCurve2.png';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { motion } from "framer-motion";
+import { Toaster, toast } from "react-hot-toast";
+import image_1 from "/assets/HalfCurve-CyV8KPdo.png";
+import image_2 from "/assets/HalfCurve2-CiEiBTnL.png";
 
 function UserRegister() {
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
-        name: '',
-        username: '',
-        country: '',
-        email: '',
-        password: '',
-        profile_picture: '',
-        bio: '',
-        role: 'visitor',
-        fav_Country: '',
+        name: "",
+        username: "",
+        country: "",
+        email: "",
+        password: "",
+        profile_picture: "",
+        bio: "",
+        fav_Country: "",
         preferences: [],
     });
-    const [message, setMessage] = useState('');
-
-    const navigate = useNavigate(); // Initializing useNavigate
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('http://localhost:5000/users/register', formData, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            setMessage('Registration successful!');
-            console.log('User Registered:', response.data);
-            // Navigate to the login page after successful registration
-            navigate('/login');
-        } catch (error) {
-            setMessage(`Error: ${error.response?.data?.message || 'Something went wrong.'}`);
+        const { name, value, type, checked } = e.target;
+        if (type === "checkbox") {
+            setFormData((prev) => ({
+                ...prev,
+                preferences: checked
+                    ? [...prev.preferences, value]
+                    : prev.preferences.filter((pref) => pref !== value),
+            }));
+        } else {
+            setFormData((prev) => ({ ...prev, [name]: value }));
         }
     };
 
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post(
+                "http://localhost:3001/users/register",
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+            toast.success("Registration Successful", {
+                duration: 2000,
+                position: "top-right",
+            });
+            setTimeout(() => {
+                navigate("/user/login");
+            }, 2000);
+        } catch (error) {
+            const errorMessage =
+                error.response?.data?.message || "Registration Failed";
+            toast.error(errorMessage, {
+                duration: 2000,
+                position: "top-right",
+            });
+        }
+    };
     return (
-        <div className="min-h-screen flex flex-col">
-            {/* Main Form Container */}
-            <main className="flex-grow relative flex items-center justify-center w-screen py-12 px-4">
-                {/* Decorative Half Moons */}
-                <img
-                    src={image_1}
-                    alt="Top Right Half Moon"
-                    className="absolute top-0 right-0 w-1/3 max-w-[500px] min-w-[300px] transform -translate-y-1/4"
-                />
-                <img
-                    src={image_2}
-                    alt="Bottom Left Half Moon"
-                    className="absolute bottom-0 left-0 w-1/3 max-w-[500px] min-w-[300px] transform translate-y-1/4"
-                />
+        <div className="relative flex items-center justify-center min-h-screen p-4 overflow-hidden bg-gray-100">
+            {/* Decorative Half Moons - Responsive Adjustments */}
+            <motion.img
+                src={image_1}
+                alt="Top Right Half Moon"
+                initial={{ opacity: 0, x: 50, y: -50 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="absolute top-0 right-0 w-1/2 md:w-1/3 max-w-[500px] min-w-[200px] transform -translate-y-1/4 z-0"
+            />
+            <motion.img
+                src={image_2}
+                alt="Bottom Left Half Moon"
+                initial={{ opacity: 0, x: -50, y: 50 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="absolute bottom-0 left-0 w-1/2 md:w-1/3 max-w-[500px] min-w-[200px] transform translate-y-1/4 z-0"
+            />
 
-                {/* Register Form */}
-                <div className="relative z-10 w-full max-w-md p-10 space-y-8 bg-white shadow-2xl rounded-2xl mx-4">
-                    <h2 className="text-center text-2xl font-bold text-gray-900">User Registration</h2>
-                    {message && <div className="text-center text-red-500">{message}</div>}
+            {/* Registration Form - Responsive Container */}
+            <motion.div
+                className="relative z-10 w-full max-w-lg p-6 md:p-10 space-y-6 bg-white shadow-2xl rounded-2xl mx-auto"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6 }}
+            >
+                <motion.h2
+                    className="text-center text-xl md:text-2xl font-bold text-gray-900"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    User Registration
+                </motion.h2>
 
-                    <form className="space-y-6" onSubmit={handleSubmit}>
-                        {/* Form Fields */}
-                        <div>
-                            <label htmlFor="name" className="block text-md font-medium text-gray-700">
-                                Full Name
+                <form className="space-y-4 md:space-y-6" onSubmit={handleRegister}>
+                    {[
+                        { label: "Full Name", name: "name", type: "text" },
+                        { label: "Username", name: "username", type: "text" },
+                        { label: "Country", name: "country", type: "text" },
+                        { label: "Email Address", name: "email", type: "email" },
+                        { label: "Password", name: "password", type: "password" },
+                        { label: "Profile Picture (URL)", name: "profile_picture", type: "url" },
+                        { label: "Biography", name: "bio", type: "text" },
+                        { label: "Favorite Country", name: "fav_Country", type: "text" },
+                    ].map((field, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.5, delay: index * 0.2 }}
+                        >
+                            <label className="block text-sm md:text-md font-medium text-gray-700">
+                                {field.label}
                             </label>
                             <input
-                                id="name"
-                                name="name"
-                                type="text"
-                                value={formData.name}
+                                type={field.type}
+                                name={field.name}
+                                value={formData[field.name]}
                                 onChange={handleChange}
-                                placeholder="Enter your full name"
-                                className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#ff6a00] focus:border-[#ff6a00]"
-                                required
+                                placeholder={`Enter your ${field.label.toLowerCase()}`}
+                                className="mt-1 md:mt-2 w-full px-3 py-2 md:px-4 md:py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm md:text-base"
+                                required={field.name !== "profile_picture" && field.name !== "bio"}
                             />
-                        </div>
+                        </motion.div>
+                    ))}
 
-                        <div>
-                            <label htmlFor="username" className="block text-md font-medium text-gray-700">
-                                Username
-                            </label>
-                            <input
-                                id="username"
-                                name="username"
-                                type="text"
-                                value={formData.username}
-                                onChange={handleChange}
-                                placeholder="Choose a username"
-                                className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#ff6a00] focus:border-[#ff6a00]"
-                                required
-                            />
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 1.6 }}
+                    >
+                        <label className="block text-sm md:text-md font-medium text-gray-700">Preferences</label>
+                        <div className="flex flex-wrap items-center space-x-2 md:space-x-4 mt-1 md:mt-2">
+                            {["history", "food"].map((preference) => (
+                                <label key={preference} className="flex items-center space-x-1 md:space-x-2 mb-1">
+                                    <input
+                                        type="checkbox"
+                                        name="preferences"
+                                        value={preference}
+                                        checked={formData.preferences.includes(preference)}
+                                        onChange={handleChange}
+                                        className="h-3 w-3 md:h-4 md:w-4 text-orange-500 border-gray-300 focus:ring-orange-400"
+                                    />
+                                    <span className="text-xs md:text-sm text-gray-700 capitalize">{preference}</span>
+                                </label>
+                            ))}
                         </div>
+                    </motion.div>
 
-                        <div>
-                            <label htmlFor="email" className="block text-md font-medium text-gray-700">
-                                Email Address
-                            </label>
-                            <input
-                                id="email"
-                                name="email"
-                                type="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                placeholder="Enter your email"
-                                className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#ff6a00] focus:border-[#ff6a00]"
-                                required
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="password" className="block text-md font-medium text-gray-700">
-                                Password
-                            </label>
-                            <input
-                                id="password"
-                                name="password"
-                                type="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                placeholder="Enter your password"
-                                className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#ff6a00] focus:border-[#ff6a00]"
-                                required
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="country" className="block text-md font-medium text-gray-700">
-                                Country
-                            </label>
-                            <input
-                                id="country"
-                                name="country"
-                                type="text"
-                                value={formData.country}
-                                onChange={handleChange}
-                                placeholder="Enter your country"
-                                className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#ff6a00] focus:border-[#ff6a00]"
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="profile_picture" className="block text-md font-medium text-gray-700">
-                                Profile Picture URL
-                            </label>
-                            <input
-                                id="profile_picture"
-                                name="profile_picture"
-                                type="text"
-                                value={formData.profile_picture}
-                                onChange={handleChange}
-                                placeholder="Enter profile picture URL"
-                                className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#ff6a00] focus:border-[#ff6a00]"
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="bio" className="block text-md font-medium text-gray-700">
-                                Short Bio
-                            </label>
-                            <textarea
-                                id="bio"
-                                name="bio"
-                                value={formData.bio}
-                                onChange={handleChange}
-                                placeholder="Tell us about yourself"
-                                className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#ff6a00] focus:border-[#ff6a00]"
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="fav_Country" className="block text-md font-medium text-gray-700">
-                                Favorite Country
-                            </label>
-                            <input
-                                id="fav_Country"
-                                name="fav_Country"
-                                type="text"
-                                value={formData.fav_Country}
-                                onChange={handleChange}
-                                placeholder="Enter your favorite country"
-                                className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#ff6a00] focus:border-[#ff6a00]"
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="preferences" className="block text-md font-medium text-gray-700">
-                                Preferences
-                            </label>
-                            <select
-                                id="preferences"
-                                name="preferences"
-                                value={formData.preferences}
-                                onChange={(e) =>
-                                    setFormData({
-                                        ...formData,
-                                        preferences: [...e.target.selectedOptions].map((o) => o.value),
-                                    })
-                                }
-                                multiple
-                                className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#ff6a00] focus:border-[#ff6a00]"
-                            >
-                                <option value="history">History</option>
-                                <option value="food">Food</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <button
-                                type="submit"
-                                className="w-full py-3 px-4 bg-[#ff6a00] text-white text-lg font-semibold rounded-lg shadow-md hover:bg-[#ff6a00]/90 focus:outline-none focus:ring-2 focus:ring-[#ff6a00] focus:ring-offset-2 transition duration-300"
-                            >
-                                Register
-                            </button>
-                        </div>
-                    </form>
-
-                    <div className="text-center">
-                        <p className="text-md text-gray-600">
-                            Already a Member?{' '}
-                            <a
-                                href="/login"
-                                className="font-semibold text-[#ff6a00] hover:text-[#ff6a00]/80 transition duration-300"
-                            >
-                                Login to Your Account
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </main>
+                    <motion.button
+                        type="submit"
+                        className="w-full py-2 md:py-3 px-3 md:px-4 bg-orange-500 text-white text-base md:text-lg font-semibold rounded-lg shadow-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition duration-300"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        Register
+                    </motion.button>
+                </form>
+            </motion.div>
         </div>
     );
 }

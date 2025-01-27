@@ -7,8 +7,8 @@ import {
     MapPin,
     UserCheck,
     Mail,
-    Edit2,
     Trash,
+    Edit2,
 } from "lucide-react";
 
 // Custom Components
@@ -40,24 +40,31 @@ const Button = ({ children, className, variant = "default", ...props }) => {
     );
 };
 
-// Function to decode JWT
+// Function to decode JWT with more robust error handling
 const decodeJWT = (token) => {
-    const base64Url = token.split(".")[1];
-    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    const decodedData = JSON.parse(
-        decodeURIComponent(
-            atob(base64)
-                .split("")
-                .map((c) => `%${c.charCodeAt(0).toString(16).padStart(2, "0")}`)
-                .join("")
-        )
-    );
-    return decodedData;
+    try {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        return JSON.parse(
+            decodeURIComponent(
+                atob(base64)
+                    .split('')
+                    .map((c) => `%${c.charCodeAt(0).toString(16).padStart(2, '0')}`)
+                    .join('')
+            )
+        );
+    } catch (error) {
+        console.error('JWT Decoding Error:', error);
+        return { name: null, email: null };
+    }
 };
 
 const AdminDashboard = () => {
-    const [adminName, setAdminName] = useState("");
-    const [adminEmail, setAdminEmail] = useState("");
+    const [adminInfo, setAdminInfo] = useState({
+        name: "",
+        email: "",
+        isValidToken: false
+    });
     const [stats, setStats] = useState({
         totalUsers: 0,
         totalStories: 0,
@@ -65,86 +72,38 @@ const AdminDashboard = () => {
     const [adminList, setAdminList] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
-    const [editData, setEditData] = useState({ adminId: "", name: "", email: "", role: "" });
+    const [editingAdmin, setEditingAdmin] = useState(null);
 
-    // Fetch data from backend
-    useEffect(() => {
-        const fetchDashboardData = async () => {
-            try {
-                setLoading(true);
-                const token = localStorage.getItem("adminToken");
-
-                console.log("Retrieved Token:", token);
-
-                if (!token) {
-                    throw new Error("JWT token not found");
-                }
-
-                const decoded = decodeJWT(token);
-                setAdminName(decoded.name || "Unknown Admin");
-                setAdminEmail(decoded.email || "Unknown Email");
-
-                const statsResponse = await fetch(
-                    "http://localhost:5000/users/count",
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
-                const statsData = await statsResponse.json();
-                setStats({
-                    totalUsers: statsData.totalUsers || 0,
-                    totalStories: statsData.totalStories || 0,
-                });
-
-                const adminResponse = await fetch(
-                    "http://localhost:5000/admins",
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
-                const adminData = await adminResponse.json();
-                setAdminList(adminData || []); 
-
-            } catch (error) {
-                console.error("Error fetching dashboard data:", error.message);
-                setError(error.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchDashboardData();
-    }, []);
-
-    // Update all admin details
-    const handleUpdateAdmin = async (adminId) => {
+    // Update admin details
+    const handleUpdateAdmin = async (e) => {
+        e.preventDefault();
         try {
             const token = localStorage.getItem("adminToken");
-            const response = await fetch(`http://localhost:5000/admins/${adminId}`, {
+            const response = await fetch(`http://localhost:3001/admins/${editingAdmin._id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
                 },
                 body: JSON.stringify({
-                    name: editData.name,
-                    email: editData.email,
-                    role: editData.role,
+                    name: editingAdmin.name,
+                    email: editingAdmin.email
                 }),
             });
 
             if (!response.ok) throw new Error("Failed to update admin");
 
             const updatedAdmin = await response.json();
-            const updatedAdminsList = adminList.map((admin) =>
-                admin._id === adminId ? updatedAdmin : admin
+            
+            // Update admin list with new details
+            setAdminList(prevList => 
+                prevList.map(admin => 
+                    admin._id === updatedAdmin._id ? updatedAdmin : admin
+                )
             );
-            setAdminList(updatedAdminsList);
-            setEditData({ adminId: "", name: "", email: "", role: "" }); 
+
+            // Reset editing state
+            setEditingAdmin(null);
             alert("Admin updated successfully!");
         } catch (error) {
             setError(error.message);
@@ -155,7 +114,7 @@ const AdminDashboard = () => {
     const handleDeleteAdmin = async (adminId) => {
         try {
             const token = localStorage.getItem("adminToken");
-            const response = await fetch(`http://localhost:5000/admins/${adminId}`, {
+            const response = await fetch(`http://localhost:3001/admins/${adminId}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -172,9 +131,73 @@ const AdminDashboard = () => {
         }
     };
 
+    useEffect(() => {
+        const token = localStorage.getItem("adminToken");
+        if (token) {
+            try {
+                const decodedToken = decodeJWT(token);
+                const storedAdminDetails = JSON.parse(localStorage.getItem("adminDetails") || "{}");
+
+                setAdminInfo({
+                    name: storedAdminDetails.name || decodedToken.name,
+                    email: storedAdminDetails.email || decodedToken.email,
+                    isValidToken: true
+                });
+            } catch (error) {
+                console.error("Error setting admin info:", error);
+                setAdminInfo({ name: "", email: "", isValidToken: false });
+            }
+        }
+
+        const fetchDashboardData = async () => {
+            try {
+                setLoading(true);
+                const token = localStorage.getItem("adminToken");
+
+                if (!token) {
+                    throw new Error("No authentication token found");
+                }
+
+                // Fetch users count
+                const statsResponse = await fetch(
+                    "http://localhost:3001/users/count",
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+                const statsData = await statsResponse.json();
+                setStats({
+                    totalUsers: statsData.totalUsers || 0,
+                    totalStories: statsData.totalStories || 0,
+                });
+
+                // Fetch admin list
+                const adminResponse = await fetch(
+                    "http://localhost:3001/admins",
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+                const adminData = await adminResponse.json();
+                setAdminList(adminData || []);
+
+            } catch (error) {
+                console.error("Dashboard Fetch Error:", error.message);
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchDashboardData();
+    }, []);
+
     return (
         <div className="min-h-screen p-3">
-            {/* Header */}
             <header className="flex flex-col sm:flex-row justify-between items-center mb-4 bg-white shadow-sm p-3 rounded-lg">
                 <div className="flex items-center mb-4 sm:mb-0">
                     <h1 className="text-xl sm:text-2xl font-bold text-[#0f0f0f]">
@@ -182,16 +205,14 @@ const AdminDashboard = () => {
                     </h1>
                 </div>
                 <div className="flex items-center space-x-4">
-                    <div className="w-10 h-10 rounded-full bg-gray-100 overflow-hidden">
-                        <img
-                            src="/api/placeholder/40/40"
-                            alt="Admin profile"
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
                     <div className="text-center sm:text-left">
-                        <p className="font-semibold text-sm sm:text-base">{adminName}</p>
-                        <p className="text-xs sm:text-sm text-gray-500">{adminEmail}</p>
+                        <p className="font-semibold text-sm sm:text-base">
+                            {adminInfo.name}
+                            {!adminInfo.isValidToken && (
+                                <span className="text-red-500 ml-2 text-xs">(Token Invalid)</span>
+                            )}
+                        </p>
+                        <p className="text-xs sm:text-sm text-gray-500">{adminInfo.email}</p>
                     </div>
                 </div>
             </header>
@@ -260,84 +281,89 @@ const AdminDashboard = () => {
                     <Card>
                         <h2 className="text-lg font-semibold mb-3">System Administrators</h2>
                         <div className="divide-y divide-gray-100">
-                            {adminList.map((admin, index) => (
-                                <div key={index} className="py-3 flex items-center justify-between">
-                                    <div className="flex items-center space-x-3">
-                                        <div className="w-8 h-8 rounded-full bg-gray-100 overflow-hidden">
-                                            <img
-                                                src={admin.photo || "/api/placeholder/32/32"}
-                                                alt={`${admin.name}'s profile`}
-                                                className="w-full h-full object-cover"
+                            {adminList.map((admin) => (
+                                <div key={admin._id} className="py-3 flex items-center justify-between">
+                                    {editingAdmin && editingAdmin._id === admin._id ? (
+                                        <form 
+                                            onSubmit={handleUpdateAdmin} 
+                                            className="w-full flex items-center space-x-2"
+                                        >
+                                            <input
+                                                type="text"
+                                                value={editingAdmin.name}
+                                                onChange={(e) => setEditingAdmin({
+                                                    ...editingAdmin, 
+                                                    name: e.target.value
+                                                })}
+                                                className="flex-grow p-2 border rounded"
+                                                placeholder="Name"
+                                                required
                                             />
-                                        </div>
-                                        <div>
-                                            <p className="font-medium">{admin.name}</p>
-                                            <div className="flex items-center text-sm text-gray-500">
-                                                <Mail className="w-4 h-4 mr-1" />
-                                                {admin.email}
+                                            <input
+                                                type="email"
+                                                value={editingAdmin.email}
+                                                onChange={(e) => setEditingAdmin({
+                                                    ...editingAdmin, 
+                                                    email: e.target.value
+                                                })}
+                                                className="flex-grow p-2 border rounded"
+                                                placeholder="Email"
+                                                required
+                                            />
+                                            <div className="flex space-x-2">
+                                                <button 
+                                                    type="submit" 
+                                                    className="text-green-600 hover:text-green-800"
+                                                >
+                                                    Save
+                                                </button>
+                                                <button 
+                                                    type="button"
+                                                    onClick={() => setEditingAdmin(null)}
+                                                    className="text-red-600 hover:text-red-800"
+                                                >
+                                                    Cancel
+                                                </button>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div className="flex space-x-3 items-center">
-                                        {/* Edit admin details */}
-                                        <button
-                                            className="text-blue-600 hover:text-blue-800"
-                                            onClick={() => setEditData({ adminId: admin._id, name: admin.name, email: admin.email, role: admin.role })}
-                                        >
-                                            <Edit2 className="w-4 h-4" />
-                                        </button>
+                                        </form>
+                                    ) : (
+                                        <>
+                                            <div className="flex items-center space-x-3">
+                                                <div>
+                                                    <p className="font-medium">{admin.name}</p>
+                                                    <div className="flex items-center text-sm text-gray-500">
+                                                        <Mail className="w-4 h-4 mr-1" />
+                                                        {admin.email}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="flex space-x-3 items-center">
+                                                {/* Edit admin */}
+                                                <button
+                                                    className="text-blue-600 hover:text-blue-800"
+                                                    onClick={() => setEditingAdmin({
+                                                        _id: admin._id,
+                                                        name: admin.name,
+                                                        email: admin.email
+                                                    })}
+                                                >
+                                                    <Edit2 className="w-4 h-4" />
+                                                </button>
 
-                                        {/* Delete admin */}
-                                        <button
-                                            className="text-red-600 hover:text-red-800"
-                                            onClick={() => handleDeleteAdmin(admin._id)}
-                                        >
-                                            <Trash className="w-4 h-4" />
-                                        </button>
-                                    </div>
+                                                {/* Delete admin */}
+                                                <button
+                                                    className="text-red-600 hover:text-red-800"
+                                                    onClick={() => handleDeleteAdmin(admin._id)}
+                                                >
+                                                    <Trash className="w-4 h-4" />
+                                                </button>
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                             ))}
                         </div>
                     </Card>
-
-                    {/* Update Admin Details Form */}
-                    {editData.adminId && (
-                        <Card className="mt-5">
-                            <h2 className="font-semibold text-lg">Update Admin Details</h2>
-                            <form
-                                onSubmit={(e) => {
-                                    e.preventDefault();
-                                    handleUpdateAdmin(editData.adminId);
-                                }}
-                                className="mt-3 space-y-3"
-                            >
-                                <input
-                                    type="text"
-                                    className="w-full p-2 border rounded"
-                                    value={editData.name}
-                                    onChange={(e) => setEditData({ ...editData, name: e.target.value })}
-                                    placeholder="Enter new name"
-                                />
-                                <input
-                                    type="email"
-                                    className="w-full p-2 border rounded"
-                                    value={editData.email}
-                                    onChange={(e) => setEditData({ ...editData, email: e.target.value })}
-                                    placeholder="Enter new email"
-                                />
-                                <input
-                                    type="text"
-                                    className="w-full p-2 border rounded"
-                                    value={editData.role}
-                                    onChange={(e) => setEditData({ ...editData, role: e.target.value })}
-                                    placeholder="Enter new role"
-                                />
-                                <button type="submit" className="bg-[#FF6A00] text-white py-2 px-4 rounded">
-                                    Update Admin
-                                </button>
-                            </form>
-                        </Card>
-                    )}
                 </>
             )}
 

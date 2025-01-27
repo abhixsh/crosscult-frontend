@@ -29,7 +29,7 @@ function AdminRegister() {
         e.preventDefault();
         try {
             console.log('Sending registration data:', formData);
-            const response = await axios.post('http://localhost:5000/admins/register', formData);
+            const response = await axios.post('http://localhost:3001/admins/register', formData);
             console.log('Register Response:', response.data);
             setMessage(response.data.message);
             setIsOTPVisible(true);
@@ -43,10 +43,10 @@ function AdminRegister() {
         e.preventDefault();
         try {
             console.log('Verifying OTP with data:', { email: formData.email, otp });
-            const response = await axios.post('http://localhost:5000/admins/verify-otp', { email: formData.email, otp });
+            const response = await axios.post('http://localhost:3001/admins/verify-otp', { email: formData.email, otp });
             console.log('Response from verify OTP:', response.data);
             setMessage(response.data.message);
-            navigate('/admin-login');
+            navigate('/admin/login');
         } catch (error) {
             console.error('Error during OTP verification:', error);
             setMessage(`Error: ${error.response?.data?.message || 'OTP verification failed.'}`);
