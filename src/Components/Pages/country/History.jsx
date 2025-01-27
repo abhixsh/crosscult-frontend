@@ -73,7 +73,7 @@ const Home = () => {
             transition={{ duration: 0.8 }}
         >
             <motion.div
-                className="flex flex-col-reverse md:flex-row items-center justify-between space-y-16 md:space-y-0 md:space-x-16 lg:space-x-24 xl:space-x-32"
+                className="flex flex-col-reverse md:flex-row items-center font-sans justify-between space-y-16 md:space-y-0 md:space-x-16 lg:space-x-24 xl:space-x-32"
                 initial="hidden"
                 animate="visible"
                 variants={{
@@ -98,7 +98,7 @@ const Home = () => {
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 text-center md:text-left">
                         History of {historyData.country_name}
                     </h1>
-                    <p className="text-lg md:text-xl lg:text-2xl text-gray-700 text-justify leading-relaxed">
+                    <p className="text-md md:text-xl lg:text-xl text-gray-700 text-justify leading-relaxed font-sans">
                         {historyData.history_desc}
                     </p>
                 </motion.div>
