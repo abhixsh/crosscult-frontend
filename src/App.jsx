@@ -16,6 +16,11 @@ import Stories from './Components/Pages/storyTelling/Stories';
 import Event from './Components/Pages/events/event';
 import EventDetails from './Components/Pages/events/eventDetails';
 import UnderConstruction from './Components/Pages/underReview';
+import Chatbot from './Components/Pages/chatbot/chatbot'
+import ChatbotIcon from './Components/Pages/chatbot/ChatbotIcon';
+import ChatForm from './Components/Pages/chatbot/ChatForm';
+import ChatMessage from './Components/Pages/chatbot/ChatMessage';
+
 import UserProfile from './Components/Pages/user/profile';
 
 // Country Pages

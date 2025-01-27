@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import Chatbot from './chatbot/chatbot';
 
 function Home() {
   return (
@@ -8,6 +9,11 @@ function Home() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
+      {/* Chatbot Component - Fixed on the Right Side */}
+      <div className="fixed bottom-4 right-4 z-50">
+        <Chatbot />
+      </div>
+
       {/* Main Content with Top Margin */}
       <div className="relative w-full max-w-full mt-2">
         <motion.div
