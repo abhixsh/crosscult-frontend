@@ -69,7 +69,7 @@ function Chatbot() {
             <ChatbotIcon />
             <h2 className="logo-text">chatbot</h2>
             <button
-              className="material-symbols-rounded minimize-button"
+              type="submit" className="material-symbols-outlined"
               onClick={toggleMinimize}
             >
               {isMinimized ? "keyboard_arrow_up" : "keyboard_arrow_down"}

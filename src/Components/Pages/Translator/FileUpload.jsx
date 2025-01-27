@@ -63,11 +63,7 @@ function FileUpload({ speechRecognitionLanguage, language, setRecognizedText, se
             </button>
           </form>
         </div>
-
       </div>
-
-
-
     </div>
   );
 }
