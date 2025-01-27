@@ -14,7 +14,7 @@ const UserAdmin = () => {
     const [updateMessage, setUpdateMessage] = useState('');
     const [showForm, setShowForm] = useState(false); // To toggle the form visibility
 
-    const API_BASE_URL = 'http://localhost:3001';
+    const API_BASE_URL = 'https://crosscultauthnew.azurewebsites.net';
 
     const fetchUsers = async () => {
         try {

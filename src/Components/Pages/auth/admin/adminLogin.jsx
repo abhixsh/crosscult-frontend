@@ -9,7 +9,7 @@ function AdminLogin() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3001/admins/login', {
+      const response = await axios.post('https://crosscultauthnew.azurewebsites.net/admins/login', {
         email,
         password
       });

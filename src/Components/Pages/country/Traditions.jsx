@@ -13,7 +13,7 @@ const Traditions = () => {
         const fetchTraditions = async () => {
             try {
                 setIsLoading(true);
-                const response = await axios.get(`http://localhost:3000/api/country/${id}`);
+                const response = await axios.get(`https://crosscultcountynew.azurewebsites.net/api/country/${id}`);
                 setTraditionsData(response.data);
             } catch (err) {
                 console.error('Error fetching traditions data:', err.message);

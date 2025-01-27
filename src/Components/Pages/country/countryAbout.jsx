@@ -11,7 +11,7 @@ const CountryAbout = () => {
     useEffect(() => {
         const fetchCountryData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/country/${id}`);
+                const response = await axios.get(`https://crosscultcountynew.azurewebsites.net/api/country/${id}`);
                 setCountryData(response.data);
             } catch (error) {
                 console.error('Error fetching country data:', error.message);

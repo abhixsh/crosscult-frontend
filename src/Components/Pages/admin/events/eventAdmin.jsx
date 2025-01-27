@@ -20,7 +20,7 @@ const CulturalEventsAdmin = () => {
     const [updateMessage, setUpdateMessage] = useState('');
     const [showForm, setShowForm] = useState(false);
 
-    const API_BASE_URL = 'http://localhost:3002/api/events';
+    const API_BASE_URL = 'https://crossculeventsnew.azurewebsites.net/api/events';
 
     const fetchEvents = async () => {
         try {

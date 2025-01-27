@@ -41,7 +41,7 @@ function Home() {
               Beyond Limits
             </h2>
             <p className="text-white text-sm md:text-base lg:text-lg font-normal font-['Inter'] mt-4 max-w-[80%] md:max-w-[60%] text-left">
-              Release of Letraset sheets containing Lorem Ipsum passages
+            To promote global cultural awareness and connection by showcasing,<br /> diverse traditions, history, cuisine, and events in one platform.
             </p>
           </motion.div>
         </motion.div>

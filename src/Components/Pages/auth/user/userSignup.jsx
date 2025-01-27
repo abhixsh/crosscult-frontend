@@ -39,7 +39,7 @@ function UserRegister() {
         e.preventDefault();
         try {
             const response = await axios.post(
-                "http://localhost:3001/users/register",
+                "https://crosscultauthnew.azurewebsites.net/register",
                 formData,
                 {
                     headers: {

@@ -28,7 +28,7 @@ function Login() {
 
         try {
             const response = await axios.post(
-                'http://localhost:3001/users/login',
+                'https://crosscultauthnew.azurewebsites.net/users/login',
                 loginData
             );
 

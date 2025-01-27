@@ -16,7 +16,7 @@ function Home() {
         const fetchCountries = async () => {
             try {
                 setIsLoading(true);
-                const response = await axios.get('http://localhost:3000/api/countries');
+                const response = await axios.get('https://crosscultcountynew.azurewebsites.net/api/countries');
                 if (Array.isArray(response.data)) {
                     setCountries(response.data);
                     setFilteredCountries(response.data);

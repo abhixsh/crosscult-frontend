@@ -43,7 +43,7 @@ function AdminRegister() {
         e.preventDefault();
         try {
             console.log('Verifying OTP with data:', { email: formData.email, otp });
-            const response = await axios.post('http://localhost:3001/admins/verify-otp', { email: formData.email, otp });
+            const response = await axios.post('https://crosscultauthnew.azurewebsites.net/admins/verify-otp', { email: formData.email, otp });
             console.log('Response from verify OTP:', response.data);
             setMessage(response.data.message);
             navigate('/admin/login');

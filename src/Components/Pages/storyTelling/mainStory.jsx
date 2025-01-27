@@ -13,7 +13,7 @@ const MainStory = () => {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const response = await fetch('http://localhost:3003/stories');
+        const response = await fetch('https://crosscultstorynew.azurewebsites.net/stories');
         if (!response.ok) {
           throw new Error('Failed to fetch stories');
         }

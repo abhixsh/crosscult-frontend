@@ -13,7 +13,7 @@ const Home = () => {
         const fetchHistory = async () => {
             try {
                 setIsLoading(true);
-                const response = await axios.get(`http://localhost:3000/api/country/${id}`);
+                const response = await axios.get(`https://crosscultcountynew.azurewebsites.net/api/country/${id}`);
                 setHistoryData(response.data);
             } catch (err) {
                 console.error('Error fetching history:', err.message);

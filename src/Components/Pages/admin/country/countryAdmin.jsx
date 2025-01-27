@@ -23,7 +23,7 @@ const CountryAdmin = () => {
     const [updateMessage, setUpdateMessage] = useState('');
     const [showForm, setShowForm] = useState(false); // To toggle the form visibility
 
-    const API_BASE_URL = 'http://localhost:3000/api';
+    const API_BASE_URL = 'https://crosscultcountynew.azurewebsites.net/api';
 
     const fetchCountries = async () => {
         try {

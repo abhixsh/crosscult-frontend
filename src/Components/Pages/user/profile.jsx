@@ -24,7 +24,7 @@ function UserProfile() {
     const [updateMessage, setUpdateMessage] = useState('');
     const [showForm, setShowForm] = useState(false);
 
-    const API_BASE_URL = 'http://localhost:3003';
+    const API_BASE_URL = 'https://crosscultstorynew.azurewebsites.net';
 
     useEffect(() => {
         // Retrieve user data from local storage

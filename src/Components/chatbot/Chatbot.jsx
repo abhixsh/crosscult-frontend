@@ -121,7 +121,7 @@ function Chatbot() {
       setIsLoading(true);
       setChatHistory((prev) => [...prev, { role: "user", text: userInput }]);
 
-      const response = await fetch("http://localhost:3000/chat", {
+      const response = await fetch("http://localhost:3006/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userInput }),

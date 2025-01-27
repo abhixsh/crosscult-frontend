@@ -13,12 +13,12 @@ const Stories = () => {
 
   const fetchStoryAndUser = async () => {
     try {
-      const storyResponse = await fetch(`http://localhost:3003/stories/${id}`);
+      const storyResponse = await fetch(`https://crosscultstorynew.azurewebsites.net/stories/${id}`);
       if (!storyResponse.ok) throw new Error('Failed to fetch story');
       const storyData = await storyResponse.json();
       setStory(storyData);
 
-      const userResponse = await fetch(`http://localhost:3001/users/username/${storyData.username}`);
+      const userResponse = await fetch(`https://crosscultauthnew.azurewebsites.net/users/username/${storyData.username}`);
       if (!userResponse.ok) throw new Error('Failed to fetch user');
       const userData = await userResponse.json();
       setUser(userData);

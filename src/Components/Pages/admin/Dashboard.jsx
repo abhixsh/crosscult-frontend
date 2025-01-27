@@ -79,7 +79,7 @@ const AdminDashboard = () => {
         e.preventDefault();
         try {
             const token = localStorage.getItem("adminToken");
-            const response = await fetch(`http://localhost:3001/admins/${editingAdmin._id}`, {
+            const response = await fetch(`https://crosscultauthnew.azurewebsites.net/admins/${editingAdmin._id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -114,7 +114,7 @@ const AdminDashboard = () => {
     const handleDeleteAdmin = async (adminId) => {
         try {
             const token = localStorage.getItem("adminToken");
-            const response = await fetch(`http://localhost:3001/admins/${adminId}`, {
+            const response = await fetch(`https://crosscultauthnew.azurewebsites.net/admins/${adminId}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -160,7 +160,7 @@ const AdminDashboard = () => {
 
                 // Fetch users count
                 const statsResponse = await fetch(
-                    "http://localhost:3001/users/count",
+                    "https://crosscultauthnew.azurewebsites.net/users/count",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -175,7 +175,7 @@ const AdminDashboard = () => {
 
                 // Fetch admin list
                 const adminResponse = await fetch(
-                    "http://localhost:3001/admins",
+                    "https://crosscultauthnew.azurewebsites.net/admins",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
