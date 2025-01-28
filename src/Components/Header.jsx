@@ -115,7 +115,7 @@ const Header = () => {
         {/* Logo */}
         <Link to="/" className="w-[150px] md:w-[198px]">
           <motion.img
-            src="public/img/logo.png"
+            src="img/logo.png"
             alt="Logo"
             className="max-h-[93px] w-full object-contain"
             initial={{ opacity: 0 }}
