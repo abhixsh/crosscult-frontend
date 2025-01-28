@@ -57,8 +57,10 @@ function Login() {
                 position: 'top-right'
             });
 
+            // Modified navigation logic to include page refresh
             setTimeout(() => {
-                navigate('/');
+                navigate('/', { replace: true }); // Use replace to prevent back navigation to login
+                window.location.reload(); // Force refresh after navigation
             }, 2000);
 
         } catch (error) {

@@ -58,7 +58,7 @@ function Home() {
             >
                 <img
                     className="absolute inset-0 w-full h-full object-cover"
-                    src="public/img/cover.png"
+                    src="img/cover.png"
                     alt="Main Banner"
                 />
                 {/* Overlay for search */}

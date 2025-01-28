@@ -17,7 +17,7 @@ function FileUpload({ speechRecognitionLanguage, language, setRecognizedText, se
     formData.append('language', language);
 
     fetch(
-      'http://localhost:3004/api/translate',
+      'https://crosscultainew.azurewebsites.net/api/translate',
       {
         method: "POST",
         body: formData
