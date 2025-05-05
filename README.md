@@ -1,167 +1,83 @@
-# CrossCult - A Cultural Exploration Web Application
+<div align="center">
 
-CrossCult is a web application designed to explore and showcase cultural details, traditions, foods, and interactive storytelling experiences from various countries. Built with Vite, React, and Tailwind CSS, this project offers a dynamic and engaging platform to learn about world cultures and connect through shared stories.
+<img src="src/assets/logobar.png" alt="NutriCare Logo" width="95%">
 
-## Table of Contents
+<br/>
 
-- [Project Overview](#project-overview)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [Scripts](#scripts)
-- [Contributing](#contributing)
-- [License](#license)
+# CrossCult – Cultural Exploration Web App
 
-## Project Overview
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)
+![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 
-The CrossCult web application aims to provide a platform for users to:
+CrossCult is a cultural exploration web app that lets users learn about food, history, festivals, and traditions of different countries. It also supports AI voice-based translation with Azure services.
 
-- Discover cultural details of various countries.
-- Engage with interactive storytelling.
-- Participate in language translation.
-- Explore events and traditions.
+</div>
 
-The goal is to foster cultural understanding and connectivity through a user-friendly and visually appealing interface.
+# About the Project
+
+CrossCult helps people discover and learn about cultures from around the world. Users can explore country-specific details like traditional foods, events, and customs. The app includes an Azure-based AI feature that translates spoken words into many languages. Users can share travel stories, plan trips, and browse global festivals.
 
 ## Features
 
-- **Home Page**: Welcoming interface with quick access to different sections.
-- **Country Details**: Displays cultural details such as history, traditions, and foods of each country.
-- **Interactive Storytelling**: Users can explore stories specific to each culture.
-- **Language Translation**: Supports multilingual translation for easy accessibility.
-- **User and Admin Panels**: Secure user login, with separate admin and user controls.
+- Country-specific pages with food, traditions, and history  
+- Personalised travel suggestions by country, budget, and season  
+- Voice-based language translation (using Azure Speech + Translator API)  
+- User story sharing with photos and experiences  
+- Secure login and registration system  
+- Admin dashboard for content moderation (future update)
 
-## Tech Stack  
-- **Frontend Framework:** React  
-- **Build Tool:** Vite  
-- **Styling:** Tailwind CSS  
-- **Routing:** React Router  
-- **Backend:** Node.js, Express.js  
-- **Database:** MongoDB  
-- **Hosting & Deployment:** Azure
+## Technology Stack
 
-## Project Structure
+- **Frontend**: React.js, Tailwind CSS  
+- **Backend**: Node.js, Express.js  
+- **Database**: MongoDB  
+- **AI Integration**: Azure Cognitive Services (Speech + Translator)  
+- **Hosting**: Firebase, Azure Web App  
+- **DevOps**: Docker, Azure Container Registry, GitHub Actions
 
-Here's an overview of the project directory structure:
+## Backend Repositories
 
-```
-CrossCult-Frontend/
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   │   ├── Home.jsx
-│   │   ├── CulturalDetails.jsx
-│   │   ├── AdminPanel.jsx
-│   │   ├── UserDetailsPanel.jsx
-│   │   ├── InteractiveStorytelling.jsx
-│   │   └── ...
-│   ├── pages/
-│   │   ├── HomePage.jsx
-│   │   ├── CountryPage.jsx
-│   │   └── ...
-│   ├── App.jsx
-│   ├── main.jsx
-│   ├── index.css
-│   └── tailwind.config.js
-└── projectsetup.sh
-```
+<a href="https://github.com/abhixsh/" target="_blank">
+  <img width="95%" alt="Backend Repo" src="https://i.ibb.co/b5Fdv08W/Group-1.png"/>
+</a>
+<div align="center">
+  <strong>Click here to go to the backend repository</strong>
+</div>
 
-## Getting Started
+### All Backend Repositories
+
+- [crosscult-country-service](https://github.com/abhixsh/crosscult-country-service)
+- [crosscult-ai-service](https://github.com/abhixsh/crosscult-ai-service)
+- [crosscult-auth-service](https://github.com/abhixsh/crosscult-auth-service)
+- [crosscult-events-service](https://github.com/abhixsh/crosscult-events-service)
+- [crosscult-storytelling-service](https://github.com/abhixsh/crosscult-storytelling-service)
+- [crosscult-chabot-service](https://github.com/abhixsh/crosscult-chabot-service)
+
+## Local Development
 
 ### Prerequisites
+- Node.js and npm installed
+- Mongodb running locally or a cloud URI
+- Azure API keys (for translation)
 
-Ensure you have the following installed on your machine:
-
-- Node.js (v14 or later)
-- npm or yarn
-- Git Bash (if using Windows)
-
-### Setup Instructions
-
-1. **Clone the Repository**
-
-    ```bash
-    git clone https://github.com/your-username/crosscult-frontend.git
-    cd crosscult-frontend
-    ```
-
-2. **Run the Setup Script**
-
-    Use the provided `projectsetup.sh` script to initialize the project structure and install dependencies.
-
-    ```bash
-    bash projectsetup.sh
-    ```
-
-3. **Manual Setup (if script fails)**
-
-    - Initialize the project using Vite and React template:
-
-        ```bash
-        npx create-vite my-app --template react
-        cd my-app
-        ```
-
-    - Install Tailwind CSS:
-
-        ```bash
-        npm install -D tailwindcss postcss autoprefixer
-        npx tailwindcss init -p
-        ```
-
-4. **Start the Development Server**
-
-    ```bash
-    npm run dev
-    ```
-
-## Scripts
-
-### Development
-
-```bash
-npm run dev
-```
-
-Starts the development server on [http://localhost:3000](http://localhost:3000).
-
-### Build
-
-```bash
-npm run build
-```
-
-Builds the app for production to the `dist` folder.
-
-### Lint
-
-```bash
-npm run lint
-```
-
-Runs linting for the project to ensure code quality.
 
 ## Contributing
 
-Contributions are welcome! Please follow these steps:
+A win-win cooperation! We invite you to participate in this project. Let's work together to create the most useful tool for developers on the web today.
 
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix:
+### How to Contribute
 
-    ```bash
-    git checkout -b feature-name
-    ```
+- Issues: ask questions and submit your features
+- Pull requests: send your improvements to the current codebase
 
-3. Commit your changes and push to your branch:
-
-    ```bash
-    git commit -m "Add new feature"
-    git push origin feature-name
-    ```
-
-4. Submit a pull request.
+Together, we can make this project **better** every day!
 
 ## License
 
